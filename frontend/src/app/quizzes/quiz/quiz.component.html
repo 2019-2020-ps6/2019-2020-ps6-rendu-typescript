@@ -3,7 +3,11 @@
         <i class="fab fa-leanpub"></i>
         {{quiz.name}}
     </h2>
-    <button class="button-card" (click)="selectQuiz()">Select</button>
-    <button class="button-card" (click)="delete()">Delete</button>
-    <button class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
+    <img id ='image' src ={{quiz.image}} alt = "Une image qui représente le quiz">
+    <button class="fas fa-play" (click)="selectQuiz()"></button>
+    <button class="fas fa-trash-alt" (click)="delete()"></button>
+    <button class="fas fa-edit" routerLink="/edit-quiz/{{quiz.id}}"></button>
+
 </div>
+
+<app-question-list *ngIf='selected'  [quiz]='quiz'> </app-question-list>

@@ -14,7 +14,8 @@ export class QuestionComponent implements OnInit {
   @Output()
   deleteQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
