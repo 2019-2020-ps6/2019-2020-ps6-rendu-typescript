@@ -12,7 +12,7 @@ const data: IMenuItem[] = [
     id: 'quizzes',
     icon: 'iconsminds-dashboard',
     label: 'menu.quizzes',
-    to: '/app/vien/start',
+    to: '/app/product/image-list',
   },
   {
     id: 'security',
