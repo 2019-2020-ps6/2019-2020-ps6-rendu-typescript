@@ -36,7 +36,7 @@ export class QuizService {
   private httpOptions = httpOptionsBase;
 
   constructor(private http: HttpClient) {
-    this.setQuizzesFromUrl();
+    // this.setQuizzesFromUrl();
   }
 
   setQuizzesFromUrl() {

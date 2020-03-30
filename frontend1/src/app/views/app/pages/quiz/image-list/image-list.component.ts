@@ -4,6 +4,7 @@ import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
 import { IProduct } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
+import { PRODUCTS } from '../../../../../data/productsstat';
 
 @Component({
   selector: 'app-image-list',
@@ -40,7 +41,7 @@ export class ImageListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
