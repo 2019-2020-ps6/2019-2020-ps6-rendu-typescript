@@ -118,7 +118,7 @@ export class ImageListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
 
-  searchKeyUp(event){
+  searchKeyUp(event) {
     const val = event.target.value.toLowerCase().trim();
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
