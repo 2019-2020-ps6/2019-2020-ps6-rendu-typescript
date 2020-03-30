@@ -33,7 +33,7 @@
           </a>
 
           <div class="w-15 w-sm-100">
-          <span [class]="'badge badge-pill badge-'+p.statusColor">{{p.category}}</span>
+          <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
         </div>
           <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
           <div class="w-15 w-xs-100">
@@ -64,7 +64,7 @@
             <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
           </a>
           <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+p.statusColor">{{p.category}}</span>
+            <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
           </div>
           <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
           <div class="w-15 w-sm-100">
@@ -89,7 +89,7 @@
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
             <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
-            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.category}}</span>
+            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.themeColor">{{p.theme}}</span>
           </div>
           <div class="card-body">
               <div class="row">
