@@ -29,6 +29,16 @@ export interface IProductResponse {
   currentPage: string;
 }
 
+export interface IQuizzes {
+  id: number;
+  title: string;
+  img: string;
+  theme: string;
+  date: string;
+  themeColor: string;
+  description: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   constructor(private http: HttpClient) { }

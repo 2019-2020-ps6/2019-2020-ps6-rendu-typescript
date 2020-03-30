@@ -1,14 +1,14 @@
 <ng-template #template>
     <div class="modal-header">
         <h4 class="modal-title pull-left">{{'pages.add-new-modal-title' | translate}}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <div>
             <label>{{ 'pages.product-name' | translate }}</label>
-            <input type="email" class="form-control" placeholder="">
+            <input type="text" class="form-control" placeholder="">
         </div>
         <div class="mt-4">
             <label>{{ 'pages.category' | translate }}</label>
