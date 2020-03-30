@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '', component: QuizComponent,
     children: [
-      { path: '', redirectTo: 'details-alt', pathMatch: 'full' },
+      { path: '', redirectTo: 'image-list', pathMatch: 'full' },
       { path: 'image-list', component: ImageListComponent },
       { path: 'details', component: DetailsComponent },
       { path: 'details-alt', component: DetailsAltComponent },

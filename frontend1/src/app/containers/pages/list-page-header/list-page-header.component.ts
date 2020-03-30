@@ -15,8 +15,8 @@ export class ListPageHeaderComponent implements OnInit {
   @Input() selectAllState = '';
   @Input() itemsPerPage = 10;
   @Input() itemOptionsPerPage = [5, 10, 20];
-  @Input() itemOrder = { label: 'Product Name', value: 'title' };
-  @Input()  itemOptionsOrders = [{ label: 'Product Name', value: 'title' }, { label: 'Category', value: 'category' }, { label: 'Status', value: 'status' }];
+  @Input() itemOrder = { label: 'Titre', value: 'Titre' };
+  @Input()  itemOptionsOrders = [{ label: 'Titre', value: 'title' }, { label: 'Catégorie', value: 'category' }, { label: 'Theme', value: 'status' }];
 
   @Output() changeDisplayMode: EventEmitter<string> = new EventEmitter<string>();
   @Output() addNewItem: EventEmitter<any> = new EventEmitter();

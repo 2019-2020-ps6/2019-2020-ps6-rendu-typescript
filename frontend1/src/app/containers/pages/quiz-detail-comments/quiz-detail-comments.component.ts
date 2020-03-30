@@ -3,10 +3,10 @@ import commentData, { IComment } from 'src/app/data/comments';
 
 
 @Component({
-  selector: 'app-product-detail-comments',
-  templateUrl: './product-detail-comments.component.html'
+  selector: 'app-quiz-detail-comments',
+  templateUrl: './quiz-detail-comments.component.html'
 })
-export class ProductDetailCommentsComponent implements OnInit {
+export class QuizDetailCommentsComponent implements OnInit {
 
   constructor() { }
   comments: IComment[] = commentData;

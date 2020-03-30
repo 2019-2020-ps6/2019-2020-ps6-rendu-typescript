@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddNewProductModalComponent } from 'src/app/containers/pages/add-new-product-modal/add-new-product-modal.component';
+import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
 import { IProduct } from 'src/app/data/api.service';
@@ -25,7 +25,7 @@ export class ImageListComponent implements OnInit {
 
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-  @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewProductModalComponent;
+  @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {

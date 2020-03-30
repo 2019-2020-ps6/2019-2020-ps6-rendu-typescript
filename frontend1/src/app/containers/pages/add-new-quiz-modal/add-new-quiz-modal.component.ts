@@ -1,11 +1,11 @@
 import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
-  selector: 'app-add-new-product-modal',
-  templateUrl: './add-new-product-modal.component.html',
+  selector: 'app-add-new-quiz-modal',
+  templateUrl: './add-new-quiz-modal.component.html',
   styles: []
 })
-export class AddNewProductModalComponent implements OnInit {
+export class AddNewQuizModalComponent implements OnInit {
   modalRef: BsModalRef;
   config = {
     backdrop: true,

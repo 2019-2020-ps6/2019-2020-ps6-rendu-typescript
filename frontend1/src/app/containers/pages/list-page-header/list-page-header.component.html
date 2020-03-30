@@ -18,7 +18,6 @@
         </button>
         <ul id="dropdown-split" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
           aria-labelledby="button-split">
-          <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'pages.move' | translate }}</a></li>
           <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'pages.delete' | translate }}</a></li>
         </ul>
       </div>
@@ -72,7 +71,7 @@
           <div class="float-md-left mr-1 mb-1" dropdown>
             <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-dark btn-xs dropdown-toggle"
               aria-controls="dropdown-basic">
-              Order By : {{itemOrder.label}} <span class="caret"></span>
+              {{ 'pages.orderby' | translate}} {{itemOrder.label}} <span class="caret"></span>
             </button>
             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
               <li role="menuitem" *ngFor="let item of itemOptionsOrders"><a
@@ -84,11 +83,11 @@
 
         <div class="d-inline-block" *ngIf="showSearch">
           <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
-            <input class="form-control" placeholder="Search" (keyup)="onSearchKeyUp($event)">
+            <input class="form-control" placeholder="{{'pages.search' | translate}}" (keyup)="onSearchKeyUp($event)">
           </div>
         </div>
         <div class="float-right" *ngIf="showItemsPerPage">
-          <span class="text-muted text-small">Per Page </span>
+          <span class="text-muted text-small">{{ 'pages.bypage' | translate}} </span>
           <span dropdown class="d-inline-block position-relative">
             <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" dropdownToggle>

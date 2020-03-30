@@ -3,10 +3,10 @@ import commentData, { IComment } from 'src/app/data/comments';
 import questionData, { IQuestion } from 'src/app/data/questions';
 
 @Component({
-  selector: 'app-product-detail-tabs',
-  templateUrl: './product-detail-tabs.component.html'
+  selector: 'app-quiz-detail-tabs',
+  templateUrl: './quiz-detail-tabs.component.html'
 })
-export class ProductDetailTabsComponent implements OnInit {
+export class QuizDetailTabsComponent implements OnInit {
   comments: IComment[] = commentData;
   questions: IQuestion[] = questionData;
 
