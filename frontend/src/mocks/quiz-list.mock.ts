@@ -8,8 +8,8 @@ export const QUESTION_ACTOR: Question[] =
     label: 'Christiano Ronaldo a joué dans quelle équipe ?',
     answers: [
         {
-            value: 'FC Barcelone',
-            isCorrect: false,
+            "value": 'FC Barcelone',
+            "isCorrect": false,
         },
         {
             value: 'Real Madrid',
