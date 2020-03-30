@@ -8,8 +8,7 @@ const routes: Routes = [
         path: '', component: AppComponent,
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vien' },
-            { path: 'vien', loadChildren: () => import('./vien/vien.module').then(m => m.VienModule) },
-            { path: 'second-menu', loadChildren: () => import('./second-menu/second-menu.module').then(m => m.SecondMenuModule) },
+            { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
             { path: 'blank-page', component: BlankPageComponent },
         ]
     }

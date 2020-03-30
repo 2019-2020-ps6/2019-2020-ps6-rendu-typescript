@@ -6,6 +6,7 @@ import {
 import { map, catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PRODUCTS} from './productsstat';
 
 export interface IProduct {
   id: number;
@@ -31,6 +32,9 @@ export interface IProductResponse {
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+
+  // private data: IProduct[] = PRODUCTS;
+
   constructor(private http: HttpClient) { }
 
   getProducts(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
