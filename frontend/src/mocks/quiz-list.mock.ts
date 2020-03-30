@@ -16,8 +16,21 @@ export const QUESTION_ACTOR: Question[] =
             isCorrect: true,
         }
     ]
+},
+{
+id: '1',
+label: 'Quelle âge avait il lorsque il a rejoint sa première équipe ?',
+answers: [
+    {
+        value: '20',
+        isCorrect: false,
+    },
+    {
+        value: '22',
+        isCorrect: true,
+    }
+]
 }
-
 ];
 
 
