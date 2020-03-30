@@ -5,14 +5,14 @@ export const QUESTION_ACTOR: Question[] =
   [
     {
     id: '1',
-    label: 'Jean Gabin a joué dans...',
+    label: 'Christiano Ronaldo a joué dans quelle équipe ?',
     answers: [
         {
-            value: 'Les tuches II',
+            value: 'FC Barcelone',
             isCorrect: false,
         },
         {
-            value: 'La grande illusion',
+            value: 'Real Madrid',
             isCorrect: true,
         }
     ]
