@@ -33,7 +33,8 @@ export interface IProductResponse {
 @Injectable({ providedIn: 'root' })
 export class ApiService {
 
-  // private data: IProduct[] = PRODUCTS;
+   private data: IProduct[] = PRODUCTS;
+   private iProductResponse: IProductResponse;
 
   constructor(private http: HttpClient) { }
 
@@ -45,7 +46,13 @@ export class ApiService {
     params = params.append('search', search);
     params = params.append('orderBy', orderBy);
 
-    return this.http.get(url, { params })
+    this.iProductResponse.pageSize = String(pageSize);
+    this.iProductResponse.currentPage = String(currentPage);
+    this.iProductResponse.status = true;
+    this.iProductResponse.totalItem = 20;
+    this.iProductResponse.totalPage = 3;
+    return this.iProductResponse;
+    /* return this.http.get(url, { params })
       .pipe(
         map((res: IProductResponse) => {
           return res;
@@ -53,6 +60,6 @@ export class ApiService {
         catchError(errorRes => {
           return throwError(errorRes);
         })
-      );
+      );*/
   }
 }
