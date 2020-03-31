@@ -1,4 +1,5 @@
 <ng-template #template>
+  <form [formGroup]="quizForm">
     <div class="modal-header">
         <h4 class="modal-title pull-left">{{'pages.add-new-modal-title' | translate}}</h4>
         <button type="button" class="close pull-right" aria-label="Fermer" (click)="modalRef.hide()">
@@ -8,25 +9,37 @@
     <div class="modal-body">
         <div>
             <label>{{ 'pages.product-name' | translate }}</label>
-            <input type="text" class="form-control" placeholder="">
+            <input type="text" class="form-control" placeholder="" id="name" [formControlName]="'name'">
         </div>
         <div class="mt-4">
             <label>{{ 'pages.category' | translate }}</label>
             <label class="w-100">
-                <ng-select appearance="outline" [searchable]="false">
+                <ng-select appearance="outline" [searchable]="false" id="theme" [formControlName]="'theme'">
                     <ng-option *ngFor="let item of categories" [value]="item.value">{{item.label}}
                     </ng-option>
                 </ng-select>
             </label>
         </div>
+      <div class="mt-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{'input-groups.upload' | translate}}</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="img" [formControlName]="'img'" (change)="onFileSelected($event)">
+          <label class="custom-file-label" for="img">{{'input-groups.choose-file' | translate}}</label>
+        </div>
+      </div>
+      </div>
         <div class="mt-4">
             <label>{{ 'pages.description' | translate }}</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" id="description" [formControlName]="'description'"></textarea>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary"
             (click)="modalRef.hide()">{{'pages.cancel' | translate }}</button>
-        <button type="submit" class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
+        <button type="submit" class="btn btn-primary float-right" (click)="addQuiz()">{{ 'pages.submit' | translate}}</button>
     </div>
+  </form>
 </ng-template>

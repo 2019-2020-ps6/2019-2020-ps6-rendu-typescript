@@ -1,11 +1,18 @@
 import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {Quiz} from '../../../../models/quiz.model';
+import {QuizService} from '../../../../services/quizzes.service';
+import {IQuiz} from '../../../data/api.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 @Component({
   selector: 'app-add-new-quiz-modal',
   templateUrl: './add-new-quiz-modal.component.html',
   styles: []
 })
 export class AddNewQuizModalComponent implements OnInit {
+  public quizForm: FormGroup;
+  private selectedFile = '';
   modalRef: BsModalRef;
   config = {
     backdrop: true,
@@ -13,15 +20,24 @@ export class AddNewQuizModalComponent implements OnInit {
     class: 'modal-right'
   };
   categories = [
-    { label: 'Cakes', value: 'chocolate' },
-    { label: 'Cupcakes', value: 'vanilla' },
-    { label: 'Desserts', value: 'strawberry' }
+    { label: 'CAKES', value: 'CAKES' },
+    { label: 'CUPCAKES', value: 'CUPCAKES' },
+    { label: 'SPORT', value: 'SPORT'},
+    { label: 'ACTOR', value: 'ACTOR'},
+    { label: 'DESSERTS', value: 'DESSERTS' }
   ];
 
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder) {
+    this.quizForm = this.formBuilder.group({
+      name: [''],
+      theme: [''],
+      img: [''],
+      description: [''],
+    });
+  }
 
   ngOnInit() {
 
@@ -29,6 +45,38 @@ export class AddNewQuizModalComponent implements OnInit {
 
   show() {
     this.modalRef = this.modalService.show(this.template, this.config);
+  }
+
+  addQuiz() {
+    // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
+    const quizToCreate: IQuiz = this.quizForm.getRawValue() as IQuiz;
+    quizToCreate.date = new Date().toDateString();
+    quizToCreate.img = this.selectedFile;
+    if (quizToCreate.theme === 'CAKES') {
+      quizToCreate.themeColor = 'secondary';
+    }
+    if (quizToCreate.theme === 'CUPCAKES') {
+      quizToCreate.themeColor = 'primary';
+    }
+    if (quizToCreate.theme === 'DESSERTS') {
+      quizToCreate.themeColor = 'success';
+    }
+    if (quizToCreate.theme === 'SPORT') {
+      quizToCreate.themeColor = 'warning';
+    }
+    if (quizToCreate.theme === 'ACTOR') {
+      quizToCreate.themeColor = 'danger';
+    }
+    console.log()
+    this.quizService.addQuiz(quizToCreate);
+    this.modalRef.hide();
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    console.log(this.selectedFile = event.target.files[0]);
+    this.selectedFile = '/assets/img/' + event.target.files[0].name;
+    console.log(this.selectedFile);
   }
 
 }

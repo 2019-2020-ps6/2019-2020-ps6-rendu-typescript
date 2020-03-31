@@ -2,10 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
-import {ApiService, IProduct} from "../../data/api.service";
-import {ContextMenuComponent} from "ngx-contextmenu";
-import {AddNewQuizModalComponent} from "../../containers/pages/add-new-quiz-modal/add-new-quiz-modal.component";
-import {Hotkey, HotkeysService} from "angular2-hotkeys";
+import {ApiService, IQuiz} from '../../data/api.service';
+import {ContextMenuComponent} from 'ngx-contextmenu';
+import {AddNewQuizModalComponent} from '../../containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
+import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 
 @Component({
   selector: 'app-quiz-list',
@@ -19,8 +19,8 @@ export class QuizListComponent implements OnInit {
 
   displayMode = 'image';
   selectAllState = '';
-  selected: IProduct[] = [];
-  data: IProduct[] = [];
+  selected: IQuiz[] = [];
+  data: IQuiz[] = [];
   currentPage = 1;
   itemsPerPage = 8;
   search = '';
@@ -54,12 +54,12 @@ export class QuizListComponent implements OnInit {
 
   quizSelected(quiz: Quiz) {
     console.log('event received from child:', quiz.name);
-    //this.router.navigate(['questions']);
+    // this.router.navigate(['questions']);
     this.quizService.setSelectedQuiz(quiz.id);
   }
 
   editQuiz(quiz: Quiz) {
-    this.router.navigate(['/edit-quiz/'+ quiz.name]);
+    this.router.navigate(['/edit-quiz/' + quiz.name]);
   }
 
   deleteQuiz(quiz: Quiz) {
@@ -73,7 +73,7 @@ export class QuizListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    this.apiService.getProducts(pageSize, currentPage, search, orderBy).subscribe(
+   /* this.apiService.getProducts(pageSize, currentPage, search, orderBy).subscribe(
       data => {
         if (data.status) {
           this.isLoading = false;
@@ -88,7 +88,7 @@ export class QuizListComponent implements OnInit {
       error => {
         this.isLoading = false;
       }
-    );
+    );*/
   }
 
   changeDisplayMode(mode) {
@@ -99,10 +99,10 @@ export class QuizListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IProduct) {
+  isSelected(p: IQuiz) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: IProduct) {
+  onSelect(item: IQuiz) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {
@@ -147,7 +147,7 @@ export class QuizListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: IProduct) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
+  onContextMenuClick(action: string, item: IQuiz) {
+    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
   }
 }

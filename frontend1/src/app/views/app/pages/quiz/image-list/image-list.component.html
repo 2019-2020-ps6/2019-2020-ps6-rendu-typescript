@@ -22,7 +22,7 @@
 </context-menu>
 
 <div class="row">
-  <!--
+
   <div class="col-12 list" *ngIf="displayMode==='list'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
@@ -30,7 +30,7 @@
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
           <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{p.title}} <p>{{p.description}}</p>
+            {{p.name}} <p>{{p.description}}</p>
           </a>
 
           <div class="w-15 w-sm-100">
@@ -56,13 +56,13 @@
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
       <a class="d-flex" href="javascript:;">
-        <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
+        <img [src]="p.img" [alt]="p.name" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
           <a href="javascript:;" class="w-40 w-sm-100">
-            <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
+            <p class="list-item-heading mb-0 truncate">{{p.name}}</p>
           </a>
           <div class="w-15 w-sm-100">
             <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
@@ -89,7 +89,7 @@
       [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
+            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.name"></a>
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.themeColor">{{p.theme}}</span>
           </div>
           <div class="card-body">
@@ -110,7 +110,7 @@
               </div>
               <div class="col-10">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-2 pt-1">{{p.title}}</p>
+                  <p class="list-item-heading mb-2 pt-1">{{p.name}}</p>
                 </a>
                 <a href="javascript:;">
                    <p class="list-item-heading mt-1 pt-1">Lancer</p>
@@ -124,7 +124,7 @@
         </div>
       </div>
     </div>
-  </div>    -->
+  </div>
 
   <div class="col-12" >
     <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"

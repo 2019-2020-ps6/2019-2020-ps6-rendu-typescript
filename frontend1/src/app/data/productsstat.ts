@@ -1,7 +1,7 @@
-import { IProduct } from './api.service';
+import { IQuiz } from './api.service';
 
-export const PRODUCTS: IProduct[] = [
-  {
+export const QUIZZES: IQuiz[] = [
+ /* {
     id: 1,
     title: 'Marble Cake',
     img: '/assets/img/marble-cake-thumb.jpg',
@@ -242,7 +242,7 @@ export const PRODUCTS: IProduct[] = [
     description: 'Wedding cake with flowers Macarons and blueberries',
     sales: 524,
     stock: 14
-  }
+  }*/
 ];
 
 export default data;

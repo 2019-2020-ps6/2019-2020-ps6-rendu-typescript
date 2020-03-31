@@ -596,8 +596,8 @@
     "options": "Options",
     "choose": "Choose...",
     "custom-file-input": "Custom File Input",
-    "upload": "Upload",
-    "choose-file": "Choose a file",
+    "upload": "Image",
+    "choose-file": "Choisir une image...",
     "with-text-area": "With textarea"
   },
   "jumbotron": {

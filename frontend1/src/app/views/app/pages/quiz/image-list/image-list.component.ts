@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
-import { IProduct } from 'src/app/data/api.service';
+import { IQuiz } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { PRODUCTS } from '../../../../../data/productsstat';
+import { QUIZZES } from '../../../../../data/productsstat';
+import {QuizService} from '../../../../../../services/quizzes.service';
+import {Quiz} from '../../../../../../models/quiz.model';
 
 @Component({
   selector: 'app-image-list',
@@ -13,8 +15,8 @@ import { PRODUCTS } from '../../../../../data/productsstat';
 export class ImageListComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
-  selected: IProduct[] = [];
-  data: IProduct[] = [];
+  selected: IQuiz[] = [];
+  data: IQuiz[] = [];
   currentPage = 1;
   itemsPerPage = 8;
   search = '';
@@ -28,7 +30,7 @@ export class ImageListComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -50,7 +52,16 @@ export class ImageListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    this.apiService.getProducts(pageSize, currentPage, search, orderBy).subscribe(
+    this.quizService.quizzes$.subscribe((quizzes: IQuiz[]) => {
+      this.data = quizzes;
+    });
+
+    this.isLoading = false;
+    this.totalItem = 1
+    this.totalPage = 1
+    this.setSelectAllState();
+
+   /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
       data => {
         if (data.status) {
           this.isLoading = false;
@@ -65,7 +76,7 @@ export class ImageListComponent implements OnInit {
       error => {
         this.isLoading = false;
       }
-    );
+    );*/
   }
 
   changeDisplayMode(mode) {
@@ -76,10 +87,10 @@ export class ImageListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IProduct) {
+  isSelected(p: IQuiz) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: IProduct) {
+  onSelect(item: IQuiz) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {
@@ -124,7 +135,10 @@ export class ImageListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: IProduct) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
+  onContextMenuClick(action: string, item: IQuiz) {
+    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
+    if (action === 'delete'){
+       this.quizService.deleteQuiz(item);
+    }
   }
 }
