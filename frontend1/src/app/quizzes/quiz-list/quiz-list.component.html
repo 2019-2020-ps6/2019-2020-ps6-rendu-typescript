@@ -1,0 +1,41 @@
+<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+                      (changeDisplayMode)="changeDisplayMode($event)"
+                      (addNewItem)="showAddNewModal()"
+                      (selectAllChange)="selectAllChange($event)"
+                      (itemsPerPageChange)="itemsPerPageChange($event)"
+                      (changeOrderBy)="changeOrderBy($event)"
+                      (searchKeyUp)="searchKeyUp($event)"
+>
+</app-list-page-header>
+<app-add-new-quiz-modal #addNewModalRef></app-add-new-quiz-modal>
+
+<context-menu #basicMenu>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('copy',$event.item)">
+    <i class="simple-icon-control-play mr-1"></i> <span>Lancer</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
+    <i class="simple-icon-drawer mr-1"></i> <span>Modifer</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
+    <i class="simple-icon-trash mr-1"></i><span>Supprimer</span>
+  </ng-template>
+</context-menu>
+
+<div class="row">
+
+<div class="quiz-list">
+    <div class="quiz" *ngFor="let quiz of quizList">
+        <!--Inputs & Output allow communication between parent & child components.-->
+        <!--More information: https://angular.io/guide/component-interaction-->
+        <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+    </div>
+  </div>
+
+
+  <div class="col-12" align="bottom">
+    <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+                [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+                previousText="<i class='simple-icon-arrow-left'></i>" nextText="<i class='simple-icon-arrow-right'></i>">
+    </pagination>
+  </div>
+</div>
