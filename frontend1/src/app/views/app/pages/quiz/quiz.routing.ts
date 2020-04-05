@@ -5,6 +5,7 @@ import { ImageListComponent } from './image-list/image-list.component';
 import { DetailsComponent } from './details/details.component';
 import { DetailsAltComponent } from './details-alt/details-alt.component';
 import {QuizListComponent} from '../../../../quizzes/quiz-list/quiz-list.component';
+import {QuestionComponent} from '../../../../questions/question/question.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'image-list', pathMatch: 'full' },
       { path: 'image-list', component: ImageListComponent },
-      { path: 'details', component: DetailsComponent },
+      { path: ':id', component: QuestionComponent },
       { path: 'details-alt', component: DetailsAltComponent },
       /*{path: '', redirectTo: 'image-list', pathMatch: 'full'},
       {path: 'image-list',component: QuizListComponent},

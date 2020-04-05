@@ -141,4 +141,7 @@ export class ImageListComponent implements OnInit {
        this.quizService.deleteQuiz(item);
     }
   }
+
+  launchQuiz(p: IQuiz){
+  }
 }

@@ -72,6 +72,8 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+
+
   /** Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
 
   addQuestion(quiz: Quiz, question: Question) {

@@ -44,6 +44,7 @@ export class QuizService {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
     });
+
   }
 
   addQuiz(quiz: IQuiz) {
@@ -54,6 +55,8 @@ export class QuizService {
     const urlWithId = this.quizUrl + '/' + quiz.id;
     this.http.delete<IQuiz>(urlWithId, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
+
+
 
   /*setSelectedQuiz(quizId: string) {
     const urlWithId = this.quizUrl + '/' + quizId;
