@@ -7,3 +7,14 @@ export interface Quiz {
     image?: string;
     questions: Question[];
 }
+
+export interface IQuiz {
+  id: number;
+  name: string;
+  img: string;
+  theme: string;
+  themeColor: string;
+  description: string;
+  date: string;
+  questions: Question[];
+}

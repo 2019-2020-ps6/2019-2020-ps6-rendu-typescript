@@ -2,17 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
-import { IQuiz } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
-import {Quiz} from '../../../../../../models/quiz.model';
+import {IQuiz} from '../../../../../../models/quiz.model';
 
 @Component({
-  selector: 'app-image-list',
-  templateUrl: './image-list.component.html'
+  selector: 'app-quiz-list',
+  templateUrl: './quiz-list.component.html'
 })
-export class ImageListComponent implements OnInit {
+export class QuizListComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
   selected: IQuiz[] = [];
@@ -59,7 +58,7 @@ export class ImageListComponent implements OnInit {
     this.isLoading = false;
     this.totalItem = 1
     this.totalPage = 1
-    this.setSelectAllState();
+    // this.setSelectAllState();
 
    /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
       data => {
@@ -137,7 +136,7 @@ export class ImageListComponent implements OnInit {
 
   onContextMenuClick(action: string, item: IQuiz) {
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
-    if (action === 'delete'){
+    if (action === 'delete') {
        this.quizService.deleteQuiz(item);
     }
   }

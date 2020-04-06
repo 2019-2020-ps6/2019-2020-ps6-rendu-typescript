@@ -12,7 +12,7 @@ const data: IMenuItem[] = [
     id: 'quizzes',
     icon: 'iconsminds-dashboard',
     label: 'menu.quizzes',
-    to: '/app/pages/quiz/image-list',
+    to: '/app/pages/quiz/quiz-list',
   },
   {
     id: 'security',

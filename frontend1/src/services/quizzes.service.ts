@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import {IQuiz} from '../app/data/api.service';
+import {IQuiz} from '../models/quiz.model';
 
 @Injectable({
   providedIn: 'root'

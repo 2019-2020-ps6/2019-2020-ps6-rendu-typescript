@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ImageListComponent } from './image-list/image-list.component';
+import { QuizListComponent} from './quiz-list/quiz-list.component';
 import { DetailsComponent } from './details/details.component';
 import { QuizRoutingModule } from './quiz.routing';
 import { QuizComponent } from './quiz.component';
@@ -14,9 +14,10 @@ import { RatingModule, PaginationModule, TabsModule, ModalModule, BsDropdownModu
 import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 import { ContextMenuModule } from 'ngx-contextmenu';
+import {QuestionListComponent} from './question-list/question-list.component';
 
 @NgModule({
-  declarations: [ DetailsComponent, ImageListComponent, QuizComponent, DetailsAltComponent],
+  declarations: [ DetailsComponent, QuizListComponent, QuizComponent, DetailsAltComponent, QuestionListComponent],
   imports: [
     SharedModule,
     QuizRoutingModule,
