@@ -6,10 +6,10 @@ export const QUESTION_ACTOR: Question[] =
     {
     id: '1',
     label: 'Christiano Ronaldo a joué dans quelle équipe ?',
-    answers: [
+      answers: [
         {
-            "value": 'FC Barcelone',
-            "isCorrect": false,
+            value: 'FC Barcelone',
+            isCorrect: false,
         },
         {
             value: 'Real Madrid',
@@ -38,18 +38,4 @@ answers: [
 
 
 export const QUIZ_LIST: Quiz[] = [
-    {
-        id: '1',
-        name: 'Sport', // What's happening if I change this value..?
-        theme: 'Sport',
-        image: '../../assets/img/balls.png',
-        questions: QUESTION_ACTOR,
-    },
-    {
-        id: '2',
-        name: 'La France',
-        theme:'France',
-        image:'../../assets/img/france.png',
-        questions:[],
-    }
 ];

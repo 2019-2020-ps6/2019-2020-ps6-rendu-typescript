@@ -1,6 +1,7 @@
-import { IQuiz } from './api.service';
+import {Quiz} from '../../models/quiz.model';
 
-export const QUIZZES: IQuiz[] = [
+
+export const QUIZZES: Quiz[] = [
  /* {
     id: 1,
     title: 'Marble Cake',

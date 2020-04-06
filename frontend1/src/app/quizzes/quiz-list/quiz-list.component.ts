@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
-import {ApiService, IQuiz} from '../../data/api.service';
+import {ApiService} from '../../data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AddNewQuizModalComponent} from '../../containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import {Hotkey, HotkeysService} from 'angular2-hotkeys';
@@ -147,7 +147,7 @@ export class QuizListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: IQuiz) {
+  onContextMenuClick(action: string, item: Quiz) {
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
   }
 }

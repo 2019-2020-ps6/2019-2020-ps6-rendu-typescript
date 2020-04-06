@@ -2,7 +2,6 @@ import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {Quiz} from '../../../../models/quiz.model';
 import {QuizService} from '../../../../services/quizzes.service';
-import {IQuiz} from '../../../data/api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
@@ -49,7 +48,7 @@ export class AddNewQuizModalComponent implements OnInit {
 
   addQuiz() {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
-    const quizToCreate: IQuiz = this.quizForm.getRawValue() as IQuiz;
+    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     quizToCreate.date = new Date().toDateString();
     quizToCreate.img = this.selectedFile;
     if (quizToCreate.theme === 'CAKES') {
@@ -67,7 +66,7 @@ export class AddNewQuizModalComponent implements OnInit {
     if (quizToCreate.theme === 'ACTOR') {
       quizToCreate.themeColor = 'danger';
     }
-    console.log()
+    console.log();
     this.quizService.addQuiz(quizToCreate);
     this.modalRef.hide();
   }

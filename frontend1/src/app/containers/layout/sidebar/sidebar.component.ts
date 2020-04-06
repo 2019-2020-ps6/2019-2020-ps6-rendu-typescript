@@ -47,7 +47,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     ).subscribe((event: NavigationEnd) => {
       const { containerClassnames } = this.sidebar;
       const toParentUrl = this.currentUrl.split('/').filter(x => x !== '')[1];
-      if (toParentUrl !== undefined || toParentUrl !== null) {
+     // if (toParentUrl === undefined) { toParentUrl = 'pages'; }
+      if (toParentUrl !== undefined || true) {
+        // console.log(toParentUrl);
         this.selectedParentMenu = toParentUrl.toLowerCase();
       } else {
         this.selectedParentMenu = 'dashboards';
@@ -75,8 +77,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   selectMenu() {
     const currentParentUrl = this.currentUrl.split('/').filter(x => x !== '')[1];
+   // if (currentParentUrl === undefined) { currentParentUrl = 'pages'; }
     if (currentParentUrl !== undefined || currentParentUrl !== null) {
       this.selectedParentMenu = currentParentUrl.toLowerCase();
+      console.log('bien');
     } else {
       this.selectedParentMenu = 'dashboards';
     }

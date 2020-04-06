@@ -5,7 +5,8 @@ import { ApiService } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
-import {IQuiz} from '../../../../../../models/quiz.model';
+import {Quiz} from '../../../../../../models/quiz.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-quiz-list',
@@ -14,8 +15,8 @@ import {IQuiz} from '../../../../../../models/quiz.model';
 export class QuizListComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
-  selected: IQuiz[] = [];
-  data: IQuiz[] = [];
+  selected: Quiz[] = [];
+  data: Quiz[] = [];
   currentPage = 1;
   itemsPerPage = 8;
   search = '';
@@ -29,7 +30,7 @@ export class QuizListComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -51,13 +52,13 @@ export class QuizListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    this.quizService.quizzes$.subscribe((quizzes: IQuiz[]) => {
+    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
     });
 
     this.isLoading = false;
-    this.totalItem = 1
-    this.totalPage = 1
+    this.totalItem = 1;
+    this.totalPage = 1;
     // this.setSelectAllState();
 
    /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
@@ -86,10 +87,10 @@ export class QuizListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IQuiz) {
+  isSelected(p: Quiz) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: IQuiz) {
+  onSelect(item: Quiz) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {
@@ -134,10 +135,18 @@ export class QuizListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: IQuiz) {
+  onContextMenuClick(action: string, item: Quiz) {
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
     if (action === 'delete') {
        this.quizService.deleteQuiz(item);
     }
+    if (action === 'edit') {
+       this.router.navigate(['/app/pages/quiz/question-list/' + item.id]);
+    }
+    if (action === 'launch') {
+      this.launchQuiz(item);
+    }
   }
+
+  launchQuiz(p: Quiz) {}
 }
