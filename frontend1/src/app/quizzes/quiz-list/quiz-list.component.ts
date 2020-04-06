@@ -19,8 +19,8 @@ export class QuizListComponent implements OnInit {
 
   displayMode = 'image';
   selectAllState = '';
-  selected: IQuiz[] = [];
-  data: IQuiz[] = [];
+  selected: Quiz[] = [];
+  data: Quiz[] = [];
   currentPage = 1;
   itemsPerPage = 8;
   search = '';
@@ -99,10 +99,10 @@ export class QuizListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IQuiz) {
+  isSelected(p: Quiz) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: IQuiz) {
+  onSelect(item: Quiz) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {

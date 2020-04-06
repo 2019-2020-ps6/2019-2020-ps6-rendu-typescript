@@ -140,4 +140,7 @@ export class QuestionListComponent implements OnInit {
        this.quizService.deleteQuiz(item);
     }
   }
+
+  launchQuiz(p: IQuiz){
+  }
 }
