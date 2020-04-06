@@ -148,5 +148,7 @@ export class QuizListComponent implements OnInit {
     }
   }
 
-  launchQuiz(p: Quiz) {}
+  launchQuiz(p: Quiz) {
+    this.router.navigate(['/app/pages/quiz/question-list/' + p.id]);
+  }
 }

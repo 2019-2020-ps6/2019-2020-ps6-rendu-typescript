@@ -3,7 +3,7 @@
         <i class="fab fa-leanpub"></i>
         {{quiz.name}}
     </h2>
-    <img id ='image' src ={{quiz.image}} alt = "Image de quiz">
+    <img id ='image' src ={{quiz.img}} alt = "Image de quiz">
     <button class="fas fa-play" (click)="selectQuiz()"></button>
     <button class="fas fa-trash-alt" (click)="delete()"></button>
     <button class="fas fa-edit" routerLink="/edit-quiz/{{quiz.id}}"></button>

@@ -10,10 +10,10 @@
 <app-add-new-quiz-modal #addNewModalRef></app-add-new-quiz-modal>
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('copy',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('launch',$event.item)">
     <i class="simple-icon-control-play mr-1"></i> <span>Lancer</span>
   </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
     <i class="simple-icon-drawer mr-1"></i> <span>Modifer</span>
   </ng-template>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">

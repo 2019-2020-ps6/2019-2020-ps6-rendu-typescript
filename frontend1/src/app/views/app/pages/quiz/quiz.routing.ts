@@ -15,10 +15,7 @@ const routes: Routes = [
       { path: 'quiz-list', component: QuizListComponent },
       { path: 'details', component: DetailsComponent },
       { path: 'details-alt', component: DetailsAltComponent },
-      /*{path: '', redirectTo: 'quiz-list', pathMatch: 'full'},
-      {path: 'quiz-list',component: QuizListComponent},
-      { path: 'details', component: DetailsComponent },
-      { path: 'details-alt', component: DetailsAltComponent }*/
+      { path: 'question-list/:id', component: QuestionListComponent},
     ]
   }
 ];

@@ -1,21 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
-import {IQuiz} from '../../../../../../models/quiz.model';
+import {Question} from '../../../../../../models/question.model';
+import {ActivatedRoute} from '@angular/router';
+import {Quiz} from '../../../../../../models/quiz.model';
 
 @Component({
   selector: 'app-question-list',
   templateUrl: './question-list.component.html'
 })
 export class QuestionListComponent implements OnInit {
+  public quiz: Quiz;
   displayMode = 'image';
   selectAllState = '';
-  selected: IQuiz[] = [];
-  data: IQuiz[] = [];
+  selected: Question[] = [];
+  data: Question[] = [];
   currentPage = 1;
   itemsPerPage = 8;
   search = '';
@@ -25,11 +28,15 @@ export class QuestionListComponent implements OnInit {
   totalItem = 0;
   totalPage = 0;
 
+  @Output()
+  deleteQuestion: EventEmitter<Question> = new EventEmitter<Question>();
+
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private route: ActivatedRoute) {
+    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.data = this.quiz.questions; });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -42,7 +49,11 @@ export class QuestionListComponent implements OnInit {
 
 
   ngOnInit() {
-     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.quizService.setSelectedQuiz(id);
+    this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+    // this.data = this.quiz.questions;
+    // console.log(this.data);
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
@@ -51,13 +62,15 @@ export class QuestionListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    this.quizService.quizzes$.subscribe((quizzes: IQuiz[]) => {
+    /*this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
-    });
+    });*/
+
+    // this.data = this.quiz.questions;
 
     this.isLoading = false;
-    this.totalItem = 1
-    this.totalPage = 1
+    this.totalItem = 1;
+    this.totalPage = 1;
     // this.setSelectAllState();
 
    /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
@@ -86,10 +99,10 @@ export class QuestionListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IQuiz) {
+  isSelected(p: Question) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: IQuiz) {
+  onSelect(item: Question) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {
@@ -134,13 +147,10 @@ export class QuestionListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: IQuiz) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
-    if (action === 'delete'){
-       this.quizService.deleteQuiz(item);
+  onContextMenuClick(action: string, item: Question) {
+    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.label);
+    if (action === 'delete')  {
+      this.quizService.deleteQuestion(this.quiz, item);
     }
-  }
-
-  launchQuiz(p: IQuiz){
   }
 }

@@ -10,9 +10,6 @@
 <app-add-new-quiz-modal #addNewModalRef></app-add-new-quiz-modal>
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('copy',$event.item)">
-    <i class="simple-icon-control-play mr-1"></i> <span>Lancer</span>
-  </ng-template>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
     <i class="simple-icon-drawer mr-1"></i> <span>Modifer</span>
   </ng-template>
@@ -30,11 +27,11 @@
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
           <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{p.name}} <p>{{p.description}}</p>
+            {{p.label}} <p> Quiz : {{this.quiz.name}}</p>
           </a>
 
           <div class="w-15 w-sm-100">
-          <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
+          <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
         </div>
           <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
         </div>
@@ -51,16 +48,16 @@
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
       <a class="d-flex" href="javascript:;">
-        <img [src]="p.img" [alt]="p.name" class="list-thumbnail responsive border-0 card-img-left" />
+        <img [src]="p.img" [alt]="p.label" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
           <a href="javascript:;" class="w-40 w-sm-100">
-            <p class="list-item-heading mb-0 truncate">{{p.name}}</p>
+            <p class="list-item-heading mb-0 truncate">{{p.label}}</p>
           </a>
           <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
+            <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
           </div>
           <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
         </div>
@@ -79,8 +76,8 @@
       [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.name"></a>
-            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.themeColor">{{p.theme}}</span>
+            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.label"></a>
+            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ this.quiz.themeColor">{{this.quiz.theme}}</span>
           </div>
           <div class="card-body">
               <div class="row">
@@ -92,15 +89,11 @@
                     <label class="custom-control-label" [for]="'customCheck'+i"></label>
                   </label>
                 </div>
-                <div style="margin-top: 16px; ">
-                  <a href="javascript:;">
-                  <i class="simple-icon-control-play ml-2 mr-2"></i>
-                  </a>
-                </div>
+
               </div>
               <div class="col-10">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-2 pt-1">{{p.name}}</p>
+                  <p class="list-item-heading mb-2 pt-1">{{p.label}}</p>
                 </a>
                 <footer>
                   <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
