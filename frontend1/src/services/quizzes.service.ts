@@ -47,6 +47,10 @@ export class QuizService {
 
   }
 
+  getQuestions(){
+  
+  }
+
   addQuiz(quiz: Quiz) {
     this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
