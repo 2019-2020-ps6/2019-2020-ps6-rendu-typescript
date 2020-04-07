@@ -16,7 +16,7 @@ import {QuestionListComponent} from './question-list/question-list.component';
 import {GameComponent} from 'src/app/views/app/pages/quiz/game/game/game.component';
 
 @NgModule({
-  declarations: [ DetailsComponent, QuizListComponent, QuizComponent, DetailsAltComponent, QuestionListComponent, GameComponent,],
+  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent, GameComponent],
   imports: [
 
     SharedModule,

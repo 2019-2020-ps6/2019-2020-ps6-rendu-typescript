@@ -8,13 +8,16 @@
     </div>
     <div class="modal-body">
         <div>
-            <label>{{ 'pages.question.title' | translate }}</label>
+            <label>{{ 'pages.question-label' | translate }}</label>
             <input type="text" class="form-control" placeholder="" id="value" [formControlName]="'value'">
         </div>
-      <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-        <input type="checkbox" class="custom-control-input" id="isCorrect" [formControlName]="'isCorrect'">
-        <label> Correcte </label>
-      </label>
+      <br>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" data-toggle="toggle">
+          Option one is enabled
+        </label>
+      </div>
       <div class="mt-4">
       <div class="input-group mb-3">
         <div class="input-group-prepend">

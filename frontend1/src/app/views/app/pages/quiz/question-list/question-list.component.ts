@@ -6,7 +6,7 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Question} from '../../../../../../models/question.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../../../../models/quiz.model';
 
 @Component({
@@ -35,8 +35,8 @@ export class QuestionListComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private route: ActivatedRoute) {
-    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.data = this.quiz.questions; });
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
+    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.data = quiz.questions; });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -49,7 +49,7 @@ export class QuestionListComponent implements OnInit {
 
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('quizId');
     this.quizService.setSelectedQuiz(id);
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
     // this.data = this.quiz.questions;
@@ -151,6 +151,9 @@ export class QuestionListComponent implements OnInit {
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.label);
     if (action === 'delete')  {
       this.quizService.deleteQuestion(this.quiz, item);
+    }
+    if (action === 'edit') {
+      this.router.navigate(['/app/pages/quiz/answer-list/' + this.quiz.id + '/' + item.id]);
     }
   }
 }

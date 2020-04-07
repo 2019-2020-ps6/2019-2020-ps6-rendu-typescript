@@ -7,13 +7,10 @@
                       (searchKeyUp)="searchKeyUp($event)"
 >
 </app-list-page-header>
-<app-add-new-answer-modal #addNewModalRef></app-add-new-answer-modal>
+<app-add-new-answer-modal #addNewModalRef [question]="question"></app-add-new-answer-modal>
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
-    <i class="simple-icon-drawer mr-1"></i> <span>Modifer</span>
-  </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick($event.item)">
     <i class="simple-icon-trash mr-1"></i><span>Supprimer</span>
   </ng-template>
 </context-menu>
@@ -27,12 +24,9 @@
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
           <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{ans.value}} <p> Quiz : {{this.question.label}}</p>
+            {{ans.value}} <p> Question : {{this.question.label}}</p>
           </a>
 
-          <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
-          </div>
           <p class="mb-0 text-muted text-small w-15 w-xs-100">{{ans.type}}</p>
         </div>
         <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
@@ -48,18 +42,16 @@
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(ans)}" *ngFor="let ans of data; let i=index"
          [contextMenu]="basicMenu" [contextMenuSubject]="ans">
       <a class="d-flex" href="javascript:;">
-        <img [src]="ans.img" [alt]="ans.label" class="list-thumbnail responsive border-0 card-img-left" />
+        <img [src]="ans.img" [alt]="ans.value" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
           <a href="javascript:;" class="w-40 w-sm-100">
-            <p class="list-item-heading mb-0 truncate">{{ans.label}}</p>
+            <p class="list-item-heading mb-0 truncate">{{ans.value}}</p>
           </a>
-          <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
-          </div>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{ans.date}}</p>
+
+          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{ans.type}}</p>
         </div>
         <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
           <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(ans)"
@@ -76,8 +68,8 @@
            [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.label"></a>
-            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ this.quiz.themeColor">{{this.quiz.theme}}</span>
+            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.value"></a>
+            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'"></span>
           </div>
           <div class="card-body">
             <div class="row">
@@ -93,10 +85,10 @@
               </div>
               <div class="col-10">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-2 pt-1">{{p.label}}</p>
+                  <p class="list-item-heading mb-2 pt-1">{{p.value}}</p>
                 </a>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                  <p class="text-muted text-small mb-0 font-weight-light">{{this.question.label}}</p>
                 </footer>
               </div>
             </div>

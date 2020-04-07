@@ -33,7 +33,7 @@ export class QuizService {
 
   private quizzesUrl = serverUrl + '/quizzes';
   private questionsPath = 'questions';
-  private answersPath='Answers';
+  private answersPath = 'answers';
 
   private httpOptions = httpOptionsBase;
 
@@ -49,8 +49,8 @@ export class QuizService {
 
   }
 
-  getQuestions(){
-  
+  getQuestions() {
+
   }
 
   addQuiz(quiz: Quiz) {
@@ -75,6 +75,13 @@ export class QuizService {
     });
   }
 
+  setSelectedQuestion(quizId: string, questionId: string) {
+    const url = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + questionId + '/' + this.answersPath;
+    this.http.get<Question>(url).subscribe((question) => {
+      this.questionSelected$.next(question);
+    });
+  }
+
 
   addQuestion(quiz: Quiz, question: Question) {
     const questionUrl = this.quizzesUrl + '/' + quiz.id + '/' + this.questionsPath;
@@ -86,43 +93,16 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
-  setSelectedQuestion(quizId: string, question: Question) {
-    const url= this.quizzesUrl + '/' + quizId + this.questionsPath + '/' +question.id + this.answersPath
-    this.http.get<Question>(url).subscribe((question) => {
-      this.questionSelected$.next(question);
-    });
+
+
+  deleteAnswer(quizId: string, questionId: string, answer: Answer) {
+    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + questionId + '/' + this.answersPath + '/' + answer.id;
+    this.http.delete<Answer>(anserUrl).subscribe(() => this.setSelectedQuestion(quizId, questionId));
   }
 
-  deleteAnswer(quizId: string, question: Question,answer : Answer) {
-    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + question.id + '/'+this.answersPath + '/' + answer.id;
-    this.http.delete<Answer>(anserUrl).subscribe(() => this.setSelectedQuestion(quizId,question));
+  updateAnswer(quizId: string, questionId: string, answer: Answer) {
+    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + questionId + '/' + this.answersPath + '/' + answer.id;
+    this.http.put<Answer>(anserUrl, answer).subscribe(() => this.setSelectedQuestion(quizId, questionId));
   }
 
-  updateAnswer(quizId: string, question: Question,answer : Answer) {
-    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + question.id + '/'+this.answersPath + '/' + answer.id;
-    this.http.put<Answer>(anserUrl,answer).subscribe(() => this.setSelectedQuestion(quizId,question));
-  }
-  /** Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
-
-   addQuestion(quiz: Quiz, question: Question) {
-    quiz.questions.push(question);
-    const index = this.quizzes.findIndex((q: Quiz) => q.id === quiz.id);
-    if (index) {
-      this.updateQuizzes(quiz, index);
-    }
-  }
-
-   deleteQuestion(quiz: Quiz, question: Question) {
-    const index = quiz.questions.findIndex((q) => q.label === question.label);
-    if (index !== -1) {
-      quiz.questions.splice(index, 1)
-      this.updateQuizzes(quiz, index);
-    }
-  }
-
-   private updateQuizzes(quiz: Quiz, index: number) {
-    this.quizzes[index] = quiz;
-    this.quizzes$.next(this.quizzes);
-  }
-   **/
 }

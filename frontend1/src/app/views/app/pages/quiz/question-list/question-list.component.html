@@ -10,7 +10,7 @@
 <app-add-new-question-modal #addNewModalRef [quiz]="quiz"></app-add-new-question-modal>
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
     <i class="simple-icon-drawer mr-1"></i> <span>Gerer cette Question</span>
   </ng-template>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">

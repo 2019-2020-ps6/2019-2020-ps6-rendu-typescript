@@ -6,14 +6,14 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Answer, Question} from '../../../../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Quiz} from "../../../../../../models/quiz.model";
+import {Quiz} from '../../../../../../models/quiz.model';
 
 @Component({
   selector: 'app-answer-list',
   templateUrl: './answer-list.html'
 })
 export class AnswerListComponent implements OnInit {
-  public quiz :Quiz;
+  public quiz: Quiz;
   public question: Question;
   displayMode = 'image';
   selectAllState = '';
@@ -36,9 +36,9 @@ export class AnswerListComponent implements OnInit {
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService,
-                                        private quizService: QuizService, private route: ActivatedRoute,private router:Router) {
+              private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
 
-    this.quizService.questionSelected$.subscribe((q) => {this.data = q.answers });
+    this.quizService.questionSelected$.subscribe((q) => {this.data = q.answers; });
 
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -52,9 +52,8 @@ export class AnswerListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.quizService.getQuiz(this.route.params['quizId']).subscribe((q)=>this.quiz=q);
-    const url = this.router.url;
-    this.quizService.setSelectedQuestion(this.route.params['quizId'],this.question);
+    // this.quizService.getQuiz(+this.route.snapshot.paramMap.get('quizId')).subscribe((q) => this.quiz = q);
+    this.quizService.setSelectedQuestion(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'));
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
   }
 
@@ -149,10 +148,9 @@ export class AnswerListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: Answer) {
-    //console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.label);
-    if (action === 'delete')  {
-      this.quizService.deleteAnswer(this.route.params['quizId'],this.question,item);
-    }
+  onContextMenuClick(item: Answer) {
+     console.log('onContextMenuClick -> action : delete, item.title :', item.value);
+     this.quizService.deleteAnswer(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'), item);
+
   }
 }

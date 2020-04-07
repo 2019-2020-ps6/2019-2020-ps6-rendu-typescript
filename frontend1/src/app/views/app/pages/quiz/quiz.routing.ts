@@ -4,6 +4,7 @@ import { QuizComponent } from './quiz.component';
 import {QuizListComponent} from './quiz-list/quiz-list.component';
 import {QuestionListComponent} from './question-list/question-list.component';
 import {GameComponent} from 'src/app/views/app/pages/quiz/game/game/game.component';
+import {AnswerListComponent} from './answer-list/answer-list';
 
 
 const routes: Routes = [
@@ -12,9 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'quiz-list', pathMatch: 'full' },
       { path: 'quiz-list', component: QuizListComponent },
-      { path: 'details', component: DetailsComponent },
-      { path: 'details-alt', component: DetailsAltComponent },
       { path: 'question-list/:quizId', component: QuestionListComponent},
+      { path: 'answer-list/:quizId/:questionId', component: AnswerListComponent},
       {path: 'game/:id', component: GameComponent},
     ]
   }

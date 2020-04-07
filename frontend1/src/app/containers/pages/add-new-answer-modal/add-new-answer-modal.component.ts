@@ -11,7 +11,6 @@ import {Answer, Question} from '../../../../models/question.model';
   styles: []
 })
 export class AddNewAnswerModalComponent implements OnInit {
-  @Input() quiz: Quiz;
   @Input() question: Question;
   public answerForm: FormGroup;
   private selectedFile = '';
