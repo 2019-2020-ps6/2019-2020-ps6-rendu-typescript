@@ -18,6 +18,8 @@ import { QuizDetailOrdersComponent } from './quiz-detail-orders/quiz-detail-orde
 import { QuizDetailCommentsComponent } from './quiz-detail-comments/quiz-detail-comments.component';
 import { QuizDetailInfoComponent } from './quiz-detail-info/quiz-detail-info.component';
 import { QuizDetailTabsComponent } from './quiz-detail-tabs/quiz-detail-tabs.component';
+import {AddNewQuestionModalComponent} from './add-new-question-modal/add-new-question-modal.component';
+import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { QuizDetailTabsComponent } from './quiz-detail-tabs/quiz-detail-tabs.com
     QuizDetailOrdersComponent,
     QuizDetailCommentsComponent,
     QuizDetailInfoComponent,
-    QuizDetailTabsComponent
+    QuizDetailTabsComponent,
+    AddNewQuestionModalComponent,
+    AddNewAnswerModalComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +60,9 @@ import { QuizDetailTabsComponent } from './quiz-detail-tabs/quiz-detail-tabs.com
     QuizDetailOrdersComponent,
     QuizDetailCommentsComponent,
     QuizDetailInfoComponent,
-    QuizDetailTabsComponent
+    QuizDetailTabsComponent,
+    AddNewQuestionModalComponent,
+    AddNewAnswerModalComponent
   ]
 })
 export class PagesContainersModule { }

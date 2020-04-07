@@ -1,5 +1,7 @@
 export interface Answer {
     type?: string;
+    img?: string;
+    indice?: string;
     value: string;
     isCorrect: boolean;
 }

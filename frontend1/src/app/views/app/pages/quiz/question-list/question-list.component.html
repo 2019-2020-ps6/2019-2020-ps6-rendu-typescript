@@ -7,14 +7,14 @@
   (searchKeyUp)="searchKeyUp($event)"
   >
 </app-list-page-header>
-<app-add-new-quiz-modal #addNewModalRef></app-add-new-quiz-modal>
+<app-add-new-question-modal #addNewModalRef [quiz]="quiz"></app-add-new-question-modal>
 
 <context-menu #basicMenu>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
-    <i class="simple-icon-drawer mr-1"></i> <span>Modifer</span>
+    <i class="simple-icon-drawer mr-1"></i> <span>Gerer cette Question</span>
   </ng-template>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
-    <i class="simple-icon-trash mr-1"></i><span>Supprimer</span>
+    <i class="simple-icon-trash mr-1"></i><span>Supprimer cette Question</span>
   </ng-template>
 </context-menu>
 

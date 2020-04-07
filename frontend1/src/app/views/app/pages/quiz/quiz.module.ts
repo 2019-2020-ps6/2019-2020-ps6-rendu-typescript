@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QuizListComponent} from './quiz-list/quiz-list.component';
-import { DetailsComponent } from './details/details.component';
 import { QuizRoutingModule } from './quiz.routing';
 import { QuizComponent } from './quiz.component';
-import { DetailsAltComponent } from './details-alt/details-alt.component';
 import { ComponentsCarouselModule } from 'src/app/components/carousel/components.carousel.module';
 import { PagesContainersModule } from 'src/app/containers/pages/pages.containers.module';
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -17,7 +15,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 import {QuestionListComponent} from './question-list/question-list.component';
 
 @NgModule({
-  declarations: [ DetailsComponent, QuizListComponent, QuizComponent, DetailsAltComponent, QuestionListComponent],
+  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent],
   imports: [
     SharedModule,
     QuizRoutingModule,

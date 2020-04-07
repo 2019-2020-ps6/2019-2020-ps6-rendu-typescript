@@ -179,7 +179,10 @@
   },
   "pages": {
     "add-new": "AJOUTER",
-    "add-new-modal-title": "Ajouter Un Quiz",
+    "add-new-quiz-title": "Ajouter Un Quiz",
+    "add-new-question-title": "Ajouter Une Question",
+    "add-new-answer-title": "Ajouter Une Reponse",
+    "question-label" : "Label",
     "display-options": "Afficher Options",
     "orderby": "Trier Par : ",
     "product-name": "Titre",
