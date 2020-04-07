@@ -149,6 +149,6 @@ export class QuizListComponent implements OnInit {
   }
 
   launchQuiz(p: Quiz) {
-    this.router.navigate(['/app/pages/quiz/question-list/' + p.id]);
+    this.router.navigate(['/app/pages/quiz/game/' + p.id]);
   }
 }
