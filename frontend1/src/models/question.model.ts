@@ -1,4 +1,5 @@
 export interface Answer {
+    id: string;
     type?: string;
     img?: string;
     indice?: string;

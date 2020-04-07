@@ -1,24 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
-import {Quiz} from '../../../../../../models/quiz.model';
+import {Answer, Question} from '../../../../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Quiz} from "../../../../../../models/quiz.model";
 
 @Component({
-  selector: 'app-quiz-list',
-  templateUrl: './quiz-list.component.html'
+  selector: 'app-answer-list',
+  templateUrl: './answer-list.html'
 })
-export class QuizListComponent implements OnInit {
+export class AnswerListComponent implements OnInit {
+  public quiz :Quiz;
+  public question: Question;
   displayMode = 'image';
   selectAllState = '';
-  selected: Quiz[] = [];
-  data: Quiz[] = [];
+  selected: Answer[] = [];
+  data: Answer[] = [];
   currentPage = 1;
-  itemsPerPage = 8;
+  itemsPerPage = 4;
   search = '';
   orderBy = '';
   isLoading: boolean;
@@ -26,11 +28,18 @@ export class QuizListComponent implements OnInit {
   totalItem = 0;
   totalPage = 0;
 
+  @Output()
+  deleteAnswer: EventEmitter<Question> = new EventEmitter<Question>();
+
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService,
+                                        private quizService: QuizService, private route: ActivatedRoute,private router:Router) {
+
+    this.quizService.questionSelected$.subscribe((q) => {this.data = q.answers });
+
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -43,7 +52,10 @@ export class QuizListComponent implements OnInit {
 
 
   ngOnInit() {
-     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+    this.quizService.getQuiz(this.route.params['quizId']).subscribe((q)=>this.quiz=q);
+    const url = this.router.url;
+    this.quizService.setSelectedQuestion(this.route.params['quizId'],this.question);
+    this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
@@ -52,31 +64,33 @@ export class QuizListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
+    /*this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
-    });
+    });*/
+
+    // this.data = this.quiz.questions;
 
     this.isLoading = false;
     this.totalItem = 1;
     this.totalPage = 1;
     // this.setSelectAllState();
 
-   /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
-      data => {
-        if (data.status) {
-          this.isLoading = false;
-          this.data = data.data;
-          this.totalItem = data.totalItem;
-          this.totalPage = data.totalPage;
-          this.setSelectAllState();
-        } else {
-          this.endOfTheList = true;
-        }
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );*/
+    /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
+       data => {
+         if (data.status) {
+           this.isLoading = false;
+           this.data = data.data;
+           this.totalItem = data.totalItem;
+           this.totalPage = data.totalPage;
+           this.setSelectAllState();
+         } else {
+           this.endOfTheList = true;
+         }
+       },
+       error => {
+         this.isLoading = false;
+       }
+     );*/
   }
 
   changeDisplayMode(mode) {
@@ -87,10 +101,10 @@ export class QuizListComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: Quiz) {
-    return this.selected.findIndex(x => x.id === p.id) > -1;
+  isSelected(ans: Answer) {
+    return this.selected.findIndex(x => x.id === ans.id) > -1;
   }
-  onSelect(item: Quiz) {
+  onSelect(item: Answer) {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);
     } else {
@@ -135,20 +149,10 @@ export class QuizListComponent implements OnInit {
     this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
-  onContextMenuClick(action: string, item: Quiz) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
-    if (action === 'delete') {
-       this.quizService.deleteQuiz(item);
+  onContextMenuClick(action: string, item: Answer) {
+    //console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.label);
+    if (action === 'delete')  {
+      this.quizService.deleteAnswer(this.route.params['quizId'],this.question,item);
     }
-    if (action === 'edit') {
-       this.router.navigate(['/app/pages/quiz/question-list/' + item.id]);
-    }
-    if (action === 'launch') {
-      this.launchQuiz(item);
-    }
-  }
-
-  launchQuiz(p: Quiz) {
-    this.router.navigate(['/app/pages/quiz/game/' + p.id]);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, of, Subject} from 'rxjs';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
-import { Question } from '../models/question.model';
+import {Answer, Question} from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {Quiz} from '../models/quiz.model';
 
@@ -29,9 +29,11 @@ export class QuizService {
     = new BehaviorSubject(this.quizzes);
 
   public quizSelected$: Subject<Quiz> = new Subject();
+  public questionSelected$: Subject<Question> = new Subject();
 
-  private quizUrl = serverUrl + '/quizzes';
+  private quizzesUrl = serverUrl + '/quizzes';
   private questionsPath = 'questions';
+  private answersPath='Answers';
 
   private httpOptions = httpOptionsBase;
 
@@ -40,19 +42,23 @@ export class QuizService {
   }
 
   setQuizzesFromUrl() {
-    this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
+    this.http.get<Quiz[]>(this.quizzesUrl).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
     });
 
   }
 
+  getQuestions(){
+  
+  }
+
   addQuiz(quiz: Quiz) {
-    this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
+    this.http.post<Quiz>(this.quizzesUrl, quiz, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
 
   deleteQuiz(quiz: Quiz) {
-    const urlWithId = this.quizUrl + '/' + quiz.id;
+    const urlWithId = this.quizzesUrl + '/' + quiz.id;
     this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
 
@@ -63,22 +69,39 @@ export class QuizService {
   }
 
   setSelectedQuiz(quizId: string) {
-    const urlWithId = this.quizUrl + '/' + quizId;
+    const urlWithId = this.quizzesUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected$.next(quiz);
     });
   }
 
+
   addQuestion(quiz: Quiz, question: Question) {
-    const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath;
+    const questionUrl = this.quizzesUrl + '/' + quiz.id + '/' + this.questionsPath;
     this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
   deleteQuestion(quiz: Quiz, question: Question) {
-    const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath + '/' + question.id;
+    const questionUrl = this.quizzesUrl + '/' + quiz.id + '/' + this.questionsPath + '/' + question.id;
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+  setSelectedQuestion(quizId: string, question: Question) {
+    const url= this.quizzesUrl + '/' + quizId + this.questionsPath + '/' +question.id + this.answersPath
+    this.http.get<Question>(url).subscribe((question) => {
+      this.questionSelected$.next(question);
+    });
+  }
+
+  deleteAnswer(quizId: string, question: Question,answer : Answer) {
+    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + question.id + '/'+this.answersPath + '/' + answer.id;
+    this.http.delete<Answer>(anserUrl).subscribe(() => this.setSelectedQuestion(quizId,question));
+  }
+
+  updateAnswer(quizId: string, question: Question,answer : Answer) {
+    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + question.id + '/'+this.answersPath + '/' + answer.id;
+    this.http.put<Answer>(anserUrl,answer).subscribe(() => this.setSelectedQuestion(quizId,question));
+  }
   /** Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
 
    addQuestion(quiz: Quiz, question: Question) {
