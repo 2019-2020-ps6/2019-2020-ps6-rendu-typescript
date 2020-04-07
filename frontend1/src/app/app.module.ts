@@ -5,9 +5,7 @@ import { AppComponent } from './app.component';
 import { ViewsModule } from './views/views.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from '../environments/environment';
 import { LayoutContainersModule } from './containers/layout/layout.containers.module';
 import {QuizListComponent} from "./quizzes/quiz-list/quiz-list.component";
 import {QuizComponent} from "./quizzes/quiz/quiz.component";
@@ -19,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ContextMenuModule} from "ngx-contextmenu";
 import {PagesContainersModule} from "./containers/pages/pages.containers.module";
 import {PaginationModule} from "ngx-bootstrap";
+import {AnswerListComponent} from "./views/app/pages/quiz/Answer-list/answer-list";
 
 @NgModule({
   imports: [
@@ -42,7 +41,8 @@ import {PaginationModule} from "ngx-bootstrap";
     QuizFormComponent,
     QuestionListComponent,
     QuestionFormComponent,
-    QuestionComponent
+    QuestionComponent,
+    AnswerListComponent
   ],
   providers: [],
   exports: [
