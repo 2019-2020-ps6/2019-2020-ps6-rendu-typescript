@@ -93,6 +93,10 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+  addAnswer(quizId: string, questionId: string, answer: Answer) {
+    const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + questionId + '/' + this.answersPath;
+    this.http.post<Answer>(anserUrl, answer, this.httpOptions).subscribe(() => this.setSelectedQuestion(quizId, questionId));
+  }
 
 
   deleteAnswer(quizId: string, questionId: string, answer: Answer) {

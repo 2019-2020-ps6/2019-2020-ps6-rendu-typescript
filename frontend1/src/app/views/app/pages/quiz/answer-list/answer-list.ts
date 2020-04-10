@@ -13,8 +13,7 @@ import {Quiz} from '../../../../../../models/quiz.model';
   templateUrl: './answer-list.html'
 })
 export class AnswerListComponent implements OnInit {
-  public quiz: Quiz;
-  public question: Question;
+  quiz: Quiz;
   displayMode = 'image';
   selectAllState = '';
   selected: Answer[] = [];
@@ -37,9 +36,9 @@ export class AnswerListComponent implements OnInit {
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService,
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
-
-    this.quizService.questionSelected$.subscribe((q) => {this.data = q.answers; });
-
+    this.quizService.questionSelected$.subscribe((q) => {
+      this.data = q.answers;
+    });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -52,7 +51,6 @@ export class AnswerListComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.quizService.getQuiz(+this.route.snapshot.paramMap.get('quizId')).subscribe((q) => this.quiz = q);
     this.quizService.setSelectedQuestion(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'));
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
   }
@@ -153,4 +151,6 @@ export class AnswerListComponent implements OnInit {
      this.quizService.deleteAnswer(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'), item);
 
   }
+
+
 }

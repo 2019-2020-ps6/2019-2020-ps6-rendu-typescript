@@ -14,8 +14,8 @@
       <br>
       <div class="checkbox">
         <label>
-          <input type="checkbox" data-toggle="toggle">
-          Option one is enabled
+          <input type="checkbox" data-toggle="toggle" id="isCorrect" [formControlName]="'isCorrect'">
+          Reponse correcte
         </label>
       </div>
       <div class="mt-4">
@@ -30,14 +30,14 @@
       </div>
       </div>
         <div class="mt-4">
-            <label>{{ 'pages.description' | translate }}</label>
-            <textarea class="form-control" rows="3" id="indice" [formControlName]="'indice'"></textarea>
+            <label>{{ 'pages.indice' | translate }}</label>
+            <textarea class="form-control" rows="3" id="indixe" [formControlName]="'indixe'"></textarea>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary"
             (click)="modalRef.hide()">{{'pages.cancel' | translate }}</button>
-        <button type="submit" class="btn btn-primary float-right" (click)="addQuiz()">{{ 'pages.submit' | translate}}</button>
+        <button type="submit" class="btn btn-primary float-right" (click)="addAnswer()">{{ 'pages.submit' | translate}}</button>
     </div>
   </form>
 </ng-template>

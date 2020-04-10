@@ -7,7 +7,7 @@
                       (searchKeyUp)="searchKeyUp($event)"
 >
 </app-list-page-header>
-<app-add-new-answer-modal #addNewModalRef [question]="question"></app-add-new-answer-modal>
+<app-add-new-answer-modal #addNewModalRef [question]="data"></app-add-new-answer-modal>
 
 <context-menu #basicMenu>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick($event.item)">
@@ -24,14 +24,19 @@
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
           <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{ans.value}} <p> Question : {{this.question.label}}</p>
+            {{ans.value}} <p> Question :</p>
           </a>
 
           <p class="mb-0 text-muted text-small w-15 w-xs-100">{{ans.type}}</p>
+          <div class="w-15 w-sm-100" *ngIf="!ans.isCorrect">
+            <span [class]="'badge badge-pill badge-danger'">INCORRECT</span>
+          </div>
+          <div class="w-15 w-sm-100" *ngIf="ans.isCorrect">
+            <span [class]="'badge badge-pill badge-success'">CORRECT</span>
+          </div>
         </div>
         <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(ans)"
-                 (change)="onSelect(ans)">
+          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i">
           <label class="custom-control-label" [for]="'customCheck'+i"></label>
         </label>
       </div>
@@ -52,6 +57,12 @@
           </a>
 
           <p class="mb-0 text-muted text-small w-15 w-sm-100">{{ans.type}}</p>
+          <div class="w-15 w-sm-100" *ngIf="!ans.isCorrect">
+            <span [class]="'badge badge-pill badge-danger'">INCORRECT</span>
+          </div>
+          <div class="w-15 w-sm-100" *ngIf="ans.isCorrect">
+            <span [class]="'badge badge-pill badge-success'">CORRECT</span>
+          </div>
         </div>
         <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
           <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(ans)"
@@ -69,7 +80,8 @@
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
             <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.value"></a>
-            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'"></span>
+            <span [class]="'badge badge-pill position-absolute badge-top-left badge-danger'" *ngIf="!p.isCorrect">INCORRECT</span>
+            <span [class]="'badge badge-pill position-absolute badge-top-left badge-success'" *ngIf="p.isCorrect">CORRECT</span>
           </div>
           <div class="card-body">
             <div class="row">
@@ -87,9 +99,6 @@
                 <a href="javascript:;">
                   <p class="list-item-heading mb-2 pt-1">{{p.value}}</p>
                 </a>
-                <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{this.question.label}}</p>
-                </footer>
               </div>
             </div>
           </div>
