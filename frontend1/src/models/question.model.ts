@@ -1,6 +1,6 @@
 export interface Answer {
     id: string;
-    type?: string;
+  questionId?: string;
     img?: string;
     indice?: string;
     value: string;
@@ -8,6 +8,7 @@ export interface Answer {
 }
 
 export interface Question {
+    quizId: string;
     id: string;
     label: string;
     date?: string;

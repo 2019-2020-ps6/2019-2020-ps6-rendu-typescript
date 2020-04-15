@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'quiz-list', component: QuizListComponent },
       { path: 'question-list/:quizId', component: QuestionListComponent},
       { path: 'answer-list/:quizId/:questionId', component: AnswerListComponent},
-      {path: 'game/:id', component: GameComponent},
+      {path: 'game/:quizId', component: GameComponent},
     ]
   }
 ];
