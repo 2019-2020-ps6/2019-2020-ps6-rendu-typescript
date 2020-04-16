@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html'
 })
-export class QuizListComponent implements OnInit {
+export class QuizListComponent{
   displayMode = 'image';
   selectAllState = '';
   selected: Quiz[] = [];
@@ -31,6 +31,9 @@ export class QuizListComponent implements OnInit {
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router) {
+    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
+      this.data = quizzes;
+    });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -39,44 +42,6 @@ export class QuizListComponent implements OnInit {
       this.selected = [];
       return false;
     }));
-  }
-
-
-  ngOnInit() {
-     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
-  }
-
-  loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
-    this.itemsPerPage = pageSize;
-    this.currentPage = currentPage;
-    this.search = search;
-    this.orderBy = orderBy;
-
-    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.data = quizzes;
-    });
-
-    this.isLoading = false;
-    this.totalItem = 1;
-    this.totalPage = 1;
-    // this.setSelectAllState();
-
-   /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
-      data => {
-        if (data.status) {
-          this.isLoading = false;
-          this.data = data.data;
-          this.totalItem = data.totalItem;
-          this.totalPage = data.totalPage;
-          this.setSelectAllState();
-        } else {
-          this.endOfTheList = true;
-        }
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );*/
   }
 
   changeDisplayMode(mode) {
@@ -116,23 +81,6 @@ export class QuizListComponent implements OnInit {
       this.selected = [];
     }
     this.setSelectAllState();
-  }
-
-  pageChanged(event: any): void {
-    this.loadData(this.itemsPerPage, event.page, this.search, this.orderBy);
-  }
-
-  itemsPerPageChange(perPage: number) {
-    this.loadData(perPage, 1, this.search, this.orderBy);
-  }
-
-  changeOrderBy(item: any) {
-    this.loadData(this.itemsPerPage, 1, this.search, item.value);
-  }
-
-  searchKeyUp(event) {
-    const val = event.target.value.toLowerCase().trim();
-    this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
   onContextMenuClick(action: string, item: Quiz) {

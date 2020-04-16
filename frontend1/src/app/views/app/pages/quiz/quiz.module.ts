@@ -13,12 +13,11 @@ import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import {QuestionListComponent} from './question-list/question-list.component';
-import {GameComponent} from 'src/app/views/app/pages/quiz/game/game/game.component';
+import {GameComponent} from 'src/app/views/app/pages/quiz/game/game.component';
 
 @NgModule({
   declarations: [ QuizListComponent, QuizComponent, QuestionListComponent, GameComponent],
   imports: [
-
     SharedModule,
     QuizRoutingModule,
     ComponentsCarouselModule,

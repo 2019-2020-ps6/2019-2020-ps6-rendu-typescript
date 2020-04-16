@@ -29,7 +29,7 @@ export class QuizService {
   public quizzes$: BehaviorSubject<Quiz[]>
     = new BehaviorSubject(this.quizzes);
 
-  public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizsel);
+  public quizSelected$: Subject<Quiz> = new Subject();
   public questionSelected$: Subject<Question> = new Subject();
 
   private quizzesUrl = serverUrl + '/quizzes';
@@ -49,11 +49,6 @@ export class QuizService {
     });
 
   }
-
-  getQuestions() {
-
-  }
-
   addQuiz(quiz: Quiz) {
     this.http.post<Quiz>(this.quizzesUrl, quiz, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
@@ -63,18 +58,10 @@ export class QuizService {
     this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.setQuizzesFromUrl());
   }
 
-  getQuiz(id: number) {
-    this.setQuizzesFromUrl();
-    console.log(this.quizzes);
-    return of(this.quizzes.find(quiz => +quiz.id === id));
-  }
-
   setSelectedQuiz(quizId: string) {
     const urlWithId = this.quizzesUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
-      this.quizsel=quiz;
-      //console.log(this.quizsel);
-      this.quizSelected$.next(quiz);
+       this.quizSelected$.next(quiz);
     });
   }
 

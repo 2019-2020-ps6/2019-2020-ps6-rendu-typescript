@@ -45,50 +45,12 @@ export class QuestionListComponent implements OnInit {
       this.selected = [];
       return false;
     }));
+
   }
 
-
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('quizId');
-    this.quizService.setSelectedQuiz(id);
-    this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
-    // this.data = this.quiz.questions;
-    // console.log(this.data);
-  }
-
-  loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
-    this.itemsPerPage = pageSize;
-    this.currentPage = currentPage;
-    this.search = search;
-    this.orderBy = orderBy;
-
-    /*this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.data = quizzes;
-    });*/
-
-    // this.data = this.quiz.questions;
-
-    this.isLoading = false;
-    this.totalItem = 1;
-    this.totalPage = 1;
-    // this.setSelectAllState();
-
-   /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
-      data => {
-        if (data.status) {
-          this.isLoading = false;
-          this.data = data.data;
-          this.totalItem = data.totalItem;
-          this.totalPage = data.totalPage;
-          this.setSelectAllState();
-        } else {
-          this.endOfTheList = true;
-        }
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );*/
+  ngOnInit(): void {
+     const id = this.route.snapshot.paramMap.get('quizId');
+     this.quizService.setSelectedQuiz(id);
   }
 
   changeDisplayMode(mode) {
@@ -128,23 +90,6 @@ export class QuestionListComponent implements OnInit {
       this.selected = [];
     }
     this.setSelectAllState();
-  }
-
-  pageChanged(event: any): void {
-    this.loadData(this.itemsPerPage, event.page, this.search, this.orderBy);
-  }
-
-  itemsPerPageChange(perPage: number) {
-    this.loadData(perPage, 1, this.search, this.orderBy);
-  }
-
-  changeOrderBy(item: any) {
-    this.loadData(this.itemsPerPage, 1, this.search, item.value);
-  }
-
-  searchKeyUp(event) {
-    const val = event.target.value.toLowerCase().trim();
-    this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
   onContextMenuClick(action: string, item: Question) {
