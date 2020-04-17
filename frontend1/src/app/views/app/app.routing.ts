@@ -9,7 +9,7 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vien' },
             { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
-            { path: 'blank-page', component: BlankPageComponent },
+            { path: 'blank-page', component: BlankPageComponent }
         ]
     }
 ];

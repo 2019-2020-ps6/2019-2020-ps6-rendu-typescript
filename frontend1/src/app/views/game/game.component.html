@@ -1,9 +1,7 @@
-<p>game works!</p>
-<div class="question-list">
-    <div> Quiz : {{quizSelected.name}} </div>
+<div class="question-list" style="margin: 20px;">
     <div class="question" *ngFor="let question of questions">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        {{question.label}}
+        <app-question [question]="question"></app-question>
     </div>
   </div>

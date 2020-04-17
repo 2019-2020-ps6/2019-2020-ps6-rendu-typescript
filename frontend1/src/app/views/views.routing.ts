@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ViewsComponent } from './views.component';
 import { ErrorComponent } from './error/error.component';
 import { environment } from './../../environments/environment';
+import {GameComponent} from './game/game.component';
 
 
 let routes: Routes = [
@@ -13,6 +14,7 @@ let routes: Routes = [
   },
   { path: 'app', loadChildren: () => import('./app/app.module').then(m => m.AppModule) },
   { path: 'error', component: ErrorComponent },
+  { path: 'game/:quizId', component: GameComponent},
   { path: '**', redirectTo: '/error' }
 ];
 

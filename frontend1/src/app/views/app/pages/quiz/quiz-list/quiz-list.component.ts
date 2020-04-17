@@ -97,6 +97,6 @@ export class QuizListComponent{
   }
 
   launchQuiz(p: Quiz) {
-    this.router.navigate(['/app/pages/quiz/game/' + p.id]);
+    this.router.navigate(['/game/' + p.id]);
   }
 }

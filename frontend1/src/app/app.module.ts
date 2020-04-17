@@ -30,7 +30,7 @@ import {AnswerListComponent} from './views/app/pages/quiz/answer-list/answer-lis
   ],
   declarations: [
     AppComponent,
-    AnswerListComponent
+    AnswerListComponent,
   ],
   providers: [],
   exports: [],
