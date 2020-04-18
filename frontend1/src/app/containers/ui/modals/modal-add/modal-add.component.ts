@@ -2,10 +2,10 @@ import {Component, ElementRef, EmbeddedViewRef, TemplateRef, ViewChild} from '@a
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-modal-confirm',
-  templateUrl: './modal-confirm.component.html',
+  selector: 'app-modal-add',
+  templateUrl: './modal-add.component.html',
 })
-export class ModalConfirmComponent {
+export class ModalAddComponent {
   modalRef: BsModalRef;
   message: string;
 

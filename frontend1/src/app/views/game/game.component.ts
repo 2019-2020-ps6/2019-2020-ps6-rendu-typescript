@@ -1,44 +1,100 @@
-import { Component, OnInit } from '@angular/core';
-import { QuizService } from 'src/services/quizzes.service';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Answer, Question} from '../../../models/question.model';
-import {QUIZ_LIST} from '../../../mocks/quizzes.mock';
-
+import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../models/quiz.model';
-import {ActivatedRoute, RouterModule} from '@angular/router';
+import {QuizService} from '../../../services/quizzes.service';
+import {ModalConfirmComponent} from '../../containers/ui/modals/modal-confirm/modal-confirm.component';
+import {ModalGoodAnswerComponent} from '../../containers/ui/modals/modal-good-answer/modal-good-answer.component';
+import {ModalConfirmQuitComponent} from '../../containers/ui/modals/modal-confirm-quit/modal-confirm-quit.component';
 
 @Component({
-  selector: 'app-game',
+  selector: 'app-question',
   templateUrl: './game.component.html',
 })
 export class GameComponent implements OnInit {
-
+  fin: boolean;
+  public quiz: Quiz;
   public questions: Question[];
-  public quizSelected: Quiz;
+  pager = {
+    index: 0,
+    size: 1,
+    count: 1
+  };
+  isFullScreen = false;
+  private color = [
+    'bg-primary',
+    'bg-danger',
+    'bg-success',
+    'bg-warning',
+    'bg-secondary',
+    'bg-info'
+  ];
 
-  questionNumber = 0;
-  gameScore = 0;
+  private dark = 'bg-dark';
+  @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalGoodAnswerComponent;
+  @ViewChild('alertQuitRef', {static: true}) alertQuitRef: ModalConfirmQuitComponent;
+  constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router) {}
 
-  constructor(private quizService: QuizService, private route: ActivatedRoute) {
-
+  finir() {
+    this.router.navigate(['/congragulation/' + this.quiz.id]);
   }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get('quizId');
-    //this.quizService.quizSelected$.subscribe((quiz) => {this.quizSelected = quiz; this.questions = quiz.questions});
-    this.quizSelected = QUIZ_LIST[0];
-    this.questions = this.quizSelected.questions;
-    console.log("selected quiz from game " + this.quizSelected);
-    console.log("selected quiz from game " + this.questions);
-
+    const id = this.route.snapshot.paramMap.get('quizId');
+    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.questions = quiz.questions; });
+    this.quizService.setSelectedQuiz(id);
   }
 
-  answerSelected($event: Answer) {
-    if ($event.isCorrect === true) {
-      this.gameScore++;
-      this.quizService.setSelectedQuestion(this.quizSelected.id, $event.questionId);
+  fullScreenClick() {
+    this.isFullScreen = !this.isFullScreen;
+    if (this.isFullScreen) {
+      document.documentElement.requestFullscreen();
     } else {
+      document.exitFullscreen();
+    }
+  }
 
+  get filteredQuestions() {
+    if (this.quiz.questions && this.quiz.questions.length === 1) {
+      this.fin = true;
+    }
+    return (this.quiz.questions) ?
+      this.quiz.questions.slice(this.pager.index, this.pager.index + this.pager.size) : [];
+  }
 
+  goTo(index: number) {
+    this.pager.count = this.quiz.questions.length;
+    if (index >= 0 && index < this.pager.count) {
+      this.pager.index = index;
+    }
+    if (index === this.pager.count - 1) {
+      this.fin = true;
+    }
+  }
+
+  showAlertModal(msg) {
+    this.alertModalRef.openModal(msg);
+  }
+
+  showQuitModal() {
+    this.alertQuitRef.openModal();
+  }
+
+  getColor(item: Answer, param: number) {
+    if (!item.type) { return this.dark; }
+    return this.color[param % this.color.length];
+  }
+
+  verify(item: Answer) {
+    if (item.isCorrect) {
+      if (this.fin) {
+        this.finir();
+      } else {
+        this.showAlertModal(item.indixe);
+        this.goTo(this.pager.index + 1);
+      }
+    } else {
+      item.type = false;
     }
   }
 }

@@ -1,4 +1,4 @@
-<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
                       (changeDisplayMode)="changeDisplayMode($event)"
                       (addNewItem)="showAddNewModal()"
                       (selectAllChange)="selectAllChange($event)"
@@ -23,11 +23,10 @@
       <div class="d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{ans.value}} <p> Question :</p>
+          <a class="list-item-heading mb-0 truncate w-20 w-xs-100" href="javascript:;">
+            {{ans.value}}
           </a>
-
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{ans.type}}</p>
+          <p class="mb-0 "> Indice : {{ans.indixe}}</p>
           <div class="w-15 w-sm-100" *ngIf="!ans.isCorrect">
             <span [class]="'badge badge-pill badge-danger'">INCORRECT</span>
           </div>
@@ -46,7 +45,7 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(ans)}" *ngFor="let ans of data; let i=index"
          [contextMenu]="basicMenu" [contextMenuSubject]="ans">
-      <a class="d-flex" href="javascript:;">
+      <a class="d-flex" href="javascript:;" *ngIf="ans.img !== 'none'">
         <img [src]="ans.img" [alt]="ans.value" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
@@ -79,7 +78,8 @@
            [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.value"></a>
+            <a href="javascript:;" *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.value"></a>
+            <br *ngIf="p.img === 'none'">
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-danger'" *ngIf="!p.isCorrect">INCORRECT</span>
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-success'" *ngIf="p.isCorrect">CORRECT</span>
           </div>
@@ -105,12 +105,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="col-12" >
-    <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
-                [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
-                previousText="<i class='simple-icon-arrow-left'></i>" nextText="<i class='simple-icon-arrow-right'></i>">
-    </pagination>
   </div>
 </div>

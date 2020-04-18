@@ -4,6 +4,7 @@ import {QuizService} from '../../../../services/quizzes.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Question} from '../../../../models/question.model';
 import {Quiz} from '../../../../models/quiz.model';
+import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
 
 @Component({
   selector: 'app-add-new-question-modal',
@@ -23,7 +24,7 @@ export class AddNewQuestionModalComponent implements OnInit {
 
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
-
+  @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
   constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder) {
     this.questionForm = this.formBuilder.group({
       label: [''],
@@ -39,13 +40,21 @@ export class AddNewQuestionModalComponent implements OnInit {
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
+  showAddAlertModal() {
+    this.addAlertModal.openModal();
+  }
+
   addQuestion() {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
     questionToCreate.date = new Date().toDateString();
     questionToCreate.img = this.selectedFile;
-    console.log();
+    if (questionToCreate.img === '') {
+      questionToCreate.img = 'none';
+    }
+    console.log(questionToCreate);
     this.quizService.addQuestion(this.quiz, questionToCreate);
+    this.showAddAlertModal();
     this.modalRef.hide();
   }
 

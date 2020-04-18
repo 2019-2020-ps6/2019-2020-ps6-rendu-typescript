@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, of, Subject} from 'rxjs';
-import { QUIZ_LIST } from '../mocks/quizzes.mock';
 import {Answer, Question} from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {Quiz} from '../models/quiz.model';
@@ -62,7 +61,6 @@ export class QuizService {
     const urlWithId = this.quizzesUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
        this.quizSelected$.next(quiz);
-       console.log("from service"+this.quizSelected$);
     });
   }
 

@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {Quiz} from '../../../../models/quiz.model';
 import {QuizService} from '../../../../services/quizzes.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
 
 @Component({
   selector: 'app-add-new-quiz-modal',
@@ -28,7 +29,7 @@ export class AddNewQuizModalComponent implements OnInit {
 
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
-
+  @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
   constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder) {
     this.quizForm = this.formBuilder.group({
       name: [''],
@@ -44,6 +45,10 @@ export class AddNewQuizModalComponent implements OnInit {
 
   show() {
     this.modalRef = this.modalService.show(this.template, this.config);
+  }
+
+  showAddAlertModal() {
+    this.addAlertModal.openModal();
   }
 
   addQuiz() {
@@ -68,6 +73,7 @@ export class AddNewQuizModalComponent implements OnInit {
     }
     console.log();
     this.quizService.addQuiz(quizToCreate);
+    this.showAddAlertModal();
     this.modalRef.hide();
   }
 

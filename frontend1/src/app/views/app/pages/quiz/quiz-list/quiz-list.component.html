@@ -9,6 +9,10 @@
 </app-list-page-header>
 <app-add-new-quiz-modal #addNewModalRef></app-add-new-quiz-modal>
 
+<app-modal-confirm #alertModalRef></app-modal-confirm>
+
+
+
 <context-menu #basicMenu>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('launch',$event.item)">
     <i class="simple-icon-control-play mr-1"></i> <span>Lancer ce Quiz</span>

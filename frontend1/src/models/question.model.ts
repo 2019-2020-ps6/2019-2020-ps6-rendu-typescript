@@ -1,8 +1,9 @@
 export interface Answer {
+  type: boolean;
     id: string;
   questionId?: string;
     img?: string;
-    indice?: string;
+    indixe?: string;
     value: string;
     isCorrect: boolean;
 }

@@ -8,34 +8,37 @@ import { PagesContainersModule } from 'src/app/containers/pages/pages.containers
 import { HotkeyModule } from 'angular2-hotkeys';
 import { ComponentsCardsModule } from 'src/app/components/cards/components.cards.module';
 import { ComponentsChartModule } from 'src/app/components/charts/components.charts.module';
-import { RatingModule, PaginationModule, TabsModule, ModalModule, BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
+import {RatingModule, PaginationModule, TabsModule, ModalModule, BsDropdownModule, AccordionModule, AlertComponent} from 'ngx-bootstrap';
 import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import {QuestionListComponent} from './question-list/question-list.component';
+import {UiModalsContainersModule} from '../../../../containers/ui/modals/ui.modals.containers.module';
+
 
 @NgModule({
   declarations: [ QuizListComponent, QuizComponent, QuestionListComponent],
-  imports: [
-    SharedModule,
-    QuizRoutingModule,
-    ComponentsCarouselModule,
-    LayoutContainersModule,
-    PagesContainersModule,
-    ComponentsCardsModule,
-    ComponentsChartModule,
-    RatingModule,
-    FormsModuleAngular,
-    ReactiveFormsModule,
-    HotkeyModule.forRoot(),
-    PaginationModule.forRoot(),
-    TabsModule.forRoot(),
-    ModalModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    AccordionModule.forRoot(),
-    ContextMenuModule.forRoot({
-      useBootstrap4: true,
-    })
-  ]
+    imports: [
+        SharedModule,
+        QuizRoutingModule,
+        ComponentsCarouselModule,
+        LayoutContainersModule,
+        PagesContainersModule,
+        ComponentsCardsModule,
+        ComponentsChartModule,
+        RatingModule,
+        FormsModuleAngular,
+        ReactiveFormsModule,
+        HotkeyModule.forRoot(),
+        PaginationModule.forRoot(),
+        TabsModule.forRoot(),
+        ModalModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        AccordionModule.forRoot(),
+        ContextMenuModule.forRoot({
+            useBootstrap4: true,
+        }),
+        UiModalsContainersModule
+    ]
 })
 export class QuizModule { }

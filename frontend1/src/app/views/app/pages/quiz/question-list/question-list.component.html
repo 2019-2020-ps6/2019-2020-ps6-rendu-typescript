@@ -44,7 +44,7 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
-      <a class="d-flex" href="javascript:;">
+      <a class="d-flex" href="javascript:;" *ngIf="p.img !== 'none'">
         <img [src]="p.img" [alt]="p.label" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
@@ -73,7 +73,8 @@
       [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.label"></a>
+            <a href="javascript:;" *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.label"></a>
+            <br *ngIf="p.img === 'none'">
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ this.quiz.themeColor">{{this.quiz.theme}}</span>
           </div>
           <div class="card-body">

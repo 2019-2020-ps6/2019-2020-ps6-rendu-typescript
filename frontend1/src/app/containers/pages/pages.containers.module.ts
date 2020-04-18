@@ -20,6 +20,7 @@ import { QuizDetailInfoComponent } from './quiz-detail-info/quiz-detail-info.com
 import { QuizDetailTabsComponent } from './quiz-detail-tabs/quiz-detail-tabs.component';
 import {AddNewQuestionModalComponent} from './add-new-question-modal/add-new-question-modal.component';
 import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-modal.component';
+import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module';
 
 @NgModule({
   declarations: [
@@ -34,24 +35,25 @@ import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule,
-    CollapseModule,
-    FormsModule,
-    LayoutContainersModule,
-    NgSelectModule,
-    LightboxModule,
-    ComponentsPagesModule,
-    ComponentsCardsModule,
-    ComponentsPlayerModule,
-    RatingModule.forRoot(),
-    TabsModule.forRoot(),
-    AccordionModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        CollapseModule,
+        FormsModule,
+        LayoutContainersModule,
+        NgSelectModule,
+        LightboxModule,
+        ComponentsPagesModule,
+        ComponentsCardsModule,
+        ComponentsPlayerModule,
+        RatingModule.forRoot(),
+        TabsModule.forRoot(),
+        AccordionModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        ReactiveFormsModule,
+        UiModalsContainersModule
+    ],
   exports: [
     AddNewQuizModalComponent,
     ListPageHeaderComponent,

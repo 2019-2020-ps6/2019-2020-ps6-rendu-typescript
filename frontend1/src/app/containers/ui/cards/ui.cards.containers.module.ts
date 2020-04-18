@@ -5,7 +5,6 @@ import { ImageCardsComponent } from './image-cards/image-cards.component';
 import { ImageOverlayComponent } from './image-overlay/image-overlay.component';
 import { ImageCardListComponent } from './image-card-list/image-card-list.component';
 import { TabCardsComponent } from './tab-cards/tab-cards.component';
-import { UserCardsComponent } from './user-cards/user-cards.component';
 import { TabsModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -14,8 +13,7 @@ import { TabsModule } from 'ngx-bootstrap';
     ImageCardsComponent,
     ImageOverlayComponent,
     ImageCardListComponent,
-    TabCardsComponent,
-    UserCardsComponent
+    TabCardsComponent
   ],
   imports: [SharedModule, TabsModule.forRoot()],
   providers: [],
@@ -24,8 +22,7 @@ import { TabsModule } from 'ngx-bootstrap';
     ImageCardsComponent,
     ImageOverlayComponent,
     ImageCardListComponent,
-    TabCardsComponent,
-    UserCardsComponent
+    TabCardsComponent
   ]
 })
 

@@ -3,16 +3,16 @@ import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { ApiService } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { QUIZZES } from '../../../../../data/productsstat';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Quiz} from '../../../../../../models/quiz.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router} from '@angular/router';
+import {ModalConfirmComponent} from '../../../../../containers/ui/modals/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html'
 })
-export class QuizListComponent{
+export class QuizListComponent {
   displayMode = 'image';
   selectAllState = '';
   selected: Quiz[] = [];
@@ -29,6 +29,7 @@ export class QuizListComponent{
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
+  @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalConfirmComponent;
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
@@ -50,6 +51,10 @@ export class QuizListComponent{
 
   showAddNewModal() {
     this.addNewModalRef.show();
+  }
+
+  showAlertModal() {
+    this.alertModalRef.openModal();
   }
 
   isSelected(p: Quiz) {
@@ -97,9 +102,10 @@ export class QuizListComponent{
   }
 
   launchQuiz(p: Quiz) {
+    if (p.questions.length > 0) {
     this.router.navigate(['/game/' + p.id]);
-    this.quizService.setSelectedQuiz(p.id);
-
-
+    } else {
+      this.showAlertModal();
+    }
   }
 }

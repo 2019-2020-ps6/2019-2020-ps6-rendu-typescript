@@ -1,13 +1,6 @@
-<button type="button" class="btn btn-primary" (click)="openModal(template)">{{'modal.open-modal' | translate}}</button>
-<br>
-<div *ngIf="message">
-  <br>
-  <pre class="border p-2 rounded">{{message}}</pre>
-</div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <h6 class="modal-title mb-4">{{'modal.confirm-message' | translate}}</h6>
+    <h6 class="modal-title mb-4"> IMPOSSIBLE DE LANCER CE QUIZ <br><br> Le quiz ne contient aucune question. Veuillez en rajouter. <br> Merci !</h6>
     <button type="button" class="btn btn-outline-primary" (click)="confirm()">{{'modal.yes' | translate}}</button> {{" "}}
-    <button type="button" class="btn btn-primary" (click)="decline()">{{'modal.no' | translate}}</button>
   </div>
 </ng-template>

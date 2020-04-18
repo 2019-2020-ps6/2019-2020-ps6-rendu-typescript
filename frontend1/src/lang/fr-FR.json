@@ -657,8 +657,10 @@
     "close": "Close",
     "open-modal": "Open Modal",
     "confirm-message": "Do you want to confirm?",
-    "yes": "Yes",
-    "no": "No",
+    "add-message" : " AJOUT AVEC SUCCESS",
+    "yes": "Compris",
+    "helas": "HELAS, OUI !",
+    "no": "Non",
     "view-child": "ViewChild"
   },
   "pagination": {
