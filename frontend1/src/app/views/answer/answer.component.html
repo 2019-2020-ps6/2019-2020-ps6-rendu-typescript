@@ -1,0 +1,12 @@
+<div (click) ="answerSelected() "class="answer">
+  <div class="col-sm-6" style="margin-bottom: 25px;">
+    <div class="card text-center bg-primary">
+      <div class="card-body">
+        <p class="card-text" style="color: white">{{answer.value}}</p>
+        <img src={{answer.img}} alt="Image related to Question" height="100" width="100">
+        <div  *ngIf="showIndice">
+        <p class="indice"> {{answer.indice}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
