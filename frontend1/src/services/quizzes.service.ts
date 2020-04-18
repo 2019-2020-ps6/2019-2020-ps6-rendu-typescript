@@ -62,6 +62,7 @@ export class QuizService {
     const urlWithId = this.quizzesUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
        this.quizSelected$.next(quiz);
+       console.log("from service"+this.quizSelected$);
     });
   }
 

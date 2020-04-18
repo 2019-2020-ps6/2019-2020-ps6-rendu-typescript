@@ -5,9 +5,10 @@ import { ViewRoutingModule } from './views.routing';
 import { SharedModule } from '../shared/shared.module';
 import {GameComponent} from './game/game.component';
 import {QuestionComponent} from './question/question.component';
+import {AnswerComponent} from './answer/answer.component';
 
 @NgModule({
-  declarations: [ViewsComponent, QuestionComponent, GameComponent],
+  declarations: [ViewsComponent, QuestionComponent, GameComponent, AnswerComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,

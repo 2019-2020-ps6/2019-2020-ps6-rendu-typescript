@@ -1,8 +1,10 @@
 <div class="card text-center" *ngIf="!fin" style="margin-top: 10%;">
   <div class="card-body">
+    <h4>Question Number {{questionNumber}}</h4>
     <h4>{{question.label}}</h4>
-    <br>With supporting text below as a natural lead-in to additional content.
-    <br>With supporting text below as a natural lead-in to additional content.
+    <div class="question" *ngFor="let answer of question.answers">
+      <app-answer [answer]="answer "     (click)="passAnswerToGame(answer)"></app-answer>
+    </div>
 
   </div>
 </div>
@@ -27,34 +29,33 @@
 
 
 
-
-<br> <br>
+<!--<br> <br>
 <div class="row" *ngIf="!fin">
   <div class="col-sm-6" style="margin-bottom: 25px;">
     <div class="card text-center bg-primary">
       <div class="card-body">
-        <p class="card-text" style="color: white">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text" style="color: white">{{question.answers[0].value}}</p>
       </div>
     </div>
   </div>
   <div class="col-sm-6 " style="margin-bottom: 25px;">
     <div class="card text-center bg-success">
       <div class="card-body">
-        <p class="card-text" style="color: white">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text" style="color: white">{{question.answers[1].value}}</p>
       </div>
     </div>
   </div>
   <div class="col-sm-6 " style="margin-bottom: 25px;">
     <div class="card text-center bg-danger">
       <div class="card-body">
-        <p class="card-text" style="color: white">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text" style="color: white">{{question.answers[2].value}}</p>
       </div>
     </div>
   </div>
   <div class="col-sm-6 " style="margin-bottom: 25px;">
     <div class="card text-center bg-warning">
       <div class="card-body">
-        <p class="card-text" style="color: white">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text" style="color: white">{{question.answers[3].value}}</p>
       </div>
     </div>
   </div>
@@ -103,7 +104,7 @@
 </div>
 
 
-
+-->
 
 
 <button type="button" class="btn btn-primary btn-sm" *ngIf="fin" (click)="go()">Finir ce quiz

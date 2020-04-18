@@ -98,5 +98,8 @@ export class QuizListComponent{
 
   launchQuiz(p: Quiz) {
     this.router.navigate(['/game/' + p.id]);
+    this.quizService.setSelectedQuiz(p.id);
+
+
   }
 }
