@@ -7,17 +7,22 @@ import {QuizService} from '../../../../../../services/quizzes.service';
 import {Quiz} from '../../../../../../models/quiz.model';
 import { Router} from '@angular/router';
 import {ModalConfirmComponent} from '../../../../../containers/ui/modals/modal-confirm/modal-confirm.component';
+import {User} from '../../../../../../models/user.model';
+import {UserService} from '../../../../../../services/user.service';
+import {UserChoiceComponent} from '../../../../../containers/ui/modals/user-choice/user-choice.component';
 
 @Component({
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html'
 })
-export class QuizListComponent {
+export class QuizListComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
   selected: Quiz[] = [];
   data: Quiz[] = [];
+  users: User[] = [];
   currentPage = 1;
+  allIsGood = true;
   itemsPerPage = 8;
   search = '';
   orderBy = '';
@@ -30,10 +35,15 @@ export class QuizListComponent {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
   @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalConfirmComponent;
+  @ViewChild('userChoiceRef', {static: true}) userChoiceRef: UserChoiceComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router, private userService: UserService) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
+    });
+
+    this.userService.users$.subscribe((users: User[]) => {
+      this.users = users;
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -43,6 +53,11 @@ export class QuizListComponent {
       this.selected = [];
       return false;
     }));
+  }
+
+  ngOnInit(): void {
+     this.quizService.setQuizzesFromUrl();
+     this.userService.setUsersFromUrl();
   }
 
   changeDisplayMode(mode) {
@@ -55,6 +70,10 @@ export class QuizListComponent {
 
   showAlertModal() {
     this.alertModalRef.openModal();
+  }
+
+  showUserChoiceModal(p: Quiz) {
+    this.userChoiceRef.openModal(p);
   }
 
   isSelected(p: Quiz) {
@@ -102,8 +121,11 @@ export class QuizListComponent {
   }
 
   launchQuiz(p: Quiz) {
-    if (p.questions.length > 0) {
-    this.router.navigate(['/game/' + p.id]);
+    p.questions.forEach(question => {
+      if (question.answers.length === 0) { this.allIsGood = false; }
+    });
+    if (p.questions.length > 0 && this.allIsGood) {
+       this.showUserChoiceModal(p);
     } else {
       this.showAlertModal();
     }

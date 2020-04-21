@@ -9,7 +9,8 @@ const router = new Router({ mergeParams: true })
 router.get('/', (req, res) => {
   try {
     const question = getQuestionFromQuiz(req.params.quizId, req.params.questionId)
-    question.answers = filterAnswersFromQuestion(question.id)
+    const answers = filterAnswersFromQuestion(question.id)
+    question.answers = answers
     res.status(200).json(question)
   } catch (err) {
     if (err.name === 'NotFoundError') {
@@ -80,4 +81,3 @@ router.delete('/:answerId', (req, res) => {
 })
 
 module.exports = router
-

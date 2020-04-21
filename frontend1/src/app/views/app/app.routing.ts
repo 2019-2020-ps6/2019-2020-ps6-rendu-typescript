@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { BlankPageComponent } from './blank-page/blank-page.component';
 
 const routes: Routes = [
     {
@@ -9,7 +8,6 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'vien' },
             { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
-            { path: 'blank-page', component: BlankPageComponent },
         ]
     }
 ];

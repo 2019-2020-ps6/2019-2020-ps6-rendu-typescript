@@ -51,6 +51,7 @@ export class QuestionListComponent implements OnInit {
   ngOnInit(): void {
      const id = this.route.snapshot.paramMap.get('quizId');
      this.quizService.setSelectedQuiz(id);
+     this.quizService.setQuizzesFromUrl();
   }
 
   changeDisplayMode(mode) {

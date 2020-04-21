@@ -75,7 +75,7 @@ export class AddNewAnswerModalComponent implements OnInit {
   }
 
   updateAnswer(answerToCreate: Answer) {
-    console.log(answerToCreate);
+    // console.log(answerToCreate);
     this.quizService.addAnswer(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'), answerToCreate);
   }
 

@@ -38,6 +38,8 @@ export class AnswerListComponent implements OnInit {
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
     this.quizService.questionSelected$.subscribe((q) => {
       this.data = q.answers;
+      console.log(q);
+      console.log(q.answers);
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -53,6 +55,7 @@ export class AnswerListComponent implements OnInit {
   ngOnInit() {
     this.quizService.setSelectedQuestion(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'));
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+    this.quizService.setQuizzesFromUrl();
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = '') {
@@ -61,33 +64,9 @@ export class AnswerListComponent implements OnInit {
     this.search = search;
     this.orderBy = orderBy;
 
-    /*this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.data = quizzes;
-    });*/
-
-    // this.data = this.quiz.questions;
-
     this.isLoading = false;
     this.totalItem = 1;
     this.totalPage = 1;
-    // this.setSelectAllState();
-
-    /* this.apiService.getQuizzes(pageSize, currentPage, search, orderBy).subscribe(
-       data => {
-         if (data.status) {
-           this.isLoading = false;
-           this.data = data.data;
-           this.totalItem = data.totalItem;
-           this.totalPage = data.totalPage;
-           this.setSelectAllState();
-         } else {
-           this.endOfTheList = true;
-         }
-       },
-       error => {
-         this.isLoading = false;
-       }
-     );*/
   }
 
   changeDisplayMode(mode) {
@@ -149,7 +128,6 @@ export class AnswerListComponent implements OnInit {
   onContextMenuClick(item: Answer) {
      console.log('onContextMenuClick -> action : delete, item.title :', item.value);
      this.quizService.deleteAnswer(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'), item);
-
   }
 
 

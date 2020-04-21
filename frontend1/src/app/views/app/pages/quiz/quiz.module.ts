@@ -14,10 +14,11 @@ import { LayoutContainersModule } from 'src/app/containers/layout/layout.contain
 import { ContextMenuModule } from 'ngx-contextmenu';
 import {QuestionListComponent} from './question-list/question-list.component';
 import {UiModalsContainersModule} from '../../../../containers/ui/modals/ui.modals.containers.module';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
-  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent],
+  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent, UserComponent],
     imports: [
         SharedModule,
         QuizRoutingModule,

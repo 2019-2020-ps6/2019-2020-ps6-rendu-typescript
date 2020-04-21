@@ -15,10 +15,10 @@ const data: IMenuItem[] = [
     to: '/app/pages/quiz/quiz-list',
   },
   {
-    id: 'security',
-    icon: 'iconsminds-security-block',
-    label: 'menu.security',
-    to: '/app/blank-page',
+    id: 'patients',
+    icon: 'iconsminds-user',
+    label: 'menu.users',
+    to: '/app/pages/quiz/user'
   }
 ];
 export default data;

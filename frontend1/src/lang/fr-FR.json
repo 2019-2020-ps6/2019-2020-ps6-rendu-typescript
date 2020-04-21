@@ -20,6 +20,8 @@
   "menu": {
     "app": "Acceuil",
     "quiz": "Quiz",
+    "user": "Utilisateurs",
+    "users": "Utilisateurs",
     "quizzes": "Quizzes",
     "second-menu": "Profils",
     "answer-list": "Reponses",
