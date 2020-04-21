@@ -1,4 +1,4 @@
-<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+<app-list-quizzes-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
                       (changeDisplayMode)="changeDisplayMode($event)"
                       (addNewItem)="showAddNewModal()"
                       (selectAllChange)="selectAllChange($event)"
@@ -6,7 +6,7 @@
                       (changeOrderBy)="changeOrderBy($event)"
                       (searchKeyUp)="searchKeyUp($event)"
 >
-</app-list-page-header>
+</app-list-quizzes-page-header>
 <app-add-new-answer-modal #addNewModalRef [question]="data"></app-add-new-answer-modal>
 
 <context-menu #basicMenu>
