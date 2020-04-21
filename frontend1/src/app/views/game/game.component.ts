@@ -6,6 +6,8 @@ import {QuizService} from '../../../services/quizzes.service';
 import {ModalConfirmComponent} from '../../containers/ui/modals/modal-confirm/modal-confirm.component';
 import {ModalGoodAnswerComponent} from '../../containers/ui/modals/modal-good-answer/modal-good-answer.component';
 import {ModalConfirmQuitComponent} from '../../containers/ui/modals/modal-confirm-quit/modal-confirm-quit.component';
+import {Score, User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-question',
@@ -14,7 +16,10 @@ import {ModalConfirmQuitComponent} from '../../containers/ui/modals/modal-confir
 export class GameComponent implements OnInit {
   fin: boolean;
   public quiz: Quiz;
+  public user: User;
   public questions: Question[];
+  public score = 0;
+  public answerRight = 0;
   pager = {
     index: 0,
     size: 1,
@@ -33,16 +38,32 @@ export class GameComponent implements OnInit {
   private dark = 'bg-dark';
   @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalGoodAnswerComponent;
   @ViewChild('alertQuitRef', {static: true}) alertQuitRef: ModalConfirmQuitComponent;
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router) {}
-
-  finir() {
-    this.router.navigate(['/congragulation/' + this.quiz.id]);
-  }
+  constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('quizId');
-    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.questions = quiz.questions; });
     this.quizService.setSelectedQuiz(id);
+    this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.questions = quiz.questions; });
+
+    const id1 = this.route.snapshot.paramMap.get('userId');
+    this.userService.setSelectedUser(id1);
+    this.userService.userSelected$.subscribe((user) => {this.user = user; });
+  }
+
+  finir() {
+    this.calculateScore();
+    this.updateUserScore();
+    this.router.navigate(['/congragulation/' + this.quiz.id + '/' + 1587457953258]);
+    console.log(this.score);
+  }
+
+  updateUserScore() {
+    const scoreToCreate =  {
+      value: this.score.toString(),
+      date: new Date().toDateString(),
+      userId: this.user.id,
+    } as Score;
+    this.userService.addScore(this.user, scoreToCreate);
   }
 
   fullScreenClick() {
@@ -72,6 +93,12 @@ export class GameComponent implements OnInit {
     }
   }
 
+  calculateScore() {
+    this.score += ((100 / this.quiz.questions.length) * this.answerRight);
+    this.score = Math.round(this.score);
+    console.log(this.score);
+  }
+
   showAlertModal(msg) {
     this.alertModalRef.openModal(msg);
   }
@@ -87,6 +114,7 @@ export class GameComponent implements OnInit {
 
   verify(item: Answer) {
     if (item.isCorrect) {
+      this.answerRight++;
       if (this.fin) {
         this.finir();
       } else {

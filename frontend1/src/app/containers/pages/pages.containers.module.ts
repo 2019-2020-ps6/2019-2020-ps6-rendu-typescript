@@ -21,6 +21,7 @@ import { QuizDetailTabsComponent } from './quiz-detail-tabs/quiz-detail-tabs.com
 import {AddNewQuestionModalComponent} from './add-new-question-modal/add-new-question-modal.component';
 import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-modal.component';
 import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module';
+import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module
     QuizDetailInfoComponent,
     QuizDetailTabsComponent,
     AddNewQuestionModalComponent,
-    AddNewAnswerModalComponent
+    AddNewAnswerModalComponent,
+    AddNewUserModalComponent
   ],
     imports: [
         CommonModule,
@@ -64,7 +66,8 @@ import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module
     QuizDetailInfoComponent,
     QuizDetailTabsComponent,
     AddNewQuestionModalComponent,
-    AddNewAnswerModalComponent
+    AddNewAnswerModalComponent,
+    AddNewUserModalComponent
   ]
 })
 export class PagesContainersModule { }

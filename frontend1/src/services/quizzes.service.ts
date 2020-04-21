@@ -19,7 +19,6 @@ export class QuizService {
    * The list is retrieved from the mock.
    */
   private quizzes: Quiz[];
-  public  quizsel: Quiz;
 
   /**
    * Observable which contains the list of the quiz.
@@ -91,6 +90,7 @@ export class QuizService {
   deleteAnswer(quizId: string, questionId: string, answer: Answer) {
     const anserUrl = this.quizzesUrl + '/' + quizId + '/' + this.questionsPath + '/' + questionId + '/' + this.answersPath + '/' + answer.id;
     this.http.delete<Answer>(anserUrl).subscribe(() => this.setSelectedQuestion(quizId, questionId));
+    this.setQuizzesFromUrl();
   }
 
   updateAnswer(quizId: string, questionId: string, answer: Answer) {

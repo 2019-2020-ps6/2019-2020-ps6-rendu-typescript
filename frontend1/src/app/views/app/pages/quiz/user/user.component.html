@@ -1,0 +1,60 @@
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[0]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+                      (changeDisplayMode)="changeDisplayMode($event)"
+                      (addNewItem)="showAddNewModal()"
+                      (selectAllChange)="selectAllChange($event)"
+>
+</app-list-page-header>
+<app-add-new-user-modal #addNewModalRef></app-add-new-user-modal>
+
+<app-modal-confirm #alertModalRef></app-modal-confirm>
+
+
+
+<context-menu #basicMenu>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('launch',$event.item)">
+    <i class="simple-icon-control-play mr-1"></i> <span>Lancer ce Quiz</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
+    <i class="simple-icon-drawer mr-1"></i> <span>Gerer les questions</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
+    <i class="simple-icon-trash mr-1"></i><span>Supprimer ce Quiz</span>
+  </ng-template>
+</context-menu>
+
+<div class="row">
+
+
+  <div class="col-12 list" *ngIf="displayMode==='thumb'">
+    <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
+         [contextMenu]="basicMenu" [contextMenuSubject]="p">
+      <a class="d-flex" href="javascript:;">
+        <img [src]="p.img" [alt]="p.img" class="list-thumbnail responsive border-0 card-img-left" />
+      </a>
+      <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+        <div
+          class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+          <a href="javascript:;" class="w-40 w-sm-100">
+            <p class="list-item-heading mb-0 truncate">{{p.firstname}} {{' '+ p.lastname}}</p>
+          </a>
+          <div class="w-15 w-sm-100">
+            <span [class]="'badge badge-pill badge-primary'">{{p.birthday}}</span>
+          </div>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length>0">Dernier Score : {{p.scores[p.scores.length-1].value}} % </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-12" >
+    <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+                [(ngModel)]="currentPage" class="justify-content-center"
+                previousText="<i class='simple-icon-arrow-left'></i>" nextText="<i class='simple-icon-arrow-right'></i>">
+    </pagination>
+  </div>
+</div>
+

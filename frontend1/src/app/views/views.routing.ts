@@ -15,8 +15,8 @@ let routes: Routes = [
   },
   { path: 'app', loadChildren: () => import('./app/app.module').then(m => m.AppModule) },
   { path: 'error', component: ErrorComponent },
-  { path: 'game/:quizId', component: GameComponent},
-  { path: 'congragulation/:quizId', component: CongragulationComponent},
+  { path: 'game/:quizId/:userId', component: GameComponent},
+  { path: 'congragulation/:quizId/:userId', component: CongragulationComponent},
   { path: '**', redirectTo: '/error' }
 ];
 

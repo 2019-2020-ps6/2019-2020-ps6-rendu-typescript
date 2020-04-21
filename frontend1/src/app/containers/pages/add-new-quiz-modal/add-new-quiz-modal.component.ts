@@ -71,7 +71,6 @@ export class AddNewQuizModalComponent implements OnInit {
     if (quizToCreate.theme === 'ACTOR') {
       quizToCreate.themeColor = 'danger';
     }
-    console.log();
     this.quizService.addQuiz(quizToCreate);
     this.showAddAlertModal();
     this.modalRef.hide();
