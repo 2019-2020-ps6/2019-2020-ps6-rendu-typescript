@@ -15,10 +15,11 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 import {QuestionListComponent} from './question-list/question-list.component';
 import {UiModalsContainersModule} from '../../../../containers/ui/modals/ui.modals.containers.module';
 import { UserComponent } from './user/user.component';
+import {EvolutionComponent} from './evolution/evolution.component';
 
 
 @NgModule({
-  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent, UserComponent],
+  declarations: [ QuizListComponent, QuizComponent, QuestionListComponent, UserComponent, EvolutionComponent],
     imports: [
         SharedModule,
         QuizRoutingModule,

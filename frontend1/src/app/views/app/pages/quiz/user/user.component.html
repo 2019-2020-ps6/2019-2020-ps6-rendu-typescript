@@ -14,14 +14,8 @@
 
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('launch',$event.item)">
-    <i class="simple-icon-control-play mr-1"></i> <span>Lancer ce Quiz</span>
-  </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
-    <i class="simple-icon-drawer mr-1"></i> <span>Gerer les questions</span>
-  </ng-template>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
-    <i class="simple-icon-trash mr-1"></i><span>Supprimer ce Quiz</span>
+    <i class="simple-icon-trash mr-1"></i><span>Supprimer cet Utilisateur</span>
   </ng-template>
 </context-menu>
 
@@ -31,6 +25,8 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
          [contextMenu]="basicMenu" [contextMenuSubject]="p">
+        <div class="col">
+          <div class="row">
       <a class="d-flex" href="javascript:;">
         <img [src]="p.img" [alt]="p.img" class="list-thumbnail responsive border-0 card-img-left" />
       </a>
@@ -44,8 +40,19 @@
             <span [class]="'badge badge-pill badge-primary'">{{p.birthday}}</span>
           </div>
           <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length>0">Dernier Score : {{p.scores[p.scores.length-1].value}} % </p>
+          <div class="w-sm-100">
+            <a href="javascript:;">
+            <span [class]="'badge badge-pill badge-warning'" *ngIf="!actived[i]" (click)="this.displayEvolution(i)"> Voir En Details </span>
+            <span [class]="'badge badge-pill badge-warning'" *ngIf="actived[i]" (click)="this.hideEvolution(i)"> Cacher Les Details </span>
+            </a>
+          </div>
         </div>
       </div>
+          </div>
+          <div>
+            <app-evolution [user]="p" *ngIf="actived[i]"></app-evolution>
+          </div>
+        </div>
     </div>
   </div>
 

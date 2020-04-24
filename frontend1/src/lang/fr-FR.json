@@ -435,7 +435,9 @@
     "pie": "Pie Chart",
     "doughnut": "Doughnut Chart",
     "shadow": "Shadow",
-    "no-shadow": "No Shadow"
+    "no-shadow": "No Shadow",
+    "evolution": "Evolution",
+    "phrase": " Consultation des derniers scores de "
   },
   "collapse": {
     "basic": "Basic",

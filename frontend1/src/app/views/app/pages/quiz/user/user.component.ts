@@ -5,14 +5,14 @@ import {Router} from '@angular/router';
 import {User} from '../../../../../../models/user.model';
 import {UserService} from '../../../../../../services/user.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
-import {AddNewQuizModalComponent} from '../../../../../containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import {AddNewUserModalComponent} from '../../../../../containers/pages/add-new-user-modal/add-new-user-modal.component';
+import {ChartService} from '../../../../../components/charts/chart.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit {
   displayMode = 'thumb';
   selectAllState = '';
   selected: User[] = [];
@@ -25,11 +25,12 @@ export class UserComponent implements OnInit{
   endOfTheList = false;
   totalItem = 0;
   totalPage = 0;
+  actived: boolean[];
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewUserModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private userService: UserService, private router: Router) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private userService: UserService, private router: Router, private chartService: ChartService) {
     this.userService.users$.subscribe((users: User[]) => {
       this.data = users;
     });
@@ -44,7 +45,8 @@ export class UserComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // this.userService.setUsersFromUrl();
+     this.userService.setUsersFromUrl();
+     this.actived = [false];
   }
 
   changeDisplayMode(mode) {
@@ -96,9 +98,14 @@ export class UserComponent implements OnInit{
     if (action === 'delete') {
       this.userService.deleteUser(item);
     }
-    if (action === 'edit') {
-      // this.router.navigate(['/app/pages/quiz/question-list/' + item.id]);
-    }
+  }
+
+  displayEvolution(i: number) {
+    this.actived[i] = true;
+  }
+
+  hideEvolution(i: number) {
+    this.actived[i] = false;
   }
 
 }

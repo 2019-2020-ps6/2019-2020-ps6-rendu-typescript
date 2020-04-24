@@ -132,17 +132,17 @@ export class ChartService {
       yAxes: [
         {
           gridLines: {
-            display: true,
+            display: false,
             lineWidth: 1,
             color: 'rgba(0,0,0,0.1)',
             drawBorder: false
           },
           ticks: {
             beginAtZero: true,
-            stepSize: 5,
-            min: 50,
-            max: 70,
-            padding: 20
+            stepSize: 20,
+            min: 0,
+            max: 100,
+            padding: 30
           }
         }
       ],
