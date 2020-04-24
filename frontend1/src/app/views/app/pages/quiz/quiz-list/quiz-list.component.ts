@@ -36,10 +36,12 @@ export class QuizListComponent implements OnInit {
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
   @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalConfirmComponent;
   @ViewChild('userChoiceRef', {static: true}) userChoiceRef: UserChoiceComponent;
+  private quizzesTmp: Quiz[];
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router, private userService: UserService) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
+      this.quizzesTmp=quizzes;
     });
 
     this.userService.users$.subscribe((users: User[]) => {
@@ -129,5 +131,18 @@ export class QuizListComponent implements OnInit {
     } else {
       this.showAlertModal();
     }
+  }
+
+   filterText(arr: Quiz[], requete: string) {
+    return arr.filter(function (q) {
+      return q.name.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
+    })
+  }
+
+  doFiltering(valeur :string) {
+    console.log("Valeur de value = "+valeur);
+    if (valeur != '')
+      this.data=this.filterText(this.data,valeur);
+    else this.data=this.quizzesTmp;
   }
 }

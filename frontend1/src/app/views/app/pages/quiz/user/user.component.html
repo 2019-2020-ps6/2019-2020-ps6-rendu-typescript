@@ -1,12 +1,13 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[0]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+<app-list-users-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[0]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
                       (changeDisplayMode)="changeDisplayMode($event)"
                       (addNewItem)="showAddNewModal()"
                       (selectAllChange)="selectAllChange($event)"
+                            (searchKeyUp)="doFiltering($event)"
 >
-</app-list-page-header>
+</app-list-users-page-header>
 <app-add-new-user-modal #addNewModalRef></app-add-new-user-modal>
 
 <app-modal-confirm #alertModalRef></app-modal-confirm>

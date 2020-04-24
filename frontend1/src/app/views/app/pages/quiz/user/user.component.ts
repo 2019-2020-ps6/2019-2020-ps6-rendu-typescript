@@ -29,10 +29,12 @@ export class UserComponent implements OnInit {
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewUserModalComponent;
+  private usersTmp: User[];
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private userService: UserService, private router: Router, private chartService: ChartService) {
     this.userService.users$.subscribe((users: User[]) => {
       this.data = users;
+      this.usersTmp=users;
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -108,4 +110,16 @@ export class UserComponent implements OnInit {
     this.actived[i] = false;
   }
 
+  filterText(arr: User[], requete: string) {
+    return arr.filter(function (u) {
+      return u.lastname.toLowerCase().indexOf(requete.toLowerCase()) !== -1 || u.firstname.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
+    })
+  }
+
+  doFiltering(valeur :string) {
+    console.log("Valeur de value = "+valeur);
+    if (valeur != '')
+      this.data=this.filterText(this.data,valeur);
+    else this.data=this.usersTmp;
+  }
 }

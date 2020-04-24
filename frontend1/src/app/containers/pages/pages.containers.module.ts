@@ -7,7 +7,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddNewQuizModalComponent } from './add-new-quiz-modal/add-new-quiz-modal.component';
-import { ListPageHeaderComponent } from './list-page-header/list-page-header.component';
+import { ListPageQuizzesHeaderComponent } from './list-page-quizzes-header/list-page-quizzes-header.component';
 import { ComponentsPagesModule } from '../../components/pages/components.pages.module';
 import { ComponentsCardsModule } from '../../components/cards/components.cards.module';
 import { FeatureComparisonComponent } from './feature-comparison/feature-comparison.component';
@@ -22,11 +22,12 @@ import {AddNewQuestionModalComponent} from './add-new-question-modal/add-new-que
 import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-modal.component';
 import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module';
 import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.component';
+import {ListPageUsersHeaderComponent} from "./list-page-users-header/list-page-users-header.component";
 
 @NgModule({
   declarations: [
     AddNewQuizModalComponent,
-    ListPageHeaderComponent,
+    ListPageQuizzesHeaderComponent,
     FeatureComparisonComponent,
     QuizDetailInfoAltComponent,
     QuizDetailOrdersComponent,
@@ -35,7 +36,8 @@ import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.
     QuizDetailTabsComponent,
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
-    AddNewUserModalComponent
+    AddNewUserModalComponent,
+    ListPageUsersHeaderComponent
   ],
     imports: [
         CommonModule,
@@ -58,7 +60,7 @@ import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.
     ],
   exports: [
     AddNewQuizModalComponent,
-    ListPageHeaderComponent,
+    ListPageQuizzesHeaderComponent,
     FeatureComparisonComponent,
     QuizDetailInfoAltComponent,
     QuizDetailOrdersComponent,
@@ -67,7 +69,8 @@ import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.
     QuizDetailTabsComponent,
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
-    AddNewUserModalComponent
+    AddNewUserModalComponent,
+    ListPageUsersHeaderComponent
   ]
 })
 export class PagesContainersModule { }

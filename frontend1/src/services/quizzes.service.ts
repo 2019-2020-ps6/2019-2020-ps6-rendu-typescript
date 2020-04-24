@@ -6,7 +6,7 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {Quiz} from '../models/quiz.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: `root`
 })
 export class QuizService {
   /**

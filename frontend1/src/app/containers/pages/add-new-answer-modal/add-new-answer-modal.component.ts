@@ -9,7 +9,7 @@ import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
 
 @Component({
   selector: 'app-add-new-answer-modal',
-  templateUrl: './add-new-answer-modal.component.html',
+  templateUrl: "./add-new-answer-modal.component.html",
   styles: []
 })
 export class AddNewAnswerModalComponent implements OnInit {
