@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '', component: PagesComponent,
     children: [
       { path: '', redirectTo: 'quiz', pathMatch: 'full' },
-      { path: 'quiz', loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule)},
+      { path: 'components', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule)},
     ]
   }
 ];

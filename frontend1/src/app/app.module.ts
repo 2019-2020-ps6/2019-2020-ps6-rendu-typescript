@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContextMenuModule} from 'ngx-contextmenu';
 import {PagesContainersModule} from './containers/pages/pages.containers.module';
 import {PaginationModule} from 'ngx-bootstrap';
-import {AnswerListComponent} from './views/app/pages/quiz/answer-list/answer-list';
+import {AnswerListComponent} from './views/app/pages/components/answer-list/answer-list';
 
 @NgModule({
   imports: [

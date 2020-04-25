@@ -10,7 +10,7 @@ import {Score, User} from '../../../models/user.model';
 import {UserService} from '../../../services/user.service';
 
 @Component({
-  selector: 'app-question',
+  selector: 'app-game',
   templateUrl: './game.component.html',
 })
 export class GameComponent implements OnInit {

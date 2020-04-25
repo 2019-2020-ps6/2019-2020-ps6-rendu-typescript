@@ -12,13 +12,13 @@ const data: IMenuItem[] = [
     id: 'quizzes',
     icon: 'iconsminds-dashboard',
     label: 'menu.quizzes',
-    to: '/app/pages/quiz/quiz-list',
+    to: '/app/pages/components/quiz-list',
   },
   {
     id: 'patients',
     icon: 'iconsminds-user',
     label: 'menu.users',
-    to: '/app/pages/quiz/user'
+    to: '/app/pages/components/user'
   }
 ];
 export default data;

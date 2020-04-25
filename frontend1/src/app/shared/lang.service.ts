@@ -1,8 +1,6 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TranslateService} from '@ngx-translate/core';
 import fr from '../../lang/fr-FR.json';
-import en from '../../lang/en-US.json';
-import es from '../../lang/es-ES.json';
 import { Router } from '@angular/router';
 
 const languageKey = '__lang';

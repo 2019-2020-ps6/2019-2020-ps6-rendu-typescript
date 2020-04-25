@@ -1,0 +1,11 @@
+
+  <div class="card-body">
+    <h5 class="mb-4">{{'charts.evolution' | translate}}</h5>
+      <div class="col-lg-auto mb-auto">
+
+        <div class="chart-container chart">
+          <app-line-chart [shadow]="true" [options]="chartDataConfig.lineChartOptions"
+                          [data]="lineChartData"></app-line-chart>
+        </div>
+    </div>
+  </div>

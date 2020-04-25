@@ -4,23 +4,6 @@
     <div class="top-right-button-container text-zero">
       <button type="button" (click)="onAddNewItem()"
         class="top-right-button btn btn-primary btn-lg mr-1">{{ 'pages.add-new' | translate}}</button>
-      <div class="btn-group" dropdown>
-        <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
-          <label class="custom-control custom-checkbox mb-0 d-inline-block">
-            <input type="checkbox" class="custom-control-input" [checked]="selectAllState==='checked'"
-              [indeterminate]="selectAllState === 'indeterminate'" (change)="selectAll($event)">
-            <span class="custom-control-label">&nbsp;</span>
-          </label>
-        </div>
-        <button id="button-split" type="button" dropdownToggle
-          class="btn btn-primary dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
-          <span class="caret" ></span>
-        </button>
-        <ul id="dropdown-split" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
-          aria-labelledby="button-split">
-          <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'pages.delete' | translate }}</a></li>
-        </ul>
-      </div>
     </div>
     <app-breadcrumb></app-breadcrumb>
     <div class="display-options-container">
@@ -85,20 +68,6 @@
           <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
             <input class="form-control" placeholder="{{'pages.search' | translate}}" [(ngModel)]="valeur" (keyup)="onSearchKeyUp($event)">
           </div>
-        </div>
-        <div class="float-right" *ngIf="showItemsPerPage">
-          <span class="text-muted text-small">{{ 'pages.bypage' | translate}} </span>
-          <span dropdown class="d-inline-block position-relative">
-            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" dropdownToggle>
-              {{itemsPerPage}}
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm text-right" *dropdownMenu>
-              <li role="menuitem" *ngFor="let item of itemOptionsPerPage"><a
-                  [ngClass]="item === itemsPerPage ? 'dropdown-item active' : 'dropdown-item'"
-                  (click)="onChangeItemsPerPage(item)">{{item}}</a></li>
-            </div>
-          </span>
         </div>
       </div>
       <div class="separator mb-4"></div>

@@ -24,7 +24,7 @@ export class CongragulationComponent implements OnInit, OnDestroy {
   }
 
   finir() {
-    this.router.navigate(['/app/pages/quiz/quiz-list/']);
+    this.router.navigate(['/app/pages/components/quiz-list/']);
   }
 
   replay() {
