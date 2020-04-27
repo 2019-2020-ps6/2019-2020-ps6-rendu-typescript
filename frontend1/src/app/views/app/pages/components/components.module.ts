@@ -3,10 +3,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { QuizListComponent} from './quiz-list/quiz-list.component';
 import { ComponentsRoutingModule } from './components.routing';
 import { ComponentsComponent } from './components.component';
-import { ComponentsCarouselModule } from 'src/app/components/carousel/components.carousel.module';
 import { PagesContainersModule } from 'src/app/containers/pages/pages.containers.module';
 import { HotkeyModule } from 'angular2-hotkeys';
-import { ComponentsCardsModule } from 'src/app/components/cards/components.cards.module';
 import { ComponentsChartModule } from 'src/app/components/charts/components.charts.module';
 import {RatingModule, PaginationModule, TabsModule, ModalModule, BsDropdownModule, AccordionModule, AlertComponent} from 'ngx-bootstrap';
 import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
@@ -23,10 +21,8 @@ import {EvolutionComponent} from './evolution/evolution.component';
     imports: [
         SharedModule,
         ComponentsRoutingModule,
-        ComponentsCarouselModule,
         LayoutContainersModule,
         PagesContainersModule,
-        ComponentsCardsModule,
         ComponentsChartModule,
         RatingModule,
         FormsModuleAngular,

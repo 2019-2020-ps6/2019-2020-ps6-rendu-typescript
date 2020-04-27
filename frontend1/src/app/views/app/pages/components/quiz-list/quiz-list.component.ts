@@ -9,7 +9,6 @@ import {ModalConfirmComponent} from '../../../../../containers/ui/modals/modal-c
 import {User} from '../../../../../../models/user.model';
 import {UserService} from '../../../../../../services/user.service';
 import {UserChoiceComponent} from '../../../../../containers/ui/modals/user-choice/user-choice.component';
-import {ApiService} from '../../../../../data/api.service';
 
 @Component({
   selector: 'app-quiz-list',
@@ -35,7 +34,7 @@ export class QuizListComponent implements OnInit {
   @ViewChild('userChoiceRef', {static: true}) userChoiceRef: UserChoiceComponent;
   private quizzesTmp: Quiz[];
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router, private userService: UserService) {
+  constructor(private hotkeysService: HotkeysService, private quizService: QuizService, private router: Router, private userService: UserService) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
       this.quizzesTmp = quizzes;
