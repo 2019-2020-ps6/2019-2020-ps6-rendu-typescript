@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
   finir() {
     this.calculateScore();
     this.updateUserScore();
-    this.router.navigate(['/congragulation/' + this.quiz.id + '/' + 1587457953258]);
+    this.router.navigate(['/congratulations/' + this.quiz.id + '/' + 1587457953258]);
     console.log(this.score);
   }
 

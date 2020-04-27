@@ -4,7 +4,7 @@ import { ViewsComponent } from './views.component';
 import { ErrorComponent } from './error/error.component';
 import { environment } from './../../environments/environment';
 import {GameComponent} from './game/game.component';
-import {CongragulationComponent} from './congragulation/congragulation.component';
+import {CongratulationsComponent} from './congratulations/congratulations.component';
 
 
 let routes: Routes = [
@@ -16,7 +16,7 @@ let routes: Routes = [
   { path: 'app', loadChildren: () => import('./app/app.module').then(m => m.AppModule) },
   { path: 'error', component: ErrorComponent },
   { path: 'game/:quizId/:userId', component: GameComponent},
-  { path: 'congragulation/:quizId/:userId', component: CongragulationComponent},
+  { path: 'congratulations/:quizId/:userId', component: CongratulationsComponent},
   { path: '**', redirectTo: '/error' }
 ];
 
