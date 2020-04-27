@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Hotkey, HotkeysService} from 'angular2-hotkeys';
-import {ApiService} from '../../../../../data/api.service';
 import {Router} from '@angular/router';
 import {User} from '../../../../../../models/user.model';
 import {UserService} from '../../../../../../services/user.service';
@@ -31,7 +30,7 @@ export class UserComponent implements OnInit {
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewUserModalComponent;
   private usersTmp: User[];
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private userService: UserService, private router: Router, private chartService: ChartService) {
+  constructor(private hotkeysService: HotkeysService, private userService: UserService, private router: Router, private chartService: ChartService) {
     this.userService.users$.subscribe((users: User[]) => {
       this.data = users;
       this.usersTmp=users;
