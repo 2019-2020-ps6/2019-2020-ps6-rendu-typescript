@@ -1,7 +1,7 @@
 <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
     <ol class="breadcrumb pt-0">
         <li class="breadcrumb-item" *ngFor="let sub of pathArr; let i=index" [hidden]="i >= (pathArr.length-1)">
-            <a [routerLink]="[getUrl('components')]" *ngIf="sub === 'app'">Acceuil</a>
+            <a [routerLink]="[getUrl('components')]" *ngIf="sub === 'app'">Accueil</a>
             <a *ngIf="sub !== 'app' && i === 1">Retour</a>
         </li>
     </ol>

@@ -6,10 +6,10 @@ import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user.model';
 
 @Component({
-  selector: 'app-congragulation',
-  templateUrl: './congragulation.component.html'
+  selector: 'app-congratulations',
+  templateUrl: './congratulations.component.html'
 })
-export class CongragulationComponent implements OnInit, OnDestroy {
+export class CongratulationsComponent implements OnInit, OnDestroy {
   public quiz: Quiz;
   public user: User;
   constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService) { }

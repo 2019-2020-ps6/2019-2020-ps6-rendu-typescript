@@ -5,10 +5,10 @@ import { ViewRoutingModule } from './views.routing';
 import { SharedModule } from '../shared/shared.module';
 import {GameComponent} from './game/game.component';
 import {UiModalsContainersModule} from '../containers/ui/modals/ui.modals.containers.module';
-import {CongragulationComponent} from './congragulation/congragulation.component';
+import {CongratulationsComponent} from './congratulations/congratulations.component';
 
 @NgModule({
-  declarations: [ViewsComponent, GameComponent, CongragulationComponent],
+  declarations: [ViewsComponent, GameComponent, CongratulationsComponent],
     imports: [
         CommonModule,
         ViewRoutingModule,
