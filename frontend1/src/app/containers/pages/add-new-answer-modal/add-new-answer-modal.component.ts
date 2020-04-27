@@ -13,7 +13,7 @@ import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
   styles: []
 })
 export class AddNewAnswerModalComponent implements OnInit {
-  @Input() question: Answer[];
+  @Input() answers: Answer[];
   public answerForm: FormGroup;
   private selectedFile = '';
   modalRef: BsModalRef;
@@ -27,7 +27,7 @@ export class AddNewAnswerModalComponent implements OnInit {
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
 
-  constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder, private route: ActivatedRoute,) {
+  constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder, private route: ActivatedRoute, ) {
     this.answerForm = this.formBuilder.group({
       value: [''],
       img: [''],
@@ -37,7 +37,6 @@ export class AddNewAnswerModalComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   show() {
@@ -62,9 +61,22 @@ export class AddNewAnswerModalComponent implements OnInit {
     // console.log(answerToCreate.isCorrect);
     // this.quizService.addAnswer(quizToCreate);
     this.updateAnswer(answerToCreate);
-    this.question.push(answerToCreate);
+    this.answers.push(answerToCreate);
     this.showAddAlertModal();
     this.modalRef.hide();
+    // console.log(this.answers);
+  }
+
+  verify() {
+    if (this.answers.length > 0) {
+      if (this.answers[0].img === 'none') {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
   }
 
   onFileSelected(event) {
