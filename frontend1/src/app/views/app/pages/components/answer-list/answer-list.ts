@@ -73,6 +73,7 @@ export class AnswerListComponent implements OnInit {
   }
 
   showAddNewModal() {
+
     this.addNewModalRef.show();
   }
 
