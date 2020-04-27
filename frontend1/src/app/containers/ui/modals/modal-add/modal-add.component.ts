@@ -13,6 +13,12 @@ export class ModalAddComponent {
   constructor(private modalService: BsModalService) { }
 
   openModal() {
+    this.message = 'AJOUT AVEC SUCCESS';
+    this.modalRef = this.modalService.show(this.template, { class: 'modal-dialog modal-dialog-centered' });
+  }
+
+  openModalWithMessage(message) {
+    this.message = message;
     this.modalRef = this.modalService.show(this.template, { class: 'modal-dialog modal-dialog-centered' });
   }
 

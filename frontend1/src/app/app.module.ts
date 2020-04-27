@@ -12,22 +12,24 @@ import {ContextMenuModule} from 'ngx-contextmenu';
 import {PagesContainersModule} from './containers/pages/pages.containers.module';
 import {PaginationModule} from 'ngx-bootstrap';
 import {AnswerListComponent} from './views/app/pages/components/answer-list/answer-list';
+import {UiModalsContainersModule} from './containers/ui/modals/ui.modals.containers.module';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ViewsModule,
-    AppRoutingModule,
-    LayoutContainersModule,
-    BrowserAnimationsModule,
-    TranslateModule.forRoot(),
-    HttpClientModule,
-    ReactiveFormsModule,
-    ContextMenuModule,
-    PagesContainersModule,
-    PaginationModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        ViewsModule,
+        AppRoutingModule,
+        LayoutContainersModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+        HttpClientModule,
+        ReactiveFormsModule,
+        ContextMenuModule,
+        PagesContainersModule,
+        PaginationModule,
+        FormsModule,
+        UiModalsContainersModule,
+    ],
   declarations: [
     AppComponent,
     AnswerListComponent,

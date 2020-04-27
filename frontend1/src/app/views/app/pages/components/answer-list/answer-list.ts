@@ -6,6 +6,7 @@ import {QuizService} from '../../../../../../services/quizzes.service';
 import {Answer, Question} from '../../../../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../../../../models/quiz.model';
+import {ModalAddComponent} from '../../../../../containers/ui/modals/modal-add/modal-add.component';
 
 @Component({
   selector: 'app-answer-list',
@@ -32,6 +33,7 @@ export class AnswerListComponent implements OnInit {
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
+  @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
 
   constructor(private hotkeysService: HotkeysService,
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
@@ -73,8 +75,15 @@ export class AnswerListComponent implements OnInit {
   }
 
   showAddNewModal() {
+    if (this.data.length < 4) {
+      this.addNewModalRef.show();
+    } else {
+      this.showAddAlertModal();
+    }
+  }
 
-    this.addNewModalRef.show();
+  showAddAlertModal() {
+    this.addAlertModal.openModalWithMessage('IMPOSSIBLE D\'AJOUTER UNE NOUVELLE QUESTION. LE NOMBRE MAXIMAL DE QUESTION EST 4. POUR AJOUTER UNE NOUVELLE QUESTION, VEUILLEZ EN SUPPRIMER UNE AUTRE !!!');
   }
 
   isSelected(ans: Answer) {

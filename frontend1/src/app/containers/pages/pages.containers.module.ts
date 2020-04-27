@@ -14,10 +14,12 @@ import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-
 import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module';
 import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.component';
 import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-users-header.component';
+import {ListPageAnswersHeaderComponent} from './list-page-answers-header/list-page-answers-header.component';
 
 @NgModule({
   declarations: [
     AddNewQuizModalComponent,
+    ListPageAnswersHeaderComponent,
     ListPageQuizzesHeaderComponent,
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
@@ -46,7 +48,8 @@ import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-u
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
     AddNewUserModalComponent,
-    ListPageUsersHeaderComponent
+    ListPageUsersHeaderComponent,
+    ListPageAnswersHeaderComponent,
   ]
 })
 export class PagesContainersModule { }
