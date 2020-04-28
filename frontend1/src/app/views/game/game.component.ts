@@ -54,10 +54,15 @@ export class GameComponent implements OnInit {
     this.userService.userSelected$.subscribe((user) => {this.user = user; });
   }
 
-  finir() {
+  finir(question: Question) {
+   // this.incrementNbrReponsePasse(question);
     this.calculateScore();
     this.updateUserScore();
     this.router.navigate(['/congratulations/' + this.quiz.id + '/' + 1587457953258]);
+   // this.nbrReponsePasser=0;
+    this.nbrIndiceUtilise=0;
+    this.nbrReponse=0;
+    this.score=0;
     console.log(this.score);
   }
 
@@ -104,7 +109,14 @@ export class GameComponent implements OnInit {
     const  proportionIndice = 100 / this.nbrReponse;
     const  proportionRep = 100 / this.nbrReponse;
 
-    this.score = 100 - (this.nbrIndiceUtilise * proportionIndice + proportionRep * this.nbrReponsePasser);
+    console.log("Proportion reponse = "+proportionRep);
+
+    console.log("proportionRep*this.nbrReponsePasser = "+proportionRep*this.nbrReponsePasser);
+
+    this.score = 100-(this.nbrIndiceUtilise*proportionIndice+ proportionRep*this.nbrReponsePasser);
+    console.log("Score = "+this.score);
+    if (this.score<0)
+      this.score=0;
     this.score = Number(this.score.toFixed(2));
     // this.score = Math.round(this.score);
     console.log(this.score);
@@ -128,7 +140,7 @@ export class GameComponent implements OnInit {
      // question.answers.forEach(a => this.nbrReponse= this.nbrReponse + a.length);
       this.answerRight++;
       if (this.fin) {
-        this.finir();
+        this.finir(question);
       } else {
         this.showAlertModal(item.indixe);
         this.goTo(this.pager.index + 1);
@@ -140,7 +152,8 @@ export class GameComponent implements OnInit {
   }
 
   incrementNbrReponsePasse(question: Question) {
-    this.nbrReponsePasser = this.nbrReponsePasser + question.answers.length;
+    this.nbrReponsePasser=this.nbrReponsePasser + question.answers.length;
+    console.log("Nombre reponse passé = "+this.nbrReponsePasser);
   }
 
 }
