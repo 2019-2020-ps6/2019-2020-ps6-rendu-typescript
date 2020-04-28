@@ -18,7 +18,7 @@ export class ModalConfirmQuitComponent {
   }
 
   confirm(): void {
-    this.router.navigate(['/app/pages/quiz/quiz-list/']);
+    this.router.navigate(['/app/pages/components/quiz-list/']);
     this.modalRef.hide();
   }
 

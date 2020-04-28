@@ -8,23 +8,25 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddNewQuizModalComponent } from './add-new-quiz-modal/add-new-quiz-modal.component';
 import { ListPageQuizzesHeaderComponent } from './list-page-quizzes-header/list-page-quizzes-header.component';
-import { ComponentsPagesModule } from '../../components/pages/components.pages.module';
-import { ComponentsCardsModule } from '../../components/cards/components.cards.module';
 import { LayoutContainersModule } from '../layout/layout.containers.module';
 import {AddNewQuestionModalComponent} from './add-new-question-modal/add-new-question-modal.component';
 import {AddNewAnswerModalComponent} from './add-new-answer-modal/add-new-answer-modal.component';
 import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module';
 import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.component';
 import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-users-header.component';
+import {ListPageAnswersHeaderComponent} from './list-page-answers-header/list-page-answers-header.component';
+import {ListPageQuestionsHeaderComponent} from './list-page-questions-header/list-page-questions-header.component';
 
 @NgModule({
   declarations: [
     AddNewQuizModalComponent,
+    ListPageAnswersHeaderComponent,
     ListPageQuizzesHeaderComponent,
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
     AddNewUserModalComponent,
-    ListPageUsersHeaderComponent
+    ListPageUsersHeaderComponent,
+    ListPageQuestionsHeaderComponent
   ],
     imports: [
         CommonModule,
@@ -35,8 +37,6 @@ import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-u
         LayoutContainersModule,
         NgSelectModule,
         LightboxModule,
-        ComponentsPagesModule,
-        ComponentsCardsModule,
         RatingModule.forRoot(),
         TabsModule.forRoot(),
         AccordionModule.forRoot(),
@@ -50,7 +50,9 @@ import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-u
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
     AddNewUserModalComponent,
-    ListPageUsersHeaderComponent
+    ListPageUsersHeaderComponent,
+    ListPageAnswersHeaderComponent,
+    ListPageQuestionsHeaderComponent
   ]
 })
 export class PagesContainersModule { }

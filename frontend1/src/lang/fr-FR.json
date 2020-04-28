@@ -181,7 +181,9 @@
     "top-rated-items": "Top Rated Items"
   },
   "pages": {
-    "add-new": "AJOUTER",
+    "add-new-answer": "AJOUTER UNE REPONSE",
+    "add-new-quiz": "AJOUTER UN QUIZ",
+    "add-new-question": "AJOUTER UNE QUESTION",
     "add-new-quiz-title": "Ajouter Un Quiz",
     "add-new-question-title": "Ajouter Une Question",
     "add-new-answer-title": "Ajouter Une Reponse",

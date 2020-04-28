@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Hotkey, HotkeysService} from 'angular2-hotkeys';
-import {ApiService} from '../../../../../data/api.service';
 import {Router} from '@angular/router';
 import {User} from '../../../../../../models/user.model';
 import {UserService} from '../../../../../../services/user.service';
@@ -17,24 +16,18 @@ export class UserComponent implements OnInit {
   selectAllState = '';
   selected: User[] = [];
   data: User[] = [];
-  currentPage = 1;
   itemsPerPage = 8;
   search = '';
-  orderBy = '';
-  isLoading: boolean;
-  endOfTheList = false;
-  totalItem = 0;
-  totalPage = 0;
   actived: boolean[];
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewUserModalComponent;
   private usersTmp: User[];
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private userService: UserService, private router: Router, private chartService: ChartService) {
+  constructor(private hotkeysService: HotkeysService, private userService: UserService, private router: Router, private chartService: ChartService) {
     this.userService.users$.subscribe((users: User[]) => {
       this.data = users;
-      this.usersTmp=users;
+      this.usersTmp = users;
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -59,21 +52,8 @@ export class UserComponent implements OnInit {
      this.addNewModalRef.show();
   }
 
-  showAlertModal() {
-    // this.alertModalRef.openModal();
-  }
-
   isSelected(p: User) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
-  }
-
-  onSelect(item: User) {
-    if (this.isSelected(item)) {
-      this.selected = this.selected.filter(x => x.id !== item.id);
-    } else {
-      this.selected.push(item);
-    }
-    this.setSelectAllState();
   }
 
   setSelectAllState() {
@@ -111,15 +91,15 @@ export class UserComponent implements OnInit {
   }
 
   filterText(arr: User[], requete: string) {
-    return arr.filter(function (u) {
+    return arr.filter((u) => {
       return u.lastname.toLowerCase().indexOf(requete.toLowerCase()) !== -1 || u.firstname.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
-    })
+    });
   }
 
-  doFiltering(valeur :string) {
-    console.log("Valeur de value = "+valeur);
-    if (valeur != '')
-      this.data=this.filterText(this.data,valeur);
-    else this.data=this.usersTmp;
+  doFiltering(valeur: string) {
+    console.log('Valeur de value = ' + valeur);
+    if (valeur !== '') {
+      this.data = this.filterText(this.data, valeur);
+    } else { this.data = this.usersTmp; }
   }
 }

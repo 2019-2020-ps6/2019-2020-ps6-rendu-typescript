@@ -53,6 +53,7 @@ export class AddNewUserModalComponent implements OnInit {
     this.userService.addUser(userToCreate);
     // console.log(userToCreate);
     this.showAddAlertModal();
+    this.userForm.reset();
     this.modalRef.hide();
   }
 

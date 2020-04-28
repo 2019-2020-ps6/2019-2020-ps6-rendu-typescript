@@ -50,11 +50,6 @@
               </a>
           </div>
         </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-            (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
       </div>
     </div>
   </div>
@@ -81,11 +76,6 @@
             </a>
           </div>
         </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-            (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
       </div>
     </div>
   </div>
@@ -102,12 +92,10 @@
           <div class="card-body">
               <div class="row">
               <div class="col-2">
-                <div class="custom-control custom-checkbox pl-1">
-                  <label class="custom-control custom-checkbox  mb-0">
-                    <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-                      (change)="onSelect(p)">
-                    <label class="custom-control-label" [for]="'customCheck'+i"></label>
-                  </label>
+                <div style="margin-top: 5px; ">
+                  <a href="javascript:;">
+                    <i class="simple-icon-menu ml-2 mr-2"></i>
+                  </a>
                 </div>
                 <div style="margin-top: 16px; ">
                   <a href="javascript:;">
@@ -132,6 +120,5 @@
       </div>
     </div>
   </div>
-
 
 </div>

@@ -1,9 +1,9 @@
-<app-list-quizzes-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+<app-list-questions-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
   (changeDisplayMode)="changeDisplayMode($event)"
   (addNewItem)="showAddNewModal()"
   (selectAllChange)="selectAllChange($event)"
   >
-</app-list-quizzes-page-header>
+</app-list-questions-page-header>
 <app-add-new-question-modal #addNewModalRef [quiz]="quiz"></app-add-new-question-modal>
 
 <context-menu #basicMenu>
@@ -32,11 +32,6 @@
         </div>
           <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
         </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-            (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
       </div>
     </div>
   </div>
@@ -58,11 +53,6 @@
           </div>
           <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
         </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-            (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
       </div>
     </div>
   </div>
@@ -80,13 +70,6 @@
           <div class="card-body">
               <div class="row">
               <div class="col-2">
-                <div class="custom-control custom-checkbox pl-1">
-                  <label class="custom-control custom-checkbox  mb-0">
-                    <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-                      (change)="onSelect(p)">
-                    <label class="custom-control-label" [for]="'customCheck'+i"></label>
-                  </label>
-                </div>
 
               </div>
               <div class="col-10">

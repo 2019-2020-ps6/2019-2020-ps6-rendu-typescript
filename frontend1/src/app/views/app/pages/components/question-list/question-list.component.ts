@@ -1,12 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
-import { ApiService } from 'src/app/data/api.service';
-import { ContextMenuComponent } from 'ngx-contextmenu';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Question} from '../../../../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../../../../models/quiz.model';
+import {ContextMenuComponent} from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-question-list',
@@ -34,7 +33,7 @@ export class QuestionListComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
+  constructor(private hotkeysService: HotkeysService, private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz) => {this.quiz = quiz; this.data = quiz.questions; });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
-import { ContextMenuComponent } from 'ngx-contextmenu';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Quiz} from '../../../../../../models/quiz.model';
 import { Router} from '@angular/router';
@@ -9,7 +8,7 @@ import {ModalConfirmComponent} from '../../../../../containers/ui/modals/modal-c
 import {User} from '../../../../../../models/user.model';
 import {UserService} from '../../../../../../services/user.service';
 import {UserChoiceComponent} from '../../../../../containers/ui/modals/user-choice/user-choice.component';
-import {ApiService} from '../../../../../data/api.service';
+import {ContextMenuComponent} from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-quiz-list',
@@ -35,7 +34,7 @@ export class QuizListComponent implements OnInit {
   @ViewChild('userChoiceRef', {static: true}) userChoiceRef: UserChoiceComponent;
   private quizzesTmp: Quiz[];
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private quizService: QuizService, private router: Router, private userService: UserService) {
+  constructor(private hotkeysService: HotkeysService, private quizService: QuizService, private router: Router, private userService: UserService) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.data = quizzes;
       this.quizzesTmp = quizzes;

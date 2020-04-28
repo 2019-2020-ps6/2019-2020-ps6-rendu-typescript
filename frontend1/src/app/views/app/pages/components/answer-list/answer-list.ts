@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { AddNewQuizModalComponent } from 'src/app/containers/pages/add-new-quiz-modal/add-new-quiz-modal.component';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
-import { ApiService } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import {QuizService} from '../../../../../../services/quizzes.service';
 import {Answer, Question} from '../../../../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../../../../models/quiz.model';
+import {ModalAddComponent} from '../../../../../containers/ui/modals/modal-add/modal-add.component';
 
 @Component({
   selector: 'app-answer-list',
@@ -33,8 +33,9 @@ export class AnswerListComponent implements OnInit {
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewQuizModalComponent;
+  @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService,
+  constructor(private hotkeysService: HotkeysService,
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
     this.quizService.questionSelected$.subscribe((q) => {
       this.data = q.answers;
@@ -74,7 +75,15 @@ export class AnswerListComponent implements OnInit {
   }
 
   showAddNewModal() {
-    this.addNewModalRef.show();
+    if (this.data.length < 4) {
+      this.addNewModalRef.show();
+    } else {
+      this.showAddAlertModal();
+    }
+  }
+
+  showAddAlertModal() {
+    this.addAlertModal.openModalWithMessage('IMPOSSIBLE D\'AJOUTER UNE NOUVELLE QUESTION. LE NOMBRE MAXIMAL DE QUESTION EST 4. POUR AJOUTER UNE NOUVELLE QUESTION, VEUILLEZ EN SUPPRIMER UNE AUTRE !!!');
   }
 
   isSelected(ans: Answer) {

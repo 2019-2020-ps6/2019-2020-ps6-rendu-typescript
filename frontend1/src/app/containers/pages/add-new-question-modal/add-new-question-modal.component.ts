@@ -55,6 +55,7 @@ export class AddNewQuestionModalComponent implements OnInit {
     console.log(questionToCreate);
     this.quizService.addQuestion(this.quiz, questionToCreate);
     this.showAddAlertModal();
+    this.questionForm.reset();
     this.modalRef.hide();
   }
 
