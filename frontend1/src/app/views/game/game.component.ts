@@ -15,9 +15,10 @@ import {UserService} from '../../../services/user.service';
 })
 export class GameComponent implements OnInit {
   fin: boolean;
-  public nbrIndiceUtilise: number= 0;
-  nbrReponse: number =0;
-  nbrReponsePasser: number =0;
+  public nbrIndiceUtilise = 0;
+  nbrReponse = 0;
+  nbrReponseKo = 0;
+  nbrReponsePasser = 0;
   public quiz: Quiz;
   public user: User;
   public questions: Question[];
@@ -103,10 +104,10 @@ export class GameComponent implements OnInit {
 
   calculateScore() {
   //  const  proportionReponseKo = 100 / this.quiz.questions.length;
-    this.questions.forEach(q => this.nbrReponse= this.nbrReponse + q.answers.length);
+    this.questions.forEach(q => this.nbrReponse = this.nbrReponse + q.answers.length);
    // let nbrTotalIndice=this.nbrReponse;
-    const  proportionIndice = 100/this.nbrReponse;
-    const  proportionRep = 100/this.nbrReponse;
+    const  proportionIndice = 100 / this.nbrReponse;
+    const  proportionRep = 100 / this.nbrReponse;
 
     console.log("Proportion reponse = "+proportionRep);
 
@@ -117,7 +118,7 @@ export class GameComponent implements OnInit {
     if (this.score<0)
       this.score=0;
     this.score = Number(this.score.toFixed(2));
-    //this.score = Math.round(this.score);
+    // this.score = Math.round(this.score);
     console.log(this.score);
   }
 
@@ -134,7 +135,7 @@ export class GameComponent implements OnInit {
     return this.color[param % this.color.length];
   }
 
-  verify(item: Answer,question: Question) {
+  verify(item: Answer, question: Question) {
     if (item.isCorrect) {
      // question.answers.forEach(a => this.nbrReponse= this.nbrReponse + a.length);
       this.answerRight++;
