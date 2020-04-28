@@ -51,17 +51,7 @@
           </a>
         </span>
         <div class="d-block d-md-inline-block position-relative" *ngIf="showOrderBy">
-          <div class="float-md-left mr-1 mb-1" dropdown>
-            <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-dark btn-xs dropdown-toggle"
-              aria-controls="dropdown-basic">
-              {{ 'pages.orderby' | translate}} {{itemOrder.label}} <span class="caret"></span>
-            </button>
-            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-              <li role="menuitem" *ngFor="let item of itemOptionsOrders"><a
-                  [ngClass]="item.value === itemOrder.value ? 'dropdown-item active' : 'dropdown-item'"
-                  (click)="onChangeOrderBy(item)">{{item.label}}</a></li>
-            </ul>
-          </div>
+
         </div>
 
         <div class="d-inline-block" *ngIf="showSearch">

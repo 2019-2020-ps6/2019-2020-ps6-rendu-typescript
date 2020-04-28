@@ -15,6 +15,10 @@ import {UserService} from '../../../services/user.service';
 })
 export class GameComponent implements OnInit {
   fin: boolean;
+  public nbrIndiceUtilise: number= 0;
+  nbrReponse: number =0;
+  nbrReponseKo: number =0;
+  nbrReponsePasser: number =0;
   public quiz: Quiz;
   public user: User;
   public questions: Question[];
@@ -94,8 +98,15 @@ export class GameComponent implements OnInit {
   }
 
   calculateScore() {
-    this.score += ((100 / this.quiz.questions.length) * this.answerRight);
-    this.score = Math.round(this.score);
+  //  const  proportionReponseKo = 100 / this.quiz.questions.length;
+    this.questions.forEach(q => this.nbrReponse= this.nbrReponse + q.answers.length);
+   // let nbrTotalIndice=this.nbrReponse;
+    const  proportionIndice = 100/this.nbrReponse;
+    const  proportionRep = 100/this.nbrReponse;
+
+    this.score = 100-(this.nbrIndiceUtilise*proportionIndice+ proportionRep*this.nbrReponsePasser);
+    this.score = Number(this.score.toFixed(2));
+    //this.score = Math.round(this.score);
     console.log(this.score);
   }
 
@@ -112,8 +123,9 @@ export class GameComponent implements OnInit {
     return this.color[param % this.color.length];
   }
 
-  verify(item: Answer) {
+  verify(item: Answer,question: Question) {
     if (item.isCorrect) {
+     // question.answers.forEach(a => this.nbrReponse= this.nbrReponse + a.length);
       this.answerRight++;
       if (this.fin) {
         this.finir();
@@ -122,7 +134,13 @@ export class GameComponent implements OnInit {
         this.goTo(this.pager.index + 1);
       }
     } else {
+      this.nbrIndiceUtilise++;
       item.type = false;
     }
   }
+
+  incrementNbrReponsePasse(question: Question) {
+    this.nbrReponsePasser=this.nbrReponsePasser + question.answers.length;
+  }
+
 }
