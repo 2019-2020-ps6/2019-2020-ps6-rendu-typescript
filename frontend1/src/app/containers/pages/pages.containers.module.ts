@@ -15,6 +15,7 @@ import {UiModalsContainersModule} from '../ui/modals/ui.modals.containers.module
 import {AddNewUserModalComponent} from './add-new-user-modal/add-new-user-modal.component';
 import {ListPageUsersHeaderComponent} from './list-page-users-header/list-page-users-header.component';
 import {ListPageAnswersHeaderComponent} from './list-page-answers-header/list-page-answers-header.component';
+import {ListPageQuestionsHeaderComponent} from './list-page-questions-header/list-page-questions-header.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ListPageAnswersHeaderComponent} from './list-page-answers-header/list-pa
     AddNewQuestionModalComponent,
     AddNewAnswerModalComponent,
     AddNewUserModalComponent,
-    ListPageUsersHeaderComponent
+    ListPageUsersHeaderComponent,
+    ListPageQuestionsHeaderComponent
   ],
     imports: [
         CommonModule,
@@ -50,6 +52,7 @@ import {ListPageAnswersHeaderComponent} from './list-page-answers-header/list-pa
     AddNewUserModalComponent,
     ListPageUsersHeaderComponent,
     ListPageAnswersHeaderComponent,
+    ListPageQuestionsHeaderComponent
   ]
 })
 export class PagesContainersModule { }

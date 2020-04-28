@@ -73,6 +73,7 @@ export class AddNewQuizModalComponent implements OnInit {
     }
     this.quizService.addQuiz(quizToCreate);
     this.showAddAlertModal();
+    this.quizForm.reset();
     this.modalRef.hide();
   }
 

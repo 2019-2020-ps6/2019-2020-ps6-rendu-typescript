@@ -63,6 +63,7 @@ export class AddNewAnswerModalComponent implements OnInit {
     this.updateAnswer(answerToCreate);
     this.answers.push(answerToCreate);
     this.showAddAlertModal();
+    this.answerForm.reset();
     this.modalRef.hide();
     // console.log(this.answers);
   }

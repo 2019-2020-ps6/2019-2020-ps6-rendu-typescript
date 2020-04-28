@@ -1,9 +1,9 @@
-<app-list-quizzes-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+<app-list-questions-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
   (changeDisplayMode)="changeDisplayMode($event)"
   (addNewItem)="showAddNewModal()"
   (selectAllChange)="selectAllChange($event)"
   >
-</app-list-quizzes-page-header>
+</app-list-questions-page-header>
 <app-add-new-question-modal #addNewModalRef [quiz]="quiz"></app-add-new-question-modal>
 
 <context-menu #basicMenu>
