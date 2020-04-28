@@ -51,9 +51,10 @@
   <div class="col-sm-6" style="margin-bottom: 25px;" *ngFor="let answer of question.answers; let i = index">
     <div class="card text-center {{getColor(answer, i+1)}}" (click)="verify(answer,question)"><br>
       <div class="card-body">
-        <p *ngIf="answer.type" class="card-text" style="color: black;"> <u>Réponse {{i+1}}</u></p>
+        <p class="card-text" style="color: black;"  *ngIf="answer.type"> <u>Réponse {{i+1}}</u></p>
+        <p class="card-text" style="color: white;"  *ngIf="!answer.type"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ... </p>
         <p class="card-text" style="color: white; font-size: 25px" *ngIf="answer.type">{{answer.value}}</p>
-       <h4 *ngIf="!answer.type" style="color: white"> <p class="card-text"  ></p>Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ... <br ><br ><h3><p class="text-primary"> {{answer.indixe}}</p></h3></h4>
+        <p class="card-text" style="color: white" *ngIf="!answer.type">{{answer.indixe}}</p>
       </div>
     </div>
   </div>
@@ -69,8 +70,9 @@
               <img src="{{answer.img}}" class="card-img-top" alt="{{answer.img}}" *ngIf="answer.type">
 
               <div class="card-body text-center">
-                <p *ngIf="answer.type" class="card-text"> <u>Réponse {{i+1}}</u></p>
-                <h4 *ngIf="!answer.type" class="card-title text-center"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ... <br ><br ><p class="text-primary"> {{answer.indixe}}</p></h4>
+                <p class="card-text" *ngIf="answer.type"> <u>Réponse {{i+1}}</u></p>
+                <p class="card-text" *ngIf="!answer.type"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ...</p>
+                <h3 *ngIf="!answer.type" class="card-title text-center">  <br>{{answer.indixe}}</h3>
                 <h5 class="card-title text-center" *ngIf="answer.type">{{answer.value}}</h5>
               </div>
             </div>

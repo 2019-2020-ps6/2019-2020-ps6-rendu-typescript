@@ -77,14 +77,6 @@ export class QuizListComponent implements OnInit {
   isSelected(p: Quiz) {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
-  onSelect(item: Quiz) {
-    if (this.isSelected(item)) {
-      this.selected = this.selected.filter(x => x.id !== item.id);
-    } else {
-      this.selected.push(item);
-    }
-    this.setSelectAllState();
-  }
 
   setSelectAllState() {
     if (this.selected.length === this.data.length) {
