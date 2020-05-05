@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewUserModalComponent;
   private usersTmp: User[];
 
-  constructor(private hotkeysService: HotkeysService, private userService: UserService, private router: Router, private chartService: ChartService) {
+  constructor(private hotkeysService: HotkeysService, private userService: UserService) {
     this.userService.users$.subscribe((users: User[]) => {
       this.data = users;
       this.usersTmp = users;

@@ -3,7 +3,6 @@ import {Answer, Question} from '../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../models/quiz.model';
 import {QuizService} from '../../../services/quizzes.service';
-import {ModalConfirmComponent} from '../../containers/ui/modals/modal-confirm/modal-confirm.component';
 import {ModalGoodAnswerComponent} from '../../containers/ui/modals/modal-good-answer/modal-good-answer.component';
 import {ModalConfirmQuitComponent} from '../../containers/ui/modals/modal-confirm-quit/modal-confirm-quit.component';
 import {Score, User} from '../../../models/user.model';
@@ -17,7 +16,6 @@ export class GameComponent implements OnInit {
   fin: boolean;
   public nbrIndiceUtilise = 0;
   nbrReponse = 0;
-  nbrReponseKo = 0;
   nbrReponsePasser = 0;
   public quiz: Quiz;
   public user: User;
@@ -55,14 +53,12 @@ export class GameComponent implements OnInit {
   }
 
   finir(question: Question) {
-   // this.incrementNbrReponsePasse(question);
     this.calculateScore();
     this.updateUserScore();
-    this.router.navigate(['/congratulations/' + this.quiz.id + '/' + 1587457953258]);
-   // this.nbrReponsePasser=0;
-    this.nbrIndiceUtilise=0;
-    this.nbrReponse=0;
-    this.score=0;
+    this.router.navigate(['/congratulations/' + this.quiz.id + '/' + this.user.id]);
+    this.nbrIndiceUtilise = 0;
+    this.nbrReponse = 0;
+    this.score = 0;
     console.log(this.score);
   }
 
@@ -107,10 +103,11 @@ export class GameComponent implements OnInit {
     const  proportionIndice = 100 / this.nbrReponse;
     const  proportionRep = 100 / this.nbrReponse;
 
-    this.score = 100-(this.nbrIndiceUtilise*proportionIndice+ proportionRep*this.nbrReponsePasser);
-    console.log("Score = "+this.score);
-    if (this.score<0)
-      this.score=0;
+    this.score = 100 - (this.nbrIndiceUtilise * proportionIndice + proportionRep * this.nbrReponsePasser);
+    console.log('Score = ' + this.score);
+    if (this.score < 0) {
+      this.score = 0;
+    }
     this.score = Number(this.score.toFixed(2));
     console.log(this.score);
   }
@@ -130,7 +127,6 @@ export class GameComponent implements OnInit {
 
   verify(item: Answer, question: Question) {
     if (item.isCorrect) {
-     // question.answers.forEach(a => this.nbrReponse= this.nbrReponse + a.length);
       this.answerRight++;
       if (this.fin) {
         this.finir(question);
@@ -145,8 +141,8 @@ export class GameComponent implements OnInit {
   }
 
   incrementNbrReponsePasse(question: Question) {
-    this.nbrReponsePasser=this.nbrReponsePasser + question.answers.length;
-    console.log("Nombre reponse passé = "+this.nbrReponsePasser);
+    this.nbrReponsePasser = this.nbrReponsePasser + question.answers.length;
+    console.log('Nombre reponse passé = ' + this.nbrReponsePasser);
   }
 
 }
