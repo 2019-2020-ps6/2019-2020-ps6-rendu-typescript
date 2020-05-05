@@ -103,22 +103,15 @@ export class GameComponent implements OnInit {
   }
 
   calculateScore() {
-  //  const  proportionReponseKo = 100 / this.quiz.questions.length;
     this.questions.forEach(q => this.nbrReponse = this.nbrReponse + q.answers.length);
-   // let nbrTotalIndice=this.nbrReponse;
     const  proportionIndice = 100 / this.nbrReponse;
     const  proportionRep = 100 / this.nbrReponse;
-
-    console.log("Proportion reponse = "+proportionRep);
-
-    console.log("proportionRep*this.nbrReponsePasser = "+proportionRep*this.nbrReponsePasser);
 
     this.score = 100-(this.nbrIndiceUtilise*proportionIndice+ proportionRep*this.nbrReponsePasser);
     console.log("Score = "+this.score);
     if (this.score<0)
       this.score=0;
     this.score = Number(this.score.toFixed(2));
-    // this.score = Math.round(this.score);
     console.log(this.score);
   }
 
