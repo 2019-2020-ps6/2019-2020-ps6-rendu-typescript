@@ -1,0 +1,101 @@
+[
+  {
+    "value": "Manchester United",
+    "img": "none",
+    "indixe": "Effectivement que CR7 a déjà jouer à Manchester mais actuellement il n'est plus avec les Reds.",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222494547,
+    "id": 1587223438325
+  },
+  {
+    "value": "Sporting",
+    "img": "none",
+    "indixe": "En effet, Cristiano Ronaldo a joué au Sporting mais c'était au début de sa carrière. Il joue maintenant dans un club Italien.",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222494547,
+    "id": 1587223550094
+  },
+  {
+    "value": "Juventus",
+    "img": "none",
+    "indixe": "Ancien joueur de Manchester United puis du Real Madrid, Cristiano a rejoint l'équipe Italienne en 2019 et ne cesse de mettre du feu à la Série A.",
+    "isCorrect": true,
+    "type": true,
+    "questionId": 1587222494547,
+    "id": 1587223659456
+  },
+  {
+    "value": "Real Madrid",
+    "img": "none",
+    "indixe": "Vous vous souvenez surement des 3 coupes Champions League affilés. Mais depuis 2019 Cristiano Ronaldo a quitté la Maison Blanche pour une équipe Italienne.",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222494547,
+    "id": 1587223784699
+  },
+  {
+    "value": "Gateau au chocolat",
+    "img": "/assets/img/bebinca-thumb.jpg",
+    "indixe": "Désolé, Cristiano n'aime pas trop les chocolats",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222513861,
+    "id": 1587223921111
+  },
+  {
+    "value": "Gateau au miel",
+    "img": "/assets/img/fat-rascal-thumb.jpg",
+    "indixe": "Au miel, non c'est plutôt un gâteau contenant un fruit.",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222513861,
+    "id": 1587224132498
+  },
+  {
+    "value": "Gateau au citron",
+    "img": "/assets/img/petit-gateau-thumb.jpg",
+    "indixe": "Bravo, C'est la bonne réponse. Il aime quand ça pique un peu sur la langue.",
+    "isCorrect": true,
+    "type": true,
+    "questionId": 1587222513861,
+    "id": 1587224224002
+  },
+  {
+    "value": "Gateau au fraise",
+    "img": "/assets/img/cheesecake-thumb.jpg",
+    "indixe": "Cristiano mange effectivement les gâteaux au fraises mais c'est pas ses préférés.",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587222513861,
+    "id": 1587226097714
+  },
+  {
+    "value": "Reponse 1",
+    "img": "none",
+    "indixe": "Indice 1",
+    "isCorrect": true,
+    "type": true,
+    "questionId": 1587442471434,
+    "id": 1587446548875
+  },
+  {
+    "value": "Reponse 2",
+    "img": "none",
+    "indixe": "Indice 2",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587442471434,
+    "id": 1587446561080
+  },
+  {
+    "value": "Reponse 3",
+    "img": "none",
+    "indixe": "Indice 3",
+    "isCorrect": false,
+    "type": true,
+    "questionId": 1587442471434,
+    "id": 1587446573057
+  }
+]

@@ -1,0 +1,120 @@
+TD 1 – Informatique Théorique 
+
+Etudiant : Komlan Lemuel DONTO
+
+Exercice 1 : Commande Upper 
+
+lettresminus [a-z]
+%option noyywrap
+%%
+{lettresminus} {printf("%c",toupper(yytext[0]));}
+.|\n {} /* Bah Ne rien faire */
+%%
+int main() { return yylex(); }
+
+Exercice 2 : Commande Unix wc
+
+separateurs [^ \t\n]
+newline [\n]
+%option noyywrap
+
+%{
+int lignes = 0, mots = 0, caracts = 0;
+%}
+
+%%
+
+{newline} { lignes++; caracts++; }
+{separateurs}+ { mots++; caracts += strlen(yytext);}
+. { caracts++; }
+
+%%
+int main(){
+yylex();
+if(lignes > 0) lignes++;
+printf("\nNombre de mots : %d", mots);
+printf("\nNombre de lignes : %d", lignes);
+printf("\nNombre de caractères : %d \n", caracts);
+return 0;
+}
+
+Exercice 3 : Analyse chaines de caractères
+
+Version 1 : 
+
+string \"(\\.|[^\\"])*\" 
+%option noyywrap
+
+%%
+
+{string} {printf("%s", yytext);}
+. {} 
+
+%%
+int main() { return yylex(); }
+
+Version 2 : 
+%option noyywrap
+%x IN_CHAINE
+%%
+\" BEGIN IN_CHAINE ;
+<IN_CHAINE>. {
+int i=0;
+while(yytext[i])
+printf("%c", toupper(yytext[i++]));
+}
+<IN_CHAINE>\" BEGIN INITIAL;
+.|\n ;
+%%
+int main() {
+yylex();
+}
+
+Exercice 4 : Analyse des Commentaires C
+
+%x IN_COMMENT1
+%x IN_COMMENT2
+%x STRING 
+%option noyywrap
+
+%%
+"/*" {BEGIN IN_COMMENT1;}
+"//" {BEGIN IN_COMMENT2;}
+"\"" {printf("%c",toupper(yytext[0])); BEGIN STRING;}
+<IN_COMMENT1>"*/" {BEGIN INITIAL;}
+<IN_COMMENT2>\n {BEGIN INITIAL;} 
+<STRING>"\"" {printf("\"");BEGIN INITIAL;} 
+<IN_COMMENT1>.|\n {/* rien */;} 
+<IN_COMMENT2>. {/* rien */;} 
+<STRING>"\\\"" {;}
+<STRING>. { printf("%c",yytext[0]); } 
+.|\n {ECHO;} 
+
+%%
+
+int main() { return yylex(); }
+
+Exercice 5 : Reconnaissances des nombres.
+
+sign [+-]
+num [0-9]
+N {sign}?{num}+
+F {sign}?({num}*\.{num}+)([eE]{sign}?{num}+)?
+%option noyywrap
+%%
+
+{N} {printf("NOMBRE %s \n ", yytext);} 
+{F} {printf("NOMBRE %s \n ", yytext);}
+
+%%
+
+int main()
+{
+
+yylex();
+return 0;
+
+}
+
+
+
