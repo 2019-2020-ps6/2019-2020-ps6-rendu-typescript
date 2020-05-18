@@ -4,6 +4,7 @@ import {Quiz} from '../../../../models/quiz.model';
 import {QuizService} from '../../../../services/quizzes.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
+import {ModalFormNotValidComponent} from '../../ui/modals/modal-form-not-valid/modal-form-not-valid.component';
 
 @Component({
   selector: 'app-add-new-quiz-modal',
@@ -11,6 +12,7 @@ import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
   styles: []
 })
 export class AddNewQuizModalComponent implements OnInit {
+
   public quizForm: FormGroup;
   private selectedFile = '';
   modalRef: BsModalRef;
@@ -30,6 +32,7 @@ export class AddNewQuizModalComponent implements OnInit {
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
+  @ViewChild('formNotValid') formNotValid: ModalFormNotValidComponent;
   constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder) {
     this.quizForm = this.formBuilder.group({
       name: [''],
@@ -49,6 +52,10 @@ export class AddNewQuizModalComponent implements OnInit {
 
   showAddAlertModal() {
     this.addAlertModal.openModal();
+  }
+
+  private showFormNotValidModal() {
+    this.formNotValid.openModal();
   }
 
   addQuiz() {
@@ -71,10 +78,20 @@ export class AddNewQuizModalComponent implements OnInit {
     if (quizToCreate.theme === 'ACTOR') {
       quizToCreate.themeColor = 'danger';
     }
-    this.quizService.addQuiz(quizToCreate);
-    this.showAddAlertModal();
-    this.quizForm.reset();
-    this.modalRef.hide();
+
+    if (this.verifyAllField(quizToCreate)) {
+      this.quizService.addQuiz(quizToCreate);
+      this.showAddAlertModal();
+      this.quizForm.reset();
+      this.modalRef.hide();
+    } else {
+      this.showFormNotValidModal();
+    }
+  }
+
+  verifyAllField(quiz: Quiz) {
+    if (quiz.theme === '' || quiz.name === '' || quiz.description === '' || quiz.img === '') { return false; }
+    return true;
   }
 
   onFileSelected(event) {

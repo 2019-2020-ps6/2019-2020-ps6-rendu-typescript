@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Answer, Question} from '../../../../models/question.model';
 import {ActivatedRoute} from '@angular/router';
 import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
+import {ModalFormNotValidComponent} from '../../ui/modals/modal-form-not-valid/modal-form-not-valid.component';
 
 @Component({
   selector: 'app-add-new-answer-modal',
@@ -26,7 +27,7 @@ export class AddNewAnswerModalComponent implements OnInit {
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
-
+  @ViewChild('formNotValid') formNotValid: ModalFormNotValidComponent;
   constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder, private route: ActivatedRoute, ) {
     this.answerForm = this.formBuilder.group({
       value: [''],
@@ -47,6 +48,10 @@ export class AddNewAnswerModalComponent implements OnInit {
     this.addAlertModal.openModal();
   }
 
+  private showFormNotValidModal() {
+    this.formNotValid.openModal();
+  }
+
   addAnswer() {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const answerToCreate: Answer = this.answerForm.getRawValue() as Answer;
@@ -60,12 +65,21 @@ export class AddNewAnswerModalComponent implements OnInit {
     answerToCreate.type = true;
     // console.log(answerToCreate.isCorrect);
     // this.quizService.addAnswer(quizToCreate);
-    this.updateAnswer(answerToCreate);
-    this.answers.push(answerToCreate);
-    this.showAddAlertModal();
-    this.answerForm.reset();
-    this.modalRef.hide();
-    // console.log(this.answers);
+
+    if (this.verifyAllField(answerToCreate)) {
+      this.updateAnswer(answerToCreate);
+      this.answers.push(answerToCreate);
+      this.showAddAlertModal();
+      this.answerForm.reset();
+      this.modalRef.hide();
+    } else {
+      this.showFormNotValidModal();
+    }
+  }
+
+  verifyAllField(answer: Answer) {
+    if (answer.value === '' || answer.indixe === '' || (this.answers.length > 0 && this.verify() === true && answer.img === 'none')) { return false; }
+    return true;
   }
 
   verify() {

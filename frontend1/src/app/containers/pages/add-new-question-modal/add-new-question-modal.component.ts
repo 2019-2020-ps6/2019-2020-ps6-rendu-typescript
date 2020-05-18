@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Question} from '../../../../models/question.model';
 import {Quiz} from '../../../../models/quiz.model';
 import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
+import {User} from '../../../../models/user.model';
+import {ModalFormNotValidComponent} from '../../ui/modals/modal-form-not-valid/modal-form-not-valid.component';
 
 @Component({
   selector: 'app-add-new-question-modal',
@@ -25,6 +27,7 @@ export class AddNewQuestionModalComponent implements OnInit {
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
+  @ViewChild('formNotValid') formNotValid: ModalFormNotValidComponent;
   constructor(private modalService: BsModalService, private quizService: QuizService, private formBuilder: FormBuilder) {
     this.questionForm = this.formBuilder.group({
       label: [''],
@@ -44,6 +47,10 @@ export class AddNewQuestionModalComponent implements OnInit {
     this.addAlertModal.openModal();
   }
 
+  private showFormNotValidModal() {
+    this.formNotValid.openModal();
+  }
+
   addQuestion() {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
@@ -53,10 +60,19 @@ export class AddNewQuestionModalComponent implements OnInit {
       questionToCreate.img = 'none';
     }
     console.log(questionToCreate);
-    this.quizService.addQuestion(this.quiz, questionToCreate);
-    this.showAddAlertModal();
-    this.questionForm.reset();
-    this.modalRef.hide();
+    if (this.verifyAllField(questionToCreate)) {
+      this.quizService.addQuestion(this.quiz, questionToCreate);
+      this.showAddAlertModal();
+      this.questionForm.reset();
+      this.modalRef.hide();
+    } else {
+      this.showFormNotValidModal();
+    }
+  }
+
+  verifyAllField(question: Question) {
+    if (question.label === '' || question.img === '') { return false; }
+    return true;
   }
 
   onFileSelected(event) {
