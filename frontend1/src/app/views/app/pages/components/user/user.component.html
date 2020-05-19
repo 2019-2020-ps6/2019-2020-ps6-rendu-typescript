@@ -41,6 +41,7 @@
             <span [class]="'badge badge-pill badge-primary'">{{p.birthday}}</span>
           </div>
           <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length>0">Dernier Score : {{p.scores[p.scores.length-1].value}} % </p>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length==0">Pas de Score </p>
           <div class="w-sm-100">
             <a href="javascript:;">
             <span [class]="'badge badge-pill badge-warning'" *ngIf="!actived[i]" (click)="this.displayEvolution(i)"> Voir En Details </span>
