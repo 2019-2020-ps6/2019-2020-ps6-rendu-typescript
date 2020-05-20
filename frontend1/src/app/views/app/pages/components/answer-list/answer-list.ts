@@ -39,8 +39,6 @@ export class AnswerListComponent implements OnInit {
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
     this.quizService.questionSelected$.subscribe((q) => {
       this.data = q.answers;
-      console.log(q);
-      console.log(q.answers);
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
@@ -135,7 +133,6 @@ export class AnswerListComponent implements OnInit {
   }
 
   onContextMenuClick(item: Answer) {
-     console.log('onContextMenuClick -> action : delete, item.title :', item.value);
      this.quizService.deleteAnswer(this.route.snapshot.paramMap.get('quizId'), this.route.snapshot.paramMap.get('questionId'), item);
   }
 

@@ -4,6 +4,8 @@ import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AddNewUserModalComponent} from '../../../../../containers/pages/add-new-user-modal/add-new-user-modal.component';
 import {ChartService} from '../../../../../components/charts/chart.service';
 import { lineChartData } from '../../../../../data/charts';
+import {formatDate} from "ngx-bootstrap";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-evolution',
@@ -29,7 +31,8 @@ export class EvolutionComponent implements OnInit {
     const labels: string[] = [];
     const data: number[] = [];
     this.user.scores.forEach(score => {
-      labels.push(score.date);
+      console.log(score.date);
+      labels.push(formatDate(new Date(score.date), 'd/M/Y'));
       data.push(+score.value);
     });
     this.lineChartData.labels = labels;

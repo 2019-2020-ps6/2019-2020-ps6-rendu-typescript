@@ -1,8 +1,7 @@
 <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-    <ol class="breadcrumb pt-0">
-        <li class="breadcrumb-item" *ngFor="let sub of pathArr; let i=index" [hidden]="i >= (pathArr.length-1)">
-            <a [routerLink]="[getUrl('components')]" *ngIf="sub === 'app'">Accueil</a>
-            <a *ngIf="sub !== 'app' && i === 1">Retour</a>
-        </li>
-    </ol>
+
+<div style="margin-left: 10px">
+          <a [routerLink]="[getUrl('components')]" *ngIf="pathArr[pathArr.length-1] !== 'quiz-list'">Accueil</a>
+          <a [routerLink]="['/app/pages/components/question-list/'+this.id]" *ngIf="pathArr[pathArr.length-1] === 'answer-list'"> | Retour</a>
+</div>
 </nav>

@@ -4,6 +4,7 @@ import {QuizService} from '../../../services/quizzes.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user.model';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-congratulations',
@@ -12,6 +13,7 @@ import {User} from '../../../models/user.model';
 export class CongratulationsComponent implements OnInit, OnDestroy {
   public quiz: Quiz;
   public user: User;
+  isMultiColorActive = environment.isMultiColorActive;
   constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
 

@@ -23,14 +23,14 @@
       <div class="d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+          <div class="list-item-heading mb-0 truncate w-40 w-xs-100">
             {{p.label}} <p> Quiz : {{this.quiz.name}}</p>
-          </a>
+          </div>
 
           <div class="w-15 w-sm-100">
           <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
         </div>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
+          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date | date:'shortDate'}}</p>
         </div>
       </div>
     </div>
@@ -39,19 +39,19 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
-      <a class="d-flex" href="javascript:;" *ngIf="p.img !== 'none'">
+      <div class="d-flex" *ngIf="p.img !== 'none'">
         <img [src]="p.img" [alt]="p.label" class="list-thumbnail responsive border-0 card-img-left" />
-      </a>
+      </div>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a href="javascript:;" class="w-40 w-sm-100">
+          <div class="w-40 w-sm-100">
             <p class="list-item-heading mb-0 truncate">{{p.label}}</p>
-          </a>
+          </div>
           <div class="w-15 w-sm-100">
             <span [class]="'badge badge-pill badge-'+this.quiz.themeColor">{{this.quiz.theme}}</span>
           </div>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date | date:'shortDate'}}</p>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
       [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;" *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.label"></a>
+            <div *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.label"></div>
             <br *ngIf="p.img === 'none'">
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ this.quiz.themeColor">{{this.quiz.theme}}</span>
           </div>
@@ -73,11 +73,11 @@
 
               </div>
               <div class="col-10">
-                <a href="javascript:;">
+                <div>
                   <p class="list-item-heading mb-2 pt-1">{{p.label}}</p>
-                </a>
+                </div>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date | date:'shortDate'}}</p>
                 </footer>
               </div>
            </div>

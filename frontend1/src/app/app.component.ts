@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppComponent implements OnInit, AfterViewInit {
-  isMultiColorActive = environment.isMultiColorActive;
   constructor(private langService: LangService, private renderer: Renderer2) {
 
   }

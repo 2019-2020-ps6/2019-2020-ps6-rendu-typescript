@@ -3,6 +3,7 @@
   <app-sidebar></app-sidebar>
   <main>
     <div class="container-fluid">
+      <app-color-switcher *ngIf="isMultiColorActive"></app-color-switcher>
       <router-outlet></router-outlet>
     </div>
   </main>

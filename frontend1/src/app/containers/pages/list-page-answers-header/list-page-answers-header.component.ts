@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import {QuizService} from "../../../../services/quizzes.service";
+import {Quiz} from "../../../../models/quiz.model";
 
 @Component({
   selector: 'app-list-answers-page-header',
@@ -6,7 +8,6 @@ import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angu
 })
 export class ListPageAnswersHeaderComponent implements OnInit {
   displayOptionsCollapsed = false;
-
   @Input() showOrderBy = true;
   @Input() valeur = '';
   @Input() showSearch = true;
@@ -25,9 +26,8 @@ export class ListPageAnswersHeaderComponent implements OnInit {
   @Output() searchKeyUp: EventEmitter<string> = new EventEmitter<string>();
   @Output() itemsPerPageChange: EventEmitter<any> = new EventEmitter();
   @Output() changeOrderBy: EventEmitter<any> = new EventEmitter();
-
   @ViewChild('search') search: any;
-  constructor() { }
+  constructor(private quizService:QuizService) { }
 
   ngOnInit() {
   }
