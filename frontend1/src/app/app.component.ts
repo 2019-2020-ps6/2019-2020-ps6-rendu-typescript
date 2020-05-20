@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { LangService } from './shared/lang.service';
 import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppComponent implements OnInit, AfterViewInit {
-  constructor(private langService: LangService, private renderer: Renderer2) {
+  isMultiColorActive = environment.isMultiColorActive;
+
+  constructor(private langService: LangService, private renderer: Renderer2, private router: Router, location: Location,) {
 
   }
 
   ngOnInit() {
     this.langService.init();
+
+
+
   }
 
   ngAfterViewInit() {
@@ -25,5 +32,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.renderer.addClass(document.body, 'default-transition');
     }, 1500);
+
   }
 }

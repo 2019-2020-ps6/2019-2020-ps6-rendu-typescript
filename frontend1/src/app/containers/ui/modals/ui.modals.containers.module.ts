@@ -6,6 +6,7 @@ import {ModalGoodAnswerComponent} from './modal-good-answer/modal-good-answer.co
 import {ModalConfirmComponent} from './modal-confirm/modal-confirm.component';
 import {ModalConfirmQuitComponent} from './modal-confirm-quit/modal-confirm-quit.component';
 import {UserChoiceComponent} from './user-choice/user-choice.component';
+import {ModalFormNotValidComponent} from './modal-form-not-valid/modal-form-not-valid.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {UserChoiceComponent} from './user-choice/user-choice.component';
     ModalGoodAnswerComponent,
     ModalConfirmComponent,
     ModalConfirmQuitComponent,
+    ModalFormNotValidComponent,
     UserChoiceComponent
   ],
   imports: [SharedModule, ModalModule.forRoot()],
@@ -23,6 +25,7 @@ import {UserChoiceComponent} from './user-choice/user-choice.component';
     ModalGoodAnswerComponent,
     ModalConfirmComponent,
     ModalConfirmQuitComponent,
+    ModalFormNotValidComponent,
     UserChoiceComponent
   ]
 })

@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ModalAddComponent} from '../../ui/modals/modal-add/modal-add.component';
 import {UserService} from '../../../../services/user.service';
 import {User} from '../../../../models/user.model';
+import {ModalFormNotValidComponent} from '../../ui/modals/modal-form-not-valid/modal-form-not-valid.component';
 
 @Component({
   selector: 'app-add-new-user-modal',
@@ -25,6 +26,7 @@ export class AddNewUserModalComponent implements OnInit {
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
+  @ViewChild('formNotValid') formNotValid: ModalFormNotValidComponent;
   constructor(private modalService: BsModalService, private userService: UserService, private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
       firstname: [''],
@@ -46,15 +48,27 @@ export class AddNewUserModalComponent implements OnInit {
     this.addAlertModal.openModal();
   }
 
+  private showFormNotValidModal() {
+    this.formNotValid.openModal();
+  }
+
   addUser() {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const userToCreate: User = this.userForm.getRawValue() as User;
     userToCreate.img = this.selectedFile;
-    this.userService.addUser(userToCreate);
-    // console.log(userToCreate);
-    this.showAddAlertModal();
-    this.userForm.reset();
-    this.modalRef.hide();
+    if (this.verifyAllField(userToCreate)) {
+      this.userService.addUser(userToCreate);
+      this.showAddAlertModal();
+      this.userForm.reset();
+      this.modalRef.hide();
+    } else {
+      this.showFormNotValidModal();
+    }
+  }
+
+  verifyAllField(user: User) {
+    if (user.firstname === '' || user.lastname === '' || user.birthday === null ||  user.img === '') { return false; }
+    return true;
   }
 
   onFileSelected(event) {
