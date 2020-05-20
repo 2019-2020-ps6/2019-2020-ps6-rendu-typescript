@@ -37,6 +37,15 @@ export class GameComponent implements OnInit {
     'bg-info'
   ];
 
+  private colorB = [
+    'primary',
+    'danger',
+    'success',
+    'warning',
+    'secondary',
+    'info'
+  ];
+
   private dark = 'bg-dark';
   @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalGoodAnswerComponent;
   @ViewChild('alertQuitRef', {static: true}) alertQuitRef: ModalConfirmQuitComponent;
@@ -55,7 +64,7 @@ export class GameComponent implements OnInit {
   finir() {
     this.calculateScore();
     this.updateUserScore();
-    this.router.navigate(['/recapitulate /' + this.quiz.id + '/' + this.user.id]);
+    this.router.navigate(['/recapitulate/' + this.quiz.id + '/' + this.user.id]);
     this.nbrIndiceUtilise = 0;
     this.nbrReponse = 0;
     this.score = 0;
@@ -118,9 +127,20 @@ export class GameComponent implements OnInit {
     this.alertQuitRef.openModal();
   }
 
+  readTheText(textToRead) {
+    let msg = new SpeechSynthesisUtterance(textToRead);
+    msg.lang = 'fr-FR';
+    window.speechSynthesis.speak(msg);
+  }
+
   getColor(item: Answer, param: number) {
     if (!item.type) { return this.dark; }
     return this.color[param % this.color.length];
+  }
+
+  getColorB(item: Answer, param: number) {
+    if (!item.type) { return this.dark; }
+    return this.colorB[param % this.colorB.length];
   }
 
   verify(item: Answer) {

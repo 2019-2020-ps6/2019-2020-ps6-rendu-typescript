@@ -21,14 +21,13 @@ export class AddNewQuizModalComponent implements OnInit {
     ignoreBackdropClick: true,
     class: 'modal-right'
   };
-  categories = [
-    { label: 'CAKES', value: 'CAKES' },
-    { label: 'CUPCAKES', value: 'CUPCAKES' },
-    { label: 'SPORT', value: 'SPORT'},
-    { label: 'ACTOR', value: 'ACTOR'},
-    { label: 'DESSERTS', value: 'DESSERTS' }
-  ];
-
+  themeColor = [
+    'secondary',
+    'primary',
+    'success',
+    'warning',
+    'danger'
+  ]
 
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   @ViewChild('addAlertModal') addAlertModal: ModalAddComponent;
@@ -63,21 +62,8 @@ export class AddNewQuizModalComponent implements OnInit {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     quizToCreate.date = new Date().toDateString();
     quizToCreate.img = this.selectedFile;
-    if (quizToCreate.theme === 'CAKES') {
-      quizToCreate.themeColor = 'secondary';
-    }
-    if (quizToCreate.theme === 'CUPCAKES') {
-      quizToCreate.themeColor = 'primary';
-    }
-    if (quizToCreate.theme === 'DESSERTS') {
-      quizToCreate.themeColor = 'success';
-    }
-    if (quizToCreate.theme === 'SPORT') {
-      quizToCreate.themeColor = 'warning';
-    }
-    if (quizToCreate.theme === 'ACTOR') {
-      quizToCreate.themeColor = 'danger';
-    }
+    quizToCreate.theme = quizToCreate.theme.toUpperCase();
+    quizToCreate.themeColor = this.themeColor[Math.floor(Math.random() * this.themeColor.length)];
 
     if (this.verifyAllField(quizToCreate)) {
       this.quizService.addQuiz(quizToCreate);

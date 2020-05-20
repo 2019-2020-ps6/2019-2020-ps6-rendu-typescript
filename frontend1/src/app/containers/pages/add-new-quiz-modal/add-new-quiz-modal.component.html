@@ -13,15 +13,11 @@
             <label>{{ 'pages.product-name' | translate }}</label>
             <input type="text" class="form-control" placeholder="" id="name" [formControlName]="'name'">
         </div>
-        <div class="mt-4">
-            <label>{{ 'pages.category' | translate }}</label>
-            <label class="w-100">
-                <ng-select appearance="outline" [searchable]="false" id="theme" [formControlName]="'theme'">
-                    <ng-option *ngFor="let item of categories" [value]="item.value">{{item.label}}
-                    </ng-option>
-                </ng-select>
-            </label>
-        </div>
+      <br>
+      <div>
+        <label>{{ 'pages.category' | translate }}</label>
+        <input type="text" class="form-control" placeholder="" id="theme" [formControlName]="'theme'">
+      </div>
       <div class="mt-4">
       <div class="input-group mb-3">
         <div class="input-group-prepend">

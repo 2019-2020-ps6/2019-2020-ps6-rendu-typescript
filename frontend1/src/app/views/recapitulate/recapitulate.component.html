@@ -1,5 +1,5 @@
 <app-color-switcher *ngIf="isMultiColorActive"></app-color-switcher>
-<app-modal-good-answer #alertModalRef></app-modal-good-answer>
+<app-modal-recapitulate #alertModalRef></app-modal-recapitulate>
 <app-modal-confirm-quit #alertQuitRef></app-modal-confirm-quit>
 <div class="text-center" style="margin-left: 85%; margin-top: 10px">
   <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton" (click)="fullScreenClick()">
@@ -36,7 +36,11 @@
  <!-------------------------------------------------- Question sans Image ----------------------------------------------->
 <div class="card text-center" *ngIf="question.img === 'none'">
   <div class="card-body">
-    <h2>Question {{i+1}} : {{question.label}}</h2>
+    <h2>
+      Question {{i+1}} : <br>
+      {{question.label}}
+
+    </h2>
   </div>
 </div>
     <!-------------------------------------------------- Question sans Image ----------------------------------------------->
@@ -44,10 +48,10 @@
     <!-------------------------------------------------- Question avec Image ----------------------------------------------->
 <div class="card mb-3" *ngIf="question.img !== 'none'" style="margin-top: 20px">
   <div class="row no-gutters" >
-    <div class="col-md-3">
+    <div class="col-lg-3">
       <img src="{{question.img}}" class="card-img" alt="{{question.img}}">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="card-body">
         <p class="card-title text-center" style="font-size: 175%"> Question {{i+1}} : </p>
         <p class="card-title text-center" style="font-size: 175%">{{question.label}}</p>
@@ -82,7 +86,7 @@
                 <div class="col-md-3">
                   <img src="{{answer.img}}" class="card-img" alt="{{answer.img}}">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <div class="card-title">
                     <p class="card-title text-center" style="color: black; font-size: 150%; margin-top: 5%">
                       <u>La bonne reponse</u><br>

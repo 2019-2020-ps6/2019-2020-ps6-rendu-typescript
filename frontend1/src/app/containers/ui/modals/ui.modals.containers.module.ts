@@ -7,6 +7,7 @@ import {ModalConfirmComponent} from './modal-confirm/modal-confirm.component';
 import {ModalConfirmQuitComponent} from './modal-confirm-quit/modal-confirm-quit.component';
 import {UserChoiceComponent} from './user-choice/user-choice.component';
 import {ModalFormNotValidComponent} from './modal-form-not-valid/modal-form-not-valid.component';
+import {ModalRecapitulateComponent} from "./modal-recapitulate/modal-recapitulate.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {ModalFormNotValidComponent} from './modal-form-not-valid/modal-form-not-
     ModalConfirmComponent,
     ModalConfirmQuitComponent,
     ModalFormNotValidComponent,
+    ModalRecapitulateComponent,
     UserChoiceComponent
   ],
   imports: [SharedModule, ModalModule.forRoot()],
@@ -26,6 +28,7 @@ import {ModalFormNotValidComponent} from './modal-form-not-valid/modal-form-not-
     ModalConfirmComponent,
     ModalConfirmQuitComponent,
     ModalFormNotValidComponent,
+    ModalRecapitulateComponent,
     UserChoiceComponent
   ]
 })

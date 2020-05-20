@@ -17,6 +17,7 @@
 <div class="card text-center" *ngIf="question.img === 'none'">
   <div class="card-body">
     <h2>{{question.label}}</h2>
+    <h6><a href="javascript:;" (click)="readTheText(question.label.toString())"> <i class="simple-icon-earphones mr-2"></i> Lire la question à haute voix </a></h6>
     <br> DATE : {{question.date}}
     <br> QUIZ CONCERNE : {{quiz.name}}
   </div>
@@ -32,6 +33,7 @@
     <div class="col-md-8" style="margin-left: 20px">
       <div class="card-body">
         <p class="card-title text-center" style="font-size: 200%">{{question.label}}</p>
+        <p class="card-title text-center" style="font-size: 130%"> <a href="javascript:;" (click)="readTheText(question.label.toString())"> <i class="simple-icon-earphones mr-2"></i> Lire la question à haute voix  </a></p>
         <p class="card-text text-center">QUIZ CONCERNE : {{quiz.name}}</p>
         <p class="card-text text-center"><small class="text-muted">DATE : {{question.date}}</small></p>
       </div>
@@ -49,12 +51,14 @@
 <br> <br>
 <div class="row" *ngIf="question.answers[0].img === 'none'">
   <div class="col-sm-6" style="margin-bottom: 25px;" *ngFor="let answer of question.answers; let i = index">
-    <div class="card text-center {{getColor(answer, i+1)}}" (click)="verify(answer)"><br>
-      <div class="card-body">
+    <div class="card text-center {{getColor(answer, i+1)}}" ><br>
+      <a href="javascript:;"><span [class]="'badge badge-pill position-absolute badge-top-left badge-warning'"(click)="readTheText(answer.value.toString())"><i class="simple-icon-earphones mr-2"></i> LIRE A HAUTE VOIX</span> </a>
+      <div class="card-body" (click)="verify(answer)">
         <p class="card-text" style="color: black;"  *ngIf="answer.type"> <u>Réponse {{i+1}}</u></p>
-        <p class="card-text" style="color: white;"  *ngIf="!answer.type"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ... </p>
+        <p class="card-text" style="color: white;"  *ngIf="!answer.type && answer.indixe !== ''"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ... </p>
         <p class="card-text" style="color: white; font-size: 25px" *ngIf="answer.type">{{answer.value}}</p>
         <p class="card-text" style="color: white" *ngIf="!answer.type">{{answer.indixe}}</p>
+        <p class="card-text" style="color: white" *ngIf="!answer.type && answer.indixe === ''">Ceci n'est pas la bonne reponse. <br> Veuillez envisager les autres reponses !!! </p>
       </div>
     </div>
   </div>
@@ -66,10 +70,10 @@
 
         <div class="row row-cols-1 row-cols-md-3" *ngIf="question.answers[0].img !== 'none'">
           <div class="col mb-4" *ngFor="let answer of question.answers; let i = index">
-            <div class="card h-100 text-center" (click)="verify(answer)">
-              <img src="{{answer.img}}" class="card-img-top" alt="{{answer.img}}" *ngIf="answer.type">
-
-              <div class="card-body text-center">
+            <div class="card h-100 text-center" >
+              <a href="javascript:;"><span [class]="'badge badge-pill position-absolute badge-top-left badge-warning'"(click)="readTheText(answer.value.toString())" > <i class="simple-icon-earphones mr-2">  </i>LIRE A HAUTE VOIX </span>  </a>
+              <img src="{{answer.img}}" class="card-img-top" alt="{{answer.img}}" *ngIf="answer.type" (click)="verify(answer)">
+              <div class="card-body text-center" (click)="verify(answer)">
                 <p class="card-text" *ngIf="answer.type"> <u>Réponse {{i+1}}</u></p>
                 <p class="card-text" *ngIf="!answer.type"> Ceci n'est pas la bonne reponse.<br> Voici un indice pour vous aider :) ...</p>
                 <h3 *ngIf="!answer.type" class="card-title text-center">  <br>{{answer.indixe}}</h3>

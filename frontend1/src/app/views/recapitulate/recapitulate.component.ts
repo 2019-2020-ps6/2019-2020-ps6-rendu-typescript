@@ -3,11 +3,11 @@ import {Answer, Question} from '../../../models/question.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../../models/quiz.model';
 import {QuizService} from '../../../services/quizzes.service';
-import {ModalGoodAnswerComponent} from '../../containers/ui/modals/modal-good-answer/modal-good-answer.component';
-import {ModalConfirmQuitComponent} from '../../containers/ui/modals/modal-confirm-quit/modal-confirm-quit.component';
-import {Score, User} from '../../../models/user.model';
+import {User} from '../../../models/user.model';
 import {UserService} from '../../../services/user.service';
 import {environment} from "../../../environments/environment";
+import {ModalRecapitulateComponent} from "../../containers/ui/modals/modal-recapitulate/modal-recapitulate.component";
+import {ModalConfirmQuitComponent} from "../../containers/ui/modals/modal-confirm-quit/modal-confirm-quit.component";
 
 @Component({
   selector: 'app-recapitulate',
@@ -18,11 +18,6 @@ export class RecapitulateComponent implements OnInit {
   public quiz: Quiz;
   public user: User;
   public questions: Question[];
-  pager = {
-    index: 0,
-    size: 1,
-    count: 1
-  };
   isFullScreen = false;
   private color = [
     'bg-primary',
@@ -34,7 +29,7 @@ export class RecapitulateComponent implements OnInit {
   ];
   isMultiColorActive = environment.isMultiColorActive;
   private dark = 'bg-dark';
-  @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalGoodAnswerComponent;
+  @ViewChild('alertModalRef', {static: true}) alertModalRef: ModalRecapitulateComponent;
   @ViewChild('alertQuitRef', {static: true}) alertQuitRef: ModalConfirmQuitComponent;
   constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
@@ -46,6 +41,8 @@ export class RecapitulateComponent implements OnInit {
     const id1 = this.route.snapshot.paramMap.get('userId');
     this.userService.setSelectedUser(id1);
     this.userService.userSelected$.subscribe((user) => {this.user = user; });
+
+    this.showAlertModal();
   }
 
   fullScreenClick() {
@@ -57,13 +54,14 @@ export class RecapitulateComponent implements OnInit {
     }
   }
 
-  showAlertModal(msg) {
-    this.alertModalRef.openModal(msg);
+  showAlertModal() {
+    this.alertModalRef.openModal();
   }
 
   showQuitModal() {
     this.alertQuitRef.openModal();
   }
+
 
   getColor(item: Answer, param: number) {
     if (!item.type) { return this.dark; }
