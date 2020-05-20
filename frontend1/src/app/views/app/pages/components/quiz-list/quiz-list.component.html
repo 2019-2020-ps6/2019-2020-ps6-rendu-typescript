@@ -36,14 +36,14 @@
       <div class="d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+          <div class="list-item-heading mb-0 truncate w-40 w-xs-100">
             {{p.name}} <p>{{p.description}}</p>
-          </a>
+          </div>
 
           <div class="w-15 w-sm-100">
           <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
         </div>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
+          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date | date:'shortDate'}}</p>
           <div class="w-15 w-xs-100">
               <a href="javascript:;" (click)="launchQuiz(p)">
                 <i class="simple-icon-control-play ml-2 mr-2"></i> <span>Lancer</span>
@@ -57,19 +57,19 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
     [contextMenu]="basicMenu" [contextMenuSubject]="p">
-      <a class="d-flex" href="javascript:;">
+      <div class="d-flex">
         <img [src]="p.img" [alt]="p.name" class="list-thumbnail responsive border-0 card-img-left" />
-      </a>
+      </div>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a href="javascript:;" class="w-40 w-sm-100">
+          <div class="w-40 w-sm-100">
             <p class="list-item-heading mb-0 truncate">{{p.name}}</p>
-          </a>
+          </div>
           <div class="w-15 w-sm-100">
             <span [class]="'badge badge-pill badge-'+p.themeColor">{{p.theme}}</span>
           </div>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date | date:'shortDate'}}</p>
           <div class="w-15 w-sm-100">
             <a href="javascript:;" (click)="launchQuiz(p)">
               <i class="simple-icon-control-play ml-2 mr-2"></i> <span>Lancer</span>
@@ -86,16 +86,16 @@
       [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.name"></a>
+            <div><img class="card-img-top" [src]="p.img" [alt]="p.name"></div>
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.themeColor">{{p.theme}}</span>
           </div>
           <div class="card-body">
               <div class="row">
               <div class="col-2">
                 <div style="margin-top: 5px; ">
-                  <a href="javascript:;">
+                  <div>
                     <i class="simple-icon-menu ml-2 mr-2"></i>
-                  </a>
+                  </div>
                 </div>
                 <div style="margin-top: 16px; ">
                   <a href="javascript:;">
@@ -104,14 +104,14 @@
                 </div>
               </div>
               <div class="col-10">
-                <a href="javascript:;">
+                <div href="javascript:;">
                   <p class="list-item-heading mb-2 pt-1">{{p.name}}</p>
-                </a>
+                </div>
                 <a href="javascript:;">
                    <p class="list-item-heading mt-1 pt-1" (click)="launchQuiz(p)">Lancer</p>
                 </a>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date | date:'shortDate'}}</p>
                 </footer>
               </div>
            </div>

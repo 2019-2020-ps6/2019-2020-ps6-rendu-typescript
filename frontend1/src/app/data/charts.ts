@@ -3,7 +3,7 @@ export const lineChartData = {
   labels: [],
   datasets: [
     {
-      label: '',
+      label: 'Unité (%) ',
       data: [],
       borderColor: Colors.getColors().themeColor1,
       pointBackgroundColor: Colors.getColors().foregroundColor,

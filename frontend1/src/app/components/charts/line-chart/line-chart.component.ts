@@ -36,7 +36,6 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
         }
       });
     }
-
     const chartRefEl = this.chartRef.nativeElement;
     const ctx = chartRefEl.getContext('2d');
     this.chart = new Chart(ctx, {

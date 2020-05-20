@@ -98,7 +98,6 @@ export class QuizListComponent implements OnInit {
   }
 
   onContextMenuClick(action: string, item: Quiz) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.name);
     if (action === 'delete') {
        this.quizService.deleteQuiz(item);
     }
@@ -128,7 +127,6 @@ export class QuizListComponent implements OnInit {
   }
 
   doFiltering(valeur: string) {
-    console.log('Valeur de value = ' + valeur);
     if (valeur !== '') {
       this.data = this.filterText(this.data, valeur);
     } else { this.data = this.quizzesTmp; }

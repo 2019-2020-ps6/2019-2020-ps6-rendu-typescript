@@ -5,6 +5,7 @@ import { ErrorComponent } from './error/error.component';
 import { environment } from './../../environments/environment';
 import {GameComponent} from './game/game.component';
 import {CongratulationsComponent} from './congratulations/congratulations.component';
+import {RecapitulateComponent} from "./recapitulate/recapitulate.component";
 
 
 let routes: Routes = [
@@ -17,6 +18,7 @@ let routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'game/:quizId/:userId', component: GameComponent},
   { path: 'congratulations/:quizId/:userId', component: CongratulationsComponent},
+  { path: 'recapitulate/:quizId/:userId', component: RecapitulateComponent},
   { path: '**', redirectTo: '/error' }
 ];
 

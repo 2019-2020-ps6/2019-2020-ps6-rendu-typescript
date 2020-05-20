@@ -24,9 +24,9 @@
       <div class="d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-20 w-xs-100" href="javascript:;">
+          <div class="list-item-heading mb-0 truncate w-20 w-xs-100">
             {{ans.value}}
-          </a>
+          </div>
           <p class="mb-0 "> Indice : {{ans.indixe}}</p>
           <div class="w-15 w-sm-100" *ngIf="!ans.isCorrect">
             <span [class]="'badge badge-pill badge-danger'">INCORRECT</span>
@@ -43,15 +43,15 @@
   <div class="col-12 list" *ngIf="displayMode==='thumb'">
     <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(ans)}" *ngFor="let ans of data; let i=index"
          [contextMenu]="basicMenu" [contextMenuSubject]="ans">
-      <a class="d-flex" href="javascript:;" *ngIf="ans.img !== 'none'">
+      <div class="d-flex" *ngIf="ans.img !== 'none'">
         <img [src]="ans.img" [alt]="ans.value" class="list-thumbnail responsive border-0 card-img-left" />
-      </a>
+      </div>
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a href="javascript:;" class="w-40 w-sm-100">
+          <div class="w-40 w-sm-100">
             <p class="list-item-heading mb-0 truncate">{{ans.value}}</p>
-          </a>
+          </div>
 
           <p class="mb-0 text-muted text-small w-15 w-sm-100">{{ans.type}}</p>
           <div class="w-15 w-sm-100" *ngIf="!ans.isCorrect">
@@ -71,7 +71,7 @@
            [contextMenu]="basicMenu" [contextMenuSubject]="p">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
-            <a href="javascript:;" *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.value"></a>
+            <div *ngIf="p.img !== 'none'"><img class="card-img-top" [src]="p.img" [alt]="p.value"></div>
             <br *ngIf="p.img === 'none'">
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-danger'" *ngIf="!p.isCorrect">INCORRECT</span>
             <span [class]="'badge badge-pill position-absolute badge-top-left badge-success'" *ngIf="p.isCorrect">CORRECT</span>
@@ -82,9 +82,9 @@
 
               </div>
               <div class="col-10">
-                <a href="javascript:;">
+                <div>
                   <p class="list-item-heading mb-2 pt-1">{{p.value}}</p>
-                </a>
+                </div>
               </div>
             </div>
           </div>

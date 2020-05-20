@@ -17,14 +17,8 @@ export class QuestionListComponent implements OnInit {
   selectAllState = '';
   selected: Question[] = [];
   data: Question[] = [];
-  currentPage = 1;
   itemsPerPage = 8;
   search = '';
-  orderBy = '';
-  isLoading: boolean;
-  endOfTheList = false;
-  totalItem = 0;
-  totalPage = 0;
 
   @Output()
   deleteQuestion: EventEmitter<Question> = new EventEmitter<Question>();
@@ -92,7 +86,6 @@ export class QuestionListComponent implements OnInit {
   }
 
   onContextMenuClick(action: string, item: Question) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.label);
     if (action === 'delete')  {
       this.quizService.deleteQuestion(this.quiz, item);
     }

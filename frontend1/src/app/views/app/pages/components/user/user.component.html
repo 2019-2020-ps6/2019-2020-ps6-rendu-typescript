@@ -34,13 +34,15 @@
       <div class="pl-2 d-flex flex-grow-1 min-width-zero">
         <div
           class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a href="javascript:;" class="w-40 w-sm-100">
+          <div class="w-40 w-sm-100">
             <p class="list-item-heading mb-0 truncate">{{p.firstname}} {{' '+ p.lastname}}</p>
-          </a>
+          </div>
           <div class="w-15 w-sm-100">
             <span [class]="'badge badge-pill badge-primary'">{{p.birthday}}</span>
           </div>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length===0"> Pas de score </p>
           <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length>0">Dernier Score : {{p.scores[p.scores.length-1].value}} % </p>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100" *ngIf="p.scores.length==0">Pas de Score </p>
           <div class="w-sm-100">
             <a href="javascript:;">
             <span [class]="'badge badge-pill badge-warning'" *ngIf="!actived[i]" (click)="this.displayEvolution(i)"> Voir En Details </span>

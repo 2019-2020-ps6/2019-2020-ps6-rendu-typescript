@@ -76,7 +76,6 @@ export class UserComponent implements OnInit {
   }
 
   onContextMenuClick(action: string, item: User) {
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.firstname);
     if (action === 'delete') {
       this.userService.deleteUser(item);
     }
@@ -97,7 +96,6 @@ export class UserComponent implements OnInit {
   }
 
   doFiltering(valeur: string) {
-    console.log('Valeur de value = ' + valeur);
     if (valeur !== '') {
       this.data = this.filterText(this.data, valeur);
     } else { this.data = this.usersTmp; }
