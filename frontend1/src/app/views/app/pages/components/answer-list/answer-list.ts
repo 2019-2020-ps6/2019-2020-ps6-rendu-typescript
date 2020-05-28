@@ -14,6 +14,7 @@ import {ModalAddComponent} from '../../../../../containers/ui/modals/modal-add/m
 })
 export class AnswerListComponent implements OnInit {
   quiz: Quiz;
+  question : Question;
   displayMode = 'image';
   selectAllState = '';
   selected: Answer[] = [];
@@ -37,7 +38,7 @@ export class AnswerListComponent implements OnInit {
 
   constructor(private hotkeysService: HotkeysService,
               private quizService: QuizService, private route: ActivatedRoute, private router: Router) {
-    this.quizService.questionSelected$.subscribe((q) => {
+    this.quizService.questionSelected$.subscribe((q) => { this.question = q;
       this.data = q.answers;
     });
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {

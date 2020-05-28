@@ -1,11 +1,13 @@
 <div class="row">
   <div class="col-12">
     <app-heading></app-heading>
+
     <div class="top-right-button-container text-zero">
       <button type="button" (click)="onAddNewItem()"
         class="top-right-button btn btn-primary btn-lg mr-1">{{ 'pages.add-new-question' | translate}}</button>
     </div>
     <app-breadcrumb></app-breadcrumb>
+
     <div class="display-options-container">
       <a class="btn pt-0 pl-0 d-inline-block d-md-none c-pointer" data-toggle="collapse"
         (click)="displayOptionsCollapsed = !displayOptionsCollapsed" role="button" aria-expanded="true"
@@ -55,6 +57,10 @@
           <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
             <input class="form-control" placeholder="{{'pages.search' | translate}}" [(ngModel)]="valeur" (keyup)="onSearchKeyUp($event)">
           </div>
+        </div>
+
+        <div class="float-right" *ngIf="quiz">
+          <span><b>QUIZ CONCERNE : {{quiz.name}}</b> </span>
         </div>
       </div>
       <div class="separator mb-4"></div>

@@ -44,6 +44,9 @@
             </svg>
           </a>
         </span>
+        <div class="float-right" *ngIf="question">
+          <span><b>QUESTION CONCERNEE : {{question.label}}</b> </span>
+        </div>
       </div>
       <br><br>
       <div class="separator mb-4"></div>
