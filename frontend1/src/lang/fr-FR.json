@@ -20,8 +20,8 @@
   "menu": {
     "app": "Acceuil",
     "quiz": "Quiz",
-    "user": "Utilisateurs",
-    "users": "Utilisateurs",
+    "user": "Patients",
+    "users": "Patients",
     "quizzes": "Quizzes",
     "second-menu": "Profils",
     "answer-list": "Reponses",
