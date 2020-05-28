@@ -58,6 +58,12 @@ export class RecapitulateComponent implements OnInit {
     this.alertModalRef.openModal();
   }
 
+  readTheText(textToRead) {
+    let msg = new SpeechSynthesisUtterance(textToRead);
+    msg.lang = 'fr-FR';
+    window.speechSynthesis.speak(msg);
+  }
+
   showQuitModal() {
     this.alertQuitRef.openModal();
   }

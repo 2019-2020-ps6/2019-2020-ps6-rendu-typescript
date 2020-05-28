@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { filter, map } from 'rxjs/operators';
 })
 export class HeadingComponent {
   currentRoute = '';
+  @Input() label;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.router.events

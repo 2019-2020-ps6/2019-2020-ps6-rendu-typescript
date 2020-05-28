@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import {QuizService} from "../../../../services/quizzes.service";
 import {Quiz} from "../../../../models/quiz.model";
+import {Question} from "../../../../models/question.model";
 
 @Component({
   selector: 'app-list-answers-page-header',
@@ -8,6 +9,7 @@ import {Quiz} from "../../../../models/quiz.model";
 })
 export class ListPageAnswersHeaderComponent implements OnInit {
   displayOptionsCollapsed = false;
+  @Input() question : Question;
   @Input() showOrderBy = true;
   @Input() valeur = '';
   @Input() showSearch = true;
