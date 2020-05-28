@@ -293,6 +293,109 @@
     "img": "none",
     "date": "Thu May 28 2020",
     "quizId": 1590632501444,
-    "id": 1590635482850
+    "id": 1590635482850,
+    "answers": []
+  },
+  {
+    "label": "Quel est l'actuel Club de Cristiano Ronaldo ?",
+    "img": "none",
+    "date": "Thu May 28 2020",
+    "quizId": 1590635706912,
+    "id": 1590635731156,
+    "answers": [
+      {
+        "value": "Real Madrid",
+        "img": "none",
+        "indixe": "Indice pour l'aider à trouver la bonne réponse.",
+        "isCorrect": false,
+        "type": true,
+        "questionId": 1590635731156,
+        "id": 1590635824112
+      },
+      {
+        "value": "Sporting",
+        "img": "none",
+        "indixe": "Indice pour l'aider à trouver la bonne réponse.",
+        "isCorrect": false,
+        "type": true,
+        "questionId": 1590635731156,
+        "id": 1590635835696
+      },
+      {
+        "value": "Juventus",
+        "img": "none",
+        "indixe": "Une petite description pour lui rafraichir la mémoire ",
+        "isCorrect": true,
+        "type": true,
+        "questionId": 1590635731156,
+        "id": 1590635882118
+      }
+    ]
+  },
+  {
+    "label": "Quel était le premier club de Cristiano Ronaldo ?",
+    "img": "none",
+    "date": "Thu May 28 2020",
+    "quizId": 1590635706912,
+    "id": 1590635750440
+  },
+  {
+    "label": "Cristiano Ronaldo joue à quel poste ?",
+    "img": "none",
+    "date": "Thu May 28 2020",
+    "quizId": 1590635706912,
+    "id": 1590635767350
+  },
+  {
+    "label": "Quel est l'actuel Club de Cristiano Ronaldo ?",
+    "img": "none",
+    "date": "Thu May 28 2020",
+    "quizId": 1590635970627,
+    "id": 1590635992502,
+    "answers": [
+      {
+        "value": "Real Madrid",
+        "img": "none",
+        "indixe": "Un indice pour lui faciliter la tâche et l'indiquer vers la bonne réponse.",
+        "isCorrect": false,
+        "type": true,
+        "questionId": 1590635992502,
+        "id": 1590636069134
+      },
+      {
+        "value": "Sporting",
+        "img": "none",
+        "indixe": "Un indice pour lui faciliter la tâche et l'indiquer vers la bonne réponse.",
+        "isCorrect": false,
+        "type": true,
+        "questionId": 1590635992502,
+        "id": 1590636083565
+      },
+      {
+        "value": "Juventus",
+        "img": "none",
+        "indixe": "Une petite description pour l'aider à garder cette bonne réponse.",
+        "isCorrect": true,
+        "type": true,
+        "questionId": 1590635992502,
+        "id": 1590636123116
+      },
+      {
+        "value": "Manchester United",
+        "img": "none",
+        "indixe": "Un indice pour lui faciliter la tâche et l'indiquer vers la bonne réponse.",
+        "isCorrect": false,
+        "type": true,
+        "questionId": 1590635992502,
+        "id": 1590636133182
+      }
+    ]
+  },
+  {
+    "label": "Cristiano Ronaldo joue à quel poste ?",
+    "img": "none",
+    "date": "Thu May 28 2020",
+    "quizId": 1590635970627,
+    "id": 1590636010727
   }
 ]
