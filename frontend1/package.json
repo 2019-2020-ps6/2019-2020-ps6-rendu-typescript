@@ -34,7 +34,7 @@
     "angular-svg-round-progressbar": "^3.0.1",
     "angular2-hotkeys": "^2.1.5",
     "angular2-notifications": "^3.0.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "date-fns": "^2.8.0",
     "firebase": "^7.14.1",
     "ng2-nouislider": "^1.8.2",
